@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :event_type do
-    name "MyString"
+    name 'unknown'
   end
-
 end

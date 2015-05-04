@@ -1,5 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe EventType, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe EventType do
+  it 'should have proper factory' do
+    expect(build(:event_type)).to be_valid
+  end
 end

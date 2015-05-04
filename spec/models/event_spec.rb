@@ -5,6 +5,35 @@ describe Event do
     expect(build(:event)).to be_valid
   end
 
+  describe 'validation' do
+    specify { expect(build(:event)).to be_valid }
+    specify { expect(build(:event, name: '')).not_to be_valid }
+    specify { expect(build(:event, started_at: nil)).not_to be_valid }
+    specify { expect(build(:event, ended_at: nil)).not_to be_valid }
+    specify { expect(build(:event, started_at: '2015-01-07 17:00:00 +0900', ended_at: '2015-01-07 18:00:00 +0900')).to be_valid }
+    specify { expect(build(:event, started_at: '2015-01-07 17:00:00 +0900', ended_at: '2015-01-07 17:00:00 +0900')).not_to be_valid }
+    specify { expect(build(:event, started_at: '2015-01-07 18:00:00 +0900', ended_at: '2015-01-07 17:00:00 +0900')).not_to be_valid }
+    specify { expect(build(:event, series_name: nil)).to be_valid }
+    specify { expect(build(:event, series_name: 'psl4th')).to be_valid }
+    it 'should have unique series_name' do
+      create(:event, series_name: 'psl4th')
+      expect(build(:event, series_name: 'psl4th')).not_to be_valid
+    end
+
+    describe 'event term must not cover other one.' do
+      before do
+        @event = create(:event, name: '大成！プラチナスターライブ4TH', series_name: 'psl4th', started_at: '2015-01-16 17:00:00 +0900', ended_at: '2015-01-27 23:59:59 +0900')
+      end
+      specify { expect(@event).to be_valid }
+      specify { expect(build(:event, started_at: '2015-01-07 17:00:00 +0900', ended_at: '2015-01-14 23:59:59 +0900')).to be_valid }
+      specify { expect(build(:event, started_at: '2015-01-07 17:00:00 +0900', ended_at: '2015-02-08 23:59:59 +0900')).not_to be_valid }
+      specify { expect(build(:event, started_at: '2015-01-07 17:00:00 +0900', ended_at: '2015-01-17 00:00:00 +0900')).not_to be_valid }
+      specify { expect(build(:event, started_at: '2015-01-17 00:00:00 +0900', ended_at: '2015-01-25 00:00:00 +0900')).not_to be_valid }
+      specify { expect(build(:event, started_at: '2015-01-25 18:00:00 +0900', ended_at: '2015-02-08 23:59:59 +0900')).not_to be_valid }
+      specify { expect(build(:event, started_at: '2015-01-29 17:00:00 +0900', ended_at: '2015-02-08 23:59:59 +0900')).to be_valid }
+    end
+  end
+
   describe 'find by the time' do
     before do
       @imc = create(:event, name: 'アイドルマスターズカップ8', started_at: '2014-12-10 17:00:00 +0900', ended_at: '2014-12-14 23:59:59 +0900')

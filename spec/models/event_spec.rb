@@ -34,6 +34,11 @@ describe Event do
     end
   end
 
+  describe 'decision of has border' do
+    specify { expect(build(:event, series_name: nil).has_border?).to be false }
+    specify { expect(build(:event, series_name: '20150116-0127_psl4').has_border?).to be true }
+  end
+
   describe 'find by the time' do
     before do
       @imc = create(:event, name: 'アイドルマスターズカップ8', started_at: '2014-12-10 17:00:00 +0900', ended_at: '2014-12-14 23:59:59 +0900')

@@ -8,6 +8,10 @@ class Event < ActiveRecord::Base
   validate :periods_are_not_included_by_other
   validate :not_cover_other_one
 
+  def has_border?
+    series_name.present?
+  end
+
   def self.at(time = Time.now)
     time = Time.parse(time) if time.class == String
     where(arel_table[:started_at].lteq(time)).

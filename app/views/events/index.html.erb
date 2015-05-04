@@ -1,0 +1,6 @@
+<h1>border bot</h1>
+<ul>
+<%- @events.each do |event| %>
+  <li><%= event.name %>: <%= event.started_at %> 〜 <%= event.ended_at %></li>
+<%- end %>
+</ul>

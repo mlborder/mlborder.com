@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+EventType.create([
+  { name: 'unknown' },
+  { name: 'fes_raid' },
+  { name: 'choco_marathon' },
+  { name: 'lesson_tower' },
+  { name: 'imc_gvg' },
+  { name: 'psl_marathon' }
+])

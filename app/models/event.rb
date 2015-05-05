@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
   validate :periods_are_not_included_by_other
   validate :not_cover_other_one
 
+  scope :border_available, -> { where.not( series_name: nil ) }
+
   def has_border?
     series_name.present?
   end

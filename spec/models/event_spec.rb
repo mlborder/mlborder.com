@@ -39,6 +39,19 @@ describe Event do
     specify { expect(build(:event, series_name: '20150116-0127_psl4').has_border?).to be true }
   end
 
+  describe 'border_available scope' do
+    before :all do
+      @event1 = create(:event, name: '開幕！アイドルイントロダクション', series_name: 'introduction')
+      @event2 = create(:event, name: '開演！ロケットスタートライブ!', series_name: nil)
+      @event3 = create(:event, name: '輝け！春の野外音楽フェスティバル', series_name: 'festival')
+    end
+    subject { Event.border_available }
+
+    specify { should have(2).items }
+    specify { should include @event1 }
+    specify { should include @event3 }
+  end
+
   describe 'find by the time' do
     before do
       @imc = create(:event, name: 'アイドルマスターズカップ8', started_at: '2014-12-10 17:00:00 +0900', ended_at: '2014-12-14 23:59:59 +0900')

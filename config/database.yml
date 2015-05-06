@@ -48,7 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: utf8
   database: mlborder_production
+  port: 5432
   username: atndk
-  password: <%= ENV['BORDERBOT-RAILS_DATABASE_PASSWORD'] %>
+  password: <%= ENV['MLBORDER_DATABASE_PASSWORD'] %>

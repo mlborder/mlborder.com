@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'events#latest'
+  get 'events/latest'
   resources :events, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.

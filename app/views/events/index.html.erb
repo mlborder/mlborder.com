@@ -1,6 +1,6 @@
-<h1>border bot</h1>
+<h1>イベント一覧</h1>
 <ul>
-<%- @events.each do |event| %>
-  <li><%= event.name %>: <%= event.started_at %> 〜 <%= event.ended_at %></li>
+<%- @events.reverse.each do |event| %>
+  <li><%= event.has_border? ? link_to(event.name, event_path(event)) : event.name %></li>
 <%- end %>
 </ul>

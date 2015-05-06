@@ -1,2 +1,7 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<h1><%= @event.name %></h1>
+<p>開催期間: <%= @event.started_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %> 〜 <%= @event.ended_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %></p>
+<%- if @dataset.present? %>
+  <%= am_charts @dataset %>
+<%- else %>
+  <p>ボーダー情報がありません。</p>
+<%- end %>

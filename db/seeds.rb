@@ -441,5 +441,11 @@ Event.create([
     series_name: nil,
     started_at: '2015-04-22 17:00:00 +0900',
     ended_at: '2015-04-26 23:59:59 +0900'
+  },
+  { event_type_id: 2,
+    name: '風雲！アイドルキャッスル！',
+    series_name: nil,
+    started_at: '2015-04-28 17:00:00 +0900',
+    ended_at: '2015-05-06 23:59:59 +0900'
   }
 ])

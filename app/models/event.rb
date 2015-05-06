@@ -14,6 +14,11 @@ class Event < ActiveRecord::Base
     series_name.present?
   end
 
+  def border
+    return @border if @border.present?
+    @border = Event::Border.new self
+  end
+
   def self.at(time = Time.now)
     time = Time.parse(time) if time.class == String
     where(arel_table[:started_at].lteq(time)).

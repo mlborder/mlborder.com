@@ -61,14 +61,6 @@ module EventsHelper
       }
     }
   });
-
-  var zoomChart = function() {
-    chart.zoomToIndexes(chart.dataProvider.length - 20, chart.dataProvider.length - 1);
-  };
-
-  chart.addListener("dataUpdated", zoomChart);
-  zoomChart();
-
   })();
 </script>
   EOJS

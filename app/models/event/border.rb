@@ -16,11 +16,17 @@ class Event::Border
   end
 
   def progress
+    return @progress if @progress.present?
+
     select_target = []
     rank_columns.each do |column|
       select_target << "MIN(#{column}) AS #{column}"
     end
 
-    InfluxDB::Rails.client.query "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" GROUP BY time(30m) ORDER ASC;"
+    @progress = InfluxDB::Rails.client.query "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" GROUP BY time(30m) ORDER ASC;"
+  end
+
+  def dataset
+    progress.values.first
   end
 end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'events#latest'
-  get 'events/latest'
+  root 'events#show'
+  get 'events/latest', to: 'events#show'
   resources :events, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.

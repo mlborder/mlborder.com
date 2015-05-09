@@ -22,9 +22,6 @@ module EventsHelper
       day: "numeric", hour: "2-digit", minute: "2-digit"
     };
     return period.toLocaleTimeString("ja-JP", options);
-    console.log(category);
-    console.log(dataItem);
-    console.log(categoryAxis);
   };
 
   var chart = AmCharts.makeChart("chartdiv", {

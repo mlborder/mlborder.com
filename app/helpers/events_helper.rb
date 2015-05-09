@@ -48,7 +48,8 @@ module EventsHelper
     "categoryAxis": {
       "categoryFunction" : parseTime,
       "axisColor": "#DADADA",
-      "minorGridEnabled": true
+      "minorGridEnabled": true,
+      "labelRotation": 45
     },
     "export": {
       "enabled": true,

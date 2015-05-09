@@ -7,7 +7,9 @@ module EventsHelper
         'hideBulletsCount' => 30,
         'title' => "#{border.match(/(\d+)/)}位",
         'valueField' => border,
-        'fillAlphas' =>  0
+        'balloonText' => "[[title]]:[[value]]pt",
+        'fillAlphas' =>  0,
+        'hidden' => (border == 'border_1')
       }
     end
 
@@ -29,7 +31,8 @@ module EventsHelper
     "theme": "light",
     "pathToImages": "http://www.amcharts.com/lib/3/images/",
     "legend": {
-      "useGraphSettings": true
+      "useGraphSettings": true,
+      "valueAlign": "left"
     },
     "dataProvider": chartData,
     "valueAxes": [{

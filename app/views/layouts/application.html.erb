@@ -2,6 +2,7 @@
 <html>
 <head>
   <title><%= @event.try(:name) || 'border bot' %></title>
+  <%= favicon_link_tag '/favicon.ico' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/amcharts.js"></script>

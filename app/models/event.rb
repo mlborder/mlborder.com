@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
   validate :periods_are_not_included_by_other
   validate :not_cover_other_one
 
+  default_scope -> { order(id: :asc) }
   scope :border_available, -> { where.not( series_name: nil ) }
 
   def has_border?

@@ -11,7 +11,7 @@ class Event::Border
     res = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" LIMIT 1;"
     series_datas = res.values
     target_series_data = series_datas.first
-    raw_columns = target_series_data.first.select { |k, v| v.present? }.keys
+    raw_columns = target_series_data.first.keys
     @rank_columns = raw_columns.select { |c| c.include? 'border_' }.sort { |a, b| a.match(/(\d+)/).to_s.to_i <=> b.match(/(\d+)/).to_s.to_i }
   end
 
@@ -23,6 +23,7 @@ class Event::Border
   end
 
   def dataset
-    progress.values.first
+    dataset = progress.values.first
+    dataset.map { |value| Hash[ value.map { |k, v| [k, v > 1_000_000_000_000_000_000_000_000 ? 0 : v] } ] }
   end
 end

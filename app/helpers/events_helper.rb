@@ -1,15 +1,16 @@
 module EventsHelper
   def am_charts(progress)
     series = progress.first.keys.select { |k| k.include? 'border_' }.map do |border|
+      rank = border.match(/\d+/).to_s.to_i
       { 'valueAxis' => 'v1',
         'bullet' => 'round',
         'bulletBorderThickness' => 1,
         'hideBulletsCount' => 30,
-        'title' => "#{border.match(/(\d+)/)}位",
+        'title' => "#{rank}位",
         'valueField' => border,
         'balloonText' => "[[title]]:[[value]]pt",
         'fillAlphas' =>  0,
-        'hidden' => (border == 'border_1')
+        'hidden' => (rank < 100)
       }
     end
 

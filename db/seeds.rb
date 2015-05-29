@@ -12,7 +12,9 @@ EventType.create([
   { name: 'choco_marathon' },
   { name: 'lesson_tower' },
   { name: 'imc_gvg' },
-  { name: 'psl_marathon' }
+  { name: 'psl_marathon' },
+  { name: 'caravan_marathon' },
+  { name: 'live_raid' }
 ])
 
 Event.create([
@@ -286,7 +288,7 @@ Event.create([
     started_at: '2014-07-25 17:00:00 +0900',
     ended_at: '2014-07-28 16:59:59 +0900'
   },
-  { event_type_id: 2,
+  { event_type_id: 8,
     name: 'HAPPY★HAPPY★PERFORM@NCE',
     series_name: nil,
     started_at: '2014-07-30 17:00:00 +0900',
@@ -454,10 +456,16 @@ Event.create([
     started_at: '2015-05-08 17:00:00 +0900',
     ended_at: '2015-05-17 23:59:59 +0900'
   },
-  { event_type_id: 0,
+  { event_type_id: 7,
     name: '絢爛！ゴールデンキャッスルライブ',
     series_name: nil,
     started_at: '2015-05-19 17:00:00 +0900',
     ended_at: '2015-05-27 23:59:59 +0900'
+  },
+  { event_type_id: 8,
+    name: 'ENJOY H@RMONY!!',
+    series_name: nil,
+    started_at: '2015-05-29 17:00:00 +0900',
+    ended_at: '2015-06-07 23:59:59 +0900'
   }
 ])

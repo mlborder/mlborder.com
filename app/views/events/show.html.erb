@@ -2,7 +2,11 @@
 <h2><%= @event.name %></h2>
 <p>開催期間: <%= @event.started_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %> 〜 <%= @event.ended_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %></p>
 <%- if @dataset.present? %>
-  <%= am_charts @dataset %>
+  <%- if @event.event_type.name == 'live_raid' %>
+    <%= am_charts_hhp @dataset %>
+  <%- else %>
+    <%= am_charts @dataset %>
+  <%- end %>
 <%- else %>
   <p>ボーダー情報がありません。</p>
 <%- end %>

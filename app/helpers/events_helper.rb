@@ -88,11 +88,15 @@ module EventsHelper
   def am_charts_hhp(dataset)
     series = dataset.first.keys.select { |k| k.include? 'border_' }.map do |border|
       idol_id = border.match(/\d+/).to_s.to_i
+      idol = Pro765.send(Rubimas::Idol.names[idol_id - 1])
+
       { 'valueAxis' => 'v1',
         'bullet' => 'round',
         'bulletBorderThickness' => 1,
+        'bulletColor' => "#{idol.color}",
+        'lineColor' => "#{idol.color}",
         'hideBulletsCount' => 30,
-        'title' => "#{Pro765.send(Rubimas::Idol.names[idol_id - 1]).name}",
+        'title' => "#{idol.name}",
         'valueField' => border,
         'balloonText' => "[[title]]:[[value]]pt",
         'fillAlphas' =>  0,

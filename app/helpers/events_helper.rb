@@ -15,7 +15,7 @@ module EventsHelper
     end
 
     graph=<<-EOJS
-<div id="chartdiv" style='width:100%; height: 500px;'></div>
+<div id="chartdiv"></div>
 <script>
   (function() {
   var chartData = #{raw progress.to_json};
@@ -104,7 +104,7 @@ module EventsHelper
     end
 
     graph=<<-EOJS
-<div id="chartdiv" style='width:100%; height: 500px;'></div>
+<div id="chartdiv"></div>
 <script>
   (function() {
   var chartData = #{raw dataset.to_json};

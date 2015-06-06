@@ -11,8 +11,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <%= link_to 'ボーダーbot観測拠点β', root_path, { class: "navbar-brand" } %>
+      </div>
+    </div>
+  </nav>
+  <div class='container'>
+    <div class="row-fluid">
+      <div class="span12">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

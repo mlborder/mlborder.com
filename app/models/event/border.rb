@@ -13,14 +13,14 @@ class Event::Border
     res = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" LIMIT 1;"
     series_datas = res.values
     target_series_data = series_datas.first
-    raw_columns = target_series_data.first.keys
+    raw_columns = target_series_data.first
 
-    border_columns = raw_columns.select { |c| c.include? 'border_' }.sort { |a, b| a.match(/(\d+)/).to_s.to_i <=> b.match(/(\d+)/).to_s.to_i }
-    other_columns = raw_columns.select do |column|
-      !(column.include?('border_') || @@meta_columns.include?(column))
+    border_columns = raw_columns.select { |k, v| k.include?('border_') && !v.nil? }.keys.sort { |a, b| a.match(/(\d+)/).to_s.to_i <=> b.match(/(\d+)/).to_s.to_i }
+    other_columns = raw_columns.select do |k, v|
+      !(k.include?('border_') || @@meta_columns.include?(k) || v.nil?)
     end
 
-    @columns = border_columns.concat other_columns
+    @columns = border_columns.concat other_columns.keys
   end
 
   def progress

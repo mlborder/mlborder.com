@@ -467,5 +467,11 @@ Event.create([
     series_name: nil,
     started_at: '2015-05-29 17:00:00 +0900',
     ended_at: '2015-06-07 23:59:59 +0900'
+  },
+  { event_type_id: 2,
+    name: '夏到来！アイドル水上大運動会2015',
+    series_name: nil,
+    started_at: '2015-06-09 17:00:00 +0900',
+    ended_at: '2015-06-17 23:59:59 +0900'
   }
 ])

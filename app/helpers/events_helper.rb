@@ -86,7 +86,8 @@ module EventsHelper
   end
 
   def am_charts_hhp(dataset)
-    series = dataset.first.keys.select { |k| k.include? 'border_' }.map do |border|
+    border_meta = dataset.first.keys.select { |k| k.include? 'border_' }
+    series = border_meta.map do |border|
       idol_id = border.match(/\d+/).to_s.to_i
       idol = Pro765.send(Rubimas::Idol.names[idol_id - 1])
 
@@ -102,8 +103,13 @@ module EventsHelper
         'fillAlphas' =>  0,
       }
     end
+    idol_list = border_meta.map { |border| Pro765.send(Rubimas::Idol.names[border.match(/\d+/).to_s.to_i - 1]) }
 
     graph=<<-EOJS
+<select id="idol_change">
+  #{idol_list.map { |idol| "<option value='border_#{idol.idol_id}'>#{idol.name}</option>" }.join('')}
+</select>
+
 <div id="chartdiv"></div>
 <script>
   (function() {
@@ -170,6 +176,17 @@ module EventsHelper
 
   chart.addListener("dataUpdated", zoomChart);
   chart.addListener("zoomed", updateZoomIndex);
+  $('#idol_change').on('change', function(e) {
+    option = e.target.selectedOptions[0];
+    $.each(chart.graphs, function() {
+      if (option.text == this.title) {
+        chart.showGraph(this);
+      } else {
+        chart.hideGraph(this);
+      }
+    });
+  });
+
   })();
 </script>
   EOJS

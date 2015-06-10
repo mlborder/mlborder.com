@@ -1,4 +1,4 @@
-borderbot-rails [![Build Status](https://travis-ci.org/millimas/borderbot-rails.svg)](https://travis-ci.org/millimas/borderbot-rails)
+borderbot-rails [![Build Status](https://travis-ci.org/mlborder/borderbot-rails.svg)](https://travis-ci.org/mlborder/borderbot-rails)
 ===
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 

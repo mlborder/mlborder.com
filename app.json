@@ -2,7 +2,7 @@
   "name": "borderbot-rails",
   "description": "Visualize event border series for MILLION LIVE!!",
   "website": "https://mlborder.herokuapp.com/",
-  "repository": "https://github.com/millimas/borderbot-rails",
+  "repository": "https://github.com/mlborder/borderbot-rails",
   "keywords": ["rails", "influxdb", "tool"],
   "addons": [
     "heroku-postgresql:dev"

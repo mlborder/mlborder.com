@@ -11,6 +11,17 @@ class Event < ActiveRecord::Base
   default_scope -> { order(id: :asc) }
   scope :border_available, -> { where.not( series_name: nil ) }
 
+  enum event_type: [
+    :unknown_event,
+    :raid_event,
+    :hhp_event,
+    :imc_event,
+    :choco_event,
+    :lesson_event,
+    :psl_event,
+    :caravan_event
+  ]
+
   def has_border?
     series_name.present?
   end

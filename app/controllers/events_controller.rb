@@ -5,6 +5,7 @@ class EventsController < ApplicationController
 
   def show
     @event = params[:id].present? ? Event.find(params[:id]) : Event.border_available.last
+    return redirect_to events_path if @event.nil?
     @dataset = @event.border.dataset if @event.has_border?
 
     # for internal API

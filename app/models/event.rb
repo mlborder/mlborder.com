@@ -1,5 +1,4 @@
 class Event < ActiveRecord::Base
-  belongs_to :event_type
   validates :name, presence: true
   validates :started_at, presence: true
   validates :ended_at, presence: true

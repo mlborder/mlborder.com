@@ -367,5 +367,10 @@ Event.create([
     event_type: 'choco_event',
     started_at: '2015-06-09 17:00:00 +0900',
     ended_at: '2015-06-17 23:59:59 +0900'
+  },
+  { name: 'アイドルマスターズカップ11',
+    event_type: 'imc_event',
+    started_at: '2015-06-19 17:00:00 +0900',
+    ended_at: '2015-06-23 23:59:59 +0900'
   }
 ])

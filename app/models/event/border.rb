@@ -27,7 +27,8 @@ class Event::Border
     return @progress if @progress.present?
 
     select_target = columns.map { |column| "MIN(#{column}) AS #{column}" }
-    @progress = InfluxDB::Rails.client.query "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" GROUP BY time(30m) ORDER ASC;"
+    span =  @event.imc_event? ? '5m' : '30m'
+    @progress = InfluxDB::Rails.client.query "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" GROUP BY time(#{span}) ORDER ASC;"
   end
 
   def dataset

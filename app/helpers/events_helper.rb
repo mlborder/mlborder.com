@@ -89,7 +89,7 @@ module EventsHelper
     border_meta = dataset.first.keys.select { |k| k.include? 'border_' }
     series = border_meta.map do |border|
       idol_id = border.match(/\d+/).to_s.to_i
-      idol = Pro765.send(Rubimas::Idol.names[idol_id - 1])
+      idol = 765.pro.find_by_id(idol_id)
 
       { 'valueAxis' => 'v1',
         'bullet' => 'round',
@@ -103,7 +103,7 @@ module EventsHelper
         'fillAlphas' =>  0,
       }
     end
-    idol_list = border_meta.map { |border| Pro765.send(Rubimas::Idol.names[border.match(/\d+/).to_s.to_i - 1]) }
+    idol_list = border_meta.map { |border| 765.pro.find_by_id(border.match(/\d+/).to_s.to_i) }
 
     graph=<<-EOJS
 <select id="idol_change">

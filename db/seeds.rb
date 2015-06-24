@@ -372,5 +372,10 @@ Event.create([
     event_type: 'imc_event',
     started_at: '2015-06-19 17:00:00 +0900',
     ended_at: '2015-06-23 23:59:59 +0900'
+  },
+  { name: '【復刻】大合戦！戦国アイドル活劇',
+    event_type: 'raid_event',
+    started_at: '2015-06-25 17:00:00 +0900',
+    ended_at: '2015-07-05 23:59:59 +0900'
   }
 ])

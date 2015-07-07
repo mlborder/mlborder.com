@@ -377,5 +377,10 @@ Event.create([
     event_type: 'raid_event',
     started_at: '2015-06-25 17:00:00 +0900',
     ended_at: '2015-07-05 23:59:59 +0900'
+  },
+  { name: 'キラキラアイドル七夕祭り',
+    event_type: 'lesson_event',
+    started_at: '2015-07-07 17:00:00 +0900',
+    ended_at: '2015-07-15 23:59:59 +0900'
   }
 ])

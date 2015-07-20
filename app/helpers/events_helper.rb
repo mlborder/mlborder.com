@@ -32,6 +32,7 @@ module EventsHelper
     "theme": "light",
     "pathToImages": "http://www.amcharts.com/lib/3/images/",
     "legend": {
+      "divId": "legenddiv",
       "useGraphSettings": true,
       "valueAlign": "left"
     },
@@ -130,6 +131,7 @@ module EventsHelper
     "theme": "light",
     "pathToImages": "http://www.amcharts.com/lib/3/images/",
     "legend": {
+      "divId": "legenddiv",
       "useGraphSettings": true,
       "valueAlign": "left"
     },

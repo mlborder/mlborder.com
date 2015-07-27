@@ -387,5 +387,10 @@ Event.create([
     event_type: 'caravan_event',
     started_at: '2015-07-17 17:00:00 +0900',
     ended_at: '2015-07-26 23:59:59 +0900'
+  },
+  { name: 'はじける汗！アイドルビーチバレー大会',
+    event_type: 'raid_event',
+    started_at: '2015-07-28 17:00:00 +0900',
+    ended_at: '2015-08-05 23:59:59 +0900'
   }
 ])

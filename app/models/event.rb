@@ -7,7 +7,6 @@ class Event < ActiveRecord::Base
   validate :periods_are_not_included_by_other
   validate :not_cover_other_one
 
-  default_scope -> { order(id: :asc) }
   scope :border_available, -> { where.not( series_name: nil ) }
 
   enum event_type: [
@@ -28,6 +27,11 @@ class Event < ActiveRecord::Base
   def border
     return @border if @border.present?
     @border = Event::Border.new self
+  end
+
+  def same_type_previous
+    event_type = self.event_type
+    Event.border_available.send(event_type).where(Event.arel_table[:ended_at].lteq(self.started_at)).order(id: :desc).first
   end
 
   def self.at(time = Time.now)

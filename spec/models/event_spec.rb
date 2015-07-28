@@ -90,4 +90,22 @@ describe Event do
       end
     end
   end
+
+  describe 'previous same type event' do
+    before do
+      @lesson_event0 = create(:event, event_type: 'lesson_event', series_name: nil)
+      @raid_event0 = create(:event, event_type: 'raid_event', series_name: 'event2')
+      @lesson_event1 = create(:event, event_type: 'lesson_event', series_name: 'event3')
+      @raid_event1 = create(:event, event_type: 'raid_event', series_name: 'event4')
+      @raid_event2 = create(:event, event_type: 'raid_event', series_name: nil)
+      @raid_event3 = create(:event, event_type: 'raid_event', series_name: 'event5')
+    end
+
+    it { expect(@lesson_event0.same_type_previous).to be_nil }
+    it { expect(@raid_event0.same_type_previous).to be_nil }
+    it { expect(@lesson_event1.same_type_previous).to be_nil }
+    it { expect(@raid_event1.same_type_previous).to eq @raid_event0 }
+    it { expect(@raid_event2.same_type_previous).to eq @raid_event1 }
+    it { expect(@raid_event3.same_type_previous).to eq @raid_event1 }
+  end
 end

@@ -16,8 +16,8 @@
         <td><%= event.id %></td>
         <td><%= link_to_if event.has_border?, event.name, event_path(event) %></td>
         <td><%= event.event_type %></td>
-        <td><%= event.started_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M:%S') %></td>
-        <td><%= event.ended_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M:%S') %></td>
+        <td><%= event.started_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+        <td><%= event.ended_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
       </tr>
     <%- end %>
   </tbody>

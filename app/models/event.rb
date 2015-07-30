@@ -29,6 +29,14 @@ class Event < ActiveRecord::Base
     @border = Event::Border.new self
   end
 
+  def duration
+    self.ended_at - self.started_at
+  end
+
+  def days
+    (self.duration.to_i / 86400).floor
+  end
+
   def same_type_previous
     event_type = self.event_type
     Event.border_available.send(event_type).where(Event.arel_table[:ended_at].lteq(self.started_at)).order(id: :desc).first

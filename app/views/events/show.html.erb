@@ -1,5 +1,18 @@
-<h2><%= @event.name %></h2>
-<p>開催期間: <%= @event.started_at.strftime("%Y/%m/%d %H:%M:%S") %> 〜 <%= @event.ended_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
+<h2>
+  <%- if @event.in_session? %>
+    開催中：
+  <%- elsif not @event.started? %>
+    開始前：
+  <%- end %>
+  <%= @event.name %>
+</h2>
+<p>開催期間: <%= @event.started_at.strf_mlevent %>〜<%= @event.ended_at.strf_mlevent %> (<%= @event.days %>日間)</p>
+<%- if @recent_event %>
+  <p>
+    前回:<%= link_to @recent_event.name, @recent_event %>
+    (<%= @recent_event.started_at.strf_mlevent %>〜<%= @recent_event.ended_at.strf_mlevent %> (<%= @recent_event.days %>日間))
+  </p>
+<%- end %>
 
 <div class='row'>
   <div class='col-lg-10 col-md-9'>

@@ -1,8 +1,15 @@
-<h2><%= @event.name %></h2>
+<h2>
+  <%- if @event.in_session? %>
+    開催中：
+  <%- elsif not @event.started? %>
+    開始前：
+  <%- end %>
+  <%= @event.name %>
+</h2>
 <p>開催期間: <%= @event.started_at.strftime("%Y/%m/%d %H:%M") %>〜<%= @event.ended_at.strftime("%Y/%m/%d %H:%M") %> (<%= @event.days %>日間)</p>
 <%- if @recent_event %>
   <p>
-    前回のボーダーを確認する:<%= link_to @recent_event.name, @recent_event %>
+    前回:<%= link_to @recent_event.name, @recent_event %>
     (<%= @recent_event.started_at.strftime("%Y/%m/%d %H:%M") %>〜<%= @recent_event.ended_at.strftime("%Y/%m/%d %H:%M") %> (<%= @recent_event.days %>日間))
   </p>
 <%- end %>

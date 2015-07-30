@@ -37,6 +37,18 @@ class Event < ActiveRecord::Base
     (self.duration.to_i / 86400).floor
   end
 
+  def started?
+    Time.now >= self.started_at
+  end
+
+  def ended?
+    Time.now >= self.ended_at
+  end
+
+  def in_session?
+    (self.started_at..self.ended_at).cover? Time.now
+  end
+
   def same_type_previous
     event_type = self.event_type
     Event.border_available.send(event_type).where(Event.arel_table[:ended_at].lteq(self.started_at)).order(id: :desc).first

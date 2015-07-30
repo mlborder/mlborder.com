@@ -7,6 +7,7 @@ class EventsController < ApplicationController
     @event = params[:id].present? ? Event.find(params[:id]) : Event.border_available.last
     return redirect_to events_path if @event.nil?
     @dataset = @event.border.dataset if @event.has_border?
+    @recent_event = @event.same_type_previous
 
     # for internal API
     respond_to do |format|

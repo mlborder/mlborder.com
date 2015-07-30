@@ -1,5 +1,8 @@
 <h2><%= @event.name %></h2>
 <p>開催期間: <%= @event.started_at.strftime("%Y/%m/%d %H:%M:%S") %> 〜 <%= @event.ended_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
+<%- if @recent_event %>
+  <p>前回のボーダーを確認する:<%= link_to @recent_event.name, @recent_event %></p>
+<%- end %>
 
 <div class='row'>
   <div class='col-lg-10 col-md-9'>

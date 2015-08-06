@@ -392,5 +392,10 @@ Event.create([
     event_type: 'raid_event',
     started_at: '2015-07-28 17:00:00 +0900',
     ended_at: '2015-08-05 23:59:59 +0900'
+  },
+  { name: '怨霊！アイドル肝試しホテル',
+    event_type: 'choco_event',
+    started_at: '2015-08-07 17:00:00 +0900',
+    ended_at: '2015-08-17 23:59:59 +0900'
   }
 ])

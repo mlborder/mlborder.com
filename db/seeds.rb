@@ -86,6 +86,7 @@ Event.create([
     ended_at: '2013-10-28 16:59:59 +0900'
   },
   { name: '狂騒！ハロウィンフェスタ',
+    event_type: 'raid_event',
     started_at: '2013-10-30 14:00:00 +0900',
     ended_at: '2013-11-12 16:59:59 +0900'
   },

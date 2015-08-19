@@ -1,5 +1,5 @@
 module EventsHelper
-  def am_charts(progress)
+  def am_charts(progress, omit_higher_rank = nil)
     series = progress.first.keys.select { |k| k.include? 'border_' }.map do |border|
       rank = border.match(/\d+/).to_s.to_i
       { 'valueAxis' => 'v1',
@@ -10,7 +10,7 @@ module EventsHelper
         'valueField' => border,
         'balloonText' => "[[title]]:[[value]]pt",
         'fillAlphas' =>  0,
-        'hidden' => (rank < 100)
+        'hidden' => (omit_higher_rank.nil? ? false : (rank < omit_higher_rank))
       }
     end
 

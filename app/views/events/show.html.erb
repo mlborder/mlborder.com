@@ -20,8 +20,10 @@
       <div class='chart-wrapper'>
         <%- if @event.hhp_event? %>
           <%= am_charts_hhp @dataset %>
+        <%- elsif @event.imc_event? %>
+          <%= am_charts @dataset, 1200 %>
         <%- else %>
-          <%= am_charts @dataset %>
+          <%= am_charts @dataset, 100 %>
         <%- end %>
       </div>
     <%- else %>

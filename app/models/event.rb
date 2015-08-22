@@ -34,7 +34,7 @@ class Event < ActiveRecord::Base
   end
 
   def days
-    (self.duration.to_i / 86400).floor
+    (self.duration.to_f / 86400).ceil
   end
 
   def started?

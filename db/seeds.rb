@@ -408,5 +408,10 @@ Event.create([
     event_type: 'raid_event',
     started_at: '2015-08-25 17:00:00 +0900',
     ended_at: '2015-09-02 23:59:59 +0900'
+  },
+  { name: '潜入！スパイシスターズ',
+    event_type: 'lesson_event',
+    started_at: '2015-09-04 17:00:00 +0900',
+    ended_at: '2015-09-15 23:59:59 +0900'
   }
 ])

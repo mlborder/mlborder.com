@@ -413,5 +413,10 @@ Event.create([
     event_type: 'lesson_event',
     started_at: '2015-09-04 17:00:00 +0900',
     ended_at: '2015-09-15 23:59:59 +0900'
+  },
+  { name: '極楽♪温泉御殿ライブ',
+    event_type: 'caravan_event',
+    started_at: '2015-09-18 17:00:00 +0900',
+    ended_at: '2015-09-29 23:59:59 +0900'
   }
 ])

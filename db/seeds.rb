@@ -418,5 +418,15 @@ Event.create([
     event_type: 'caravan_event',
     started_at: '2015-09-18 17:00:00 +0900',
     ended_at: '2015-09-29 23:59:59 +0900'
+  },
+  { name: 'トリート♪トワイライトパレス',
+    event_type: 'raid_event',
+    started_at: '2015-10-02 17:00:00 +0900',
+    ended_at: '2015-10-12 23:59:59 +0900'
+  },
+  { name: 'ようこそ♪聖ミリオン女学園',
+    event_type: 'choco_event',
+    started_at: '2015-10-14 17:00:00 +0900',
+    ended_at: '2015-10-25 23:59:59 +0900'
   }
 ])

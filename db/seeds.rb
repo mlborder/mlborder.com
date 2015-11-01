@@ -433,5 +433,10 @@ Event.create([
     event_type: 'imc_event',
     started_at: '2015-10-28 17:00:00 +0900',
     ended_at: '2015-11-01 23:59:59 +0900'
+  },
+  { name: '【復刻】熱唱！真夏のサマーライブフェス',
+    event_type: 'raid_event',
+    started_at: '2015-11-02 17:00:00 +0900',
+    ended_at: '2015-11-08 23:59:59 +0900'
   }
 ])

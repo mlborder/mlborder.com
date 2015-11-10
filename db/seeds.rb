@@ -438,5 +438,10 @@ Event.create([
     event_type: 'raid_event',
     started_at: '2015-11-02 17:00:00 +0900',
     ended_at: '2015-11-08 23:59:59 +0900'
+  },
+  { name: '期間限定★アイドルカフェ',
+    event_type: 'lesson_event',
+    started_at: '2015-11-10 17:00:00 +0900',
+    ended_at: '2015-11-17 23:59:59 +0900'
   }
 ])

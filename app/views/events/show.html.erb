@@ -18,12 +18,13 @@
   <div class='col-lg-10 col-md-9'>
     <%- if @dataset.present? %>
       <div class='chart-wrapper'>
+        <div id="chartdiv"></div>
         <%- if @event.hhp_event? %>
           <%= am_charts_hhp @dataset %>
         <%- elsif @event.imc_event? %>
-          <%= am_charts @dataset, 1200 %>
+          <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: 1200 } %>
         <%- else %>
-          <%= am_charts @dataset, 100 %>
+          <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: 100 } %>
         <%- end %>
       </div>
     <%- else %>

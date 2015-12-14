@@ -1,0 +1,82 @@
+<script type='text/javascript'>
+(function(context) {
+  var parseTime = function(category, dataItem, categoryAxis) {
+    var period = new Date(category * 1000);
+    var options = {
+      day: "numeric", hour: "2-digit", minute: "2-digit"
+    };
+    return period.toLocaleTimeString("ja-JP", options);
+  };
+  var chart = AmCharts.makeChart("chartdiv", {
+    "type": "serial",
+    "theme": "light",
+    "pathToImages": "http://www.amcharts.com/lib/3/images/",
+    "legend": {
+      "divId": "legenddiv",
+      "useGraphSettings": true,
+      "valueAlign": "left"
+    },
+    "valueAxes": [{
+      "id":"v1",
+      "axisThickness": 2,
+      "gridAlpha": 0,
+      "axisAlpha": 1,
+      "position": "left"
+    }],
+    "chartScrollbar": {},
+    "chartCursor": {
+      "cursorPosition": "mouse"
+    },
+    "categoryField": "time",
+    "categoryAxis": {
+      "categoryFunction" : parseTime,
+      "axisColor": "#DADADA",
+      "minorGridEnabled": true,
+      "labelRotation": 45
+    },
+    "export": {
+      "enabled": true,
+      "position": "bottom-right",
+      "libs": {
+        "path": "http://www.amcharts.com/lib/3/plugins/export/libs/"
+      }
+    }
+  });
+
+  var zoom_start = 0;
+  var zoom_end = 1;
+  chart.addListener("dataUpdated", function() {
+    chart.zoomToIndexes(zoom_start, zoom_end);
+  });
+  chart.addListener("zoomed", function(e) {
+    zoom_start = e.startIndex;
+    zoom_end = e.endIndex;
+  });
+
+  var updateAmCharts = function(data) {
+    var graph_columns = jQuery.map(data[0], function(k, v) { return v; });
+    var border_columns = jQuery.grep(graph_columns, function(c) { if (c.indexOf('border_') > -1) return true; });
+    var graphs = jQuery.map(border_columns, function(border_column) {
+      var rank = border_column.match(/\d+/)[0];
+      return {
+        'valueAxis': 'v1',
+        'bullet': 'round',
+        'bulletBorderThickness': 1,
+        'hideBulletsCount': 30,
+        'title': rank + "位",
+        'valueField': border_column,
+        'balloonText': "[[title]]:[[value]]pt",
+        'fillAlphas':  0,
+        'hidden': (rank < <%= display_until %>)
+      };
+    });
+
+    chart.dataProvider = data;
+    chart.graphs = graphs;
+    zoom_end = chart.dataProvider.length - 1;
+    chart.validateData();
+  };
+
+  updateAmCharts(<%= raw chart_data.to_json %>);
+})(window);
+</script>

@@ -13,3 +13,4 @@
 /tmp
 
 /vendor/bundle
+db/*.sqlite3

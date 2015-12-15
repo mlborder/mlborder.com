@@ -7,70 +7,74 @@
     };
     return period.toLocaleTimeString("ja-JP", options);
   };
-  var chart = AmCharts.makeChart("chartdiv", {
-    "type": "serial",
-    "theme": "light",
-    "pathToImages": "http://www.amcharts.com/lib/3/images/",
-    "legend": {
-      "divId": "legenddiv",
-      "useGraphSettings": true,
-      "labelText": "[[title]]",
-      "valueText": "",
-      "valueAlign": "left"
-    },
-    "valueAxes": [{
-      "id":"v1",
-      "axisThickness": 2,
-      "gridAlpha": 0,
-      "axisAlpha": 1,
-      "labelFunction": function(value, valueText, valueAxis) {
-        if (value == 0) return 0;
-        var s = ['', '万', '億'];
-        var e = Math.floor(Math.log(value) / Math.log(10000));
-        return parseFloat((value / Math.pow(10000, e)).toFixed(1)) + s[e];
+  var createAmCharts = function (chart_elm_id, legend_elm_id, data) {
+    var chart = AmCharts.makeChart(chart_elm_id, {
+      "type": "serial",
+      "theme": "light",
+      "pathToImages": "http://www.amcharts.com/lib/3/images/",
+      "legend": {
+        "divId": legend_elm_id,
+        "useGraphSettings": true,
+        "labelText": "[[title]]",
+        "valueText": "",
+        "valueAlign": "left"
       },
-      "position": "left"
-    }],
-    "chartScrollbar": {},
-    "chartCursor": {
-      "cursorPosition": "mouse"
-    },
-    "categoryField": "time",
-    "categoryAxis": {
-      "categoryFunction" : parseTime,
-      "axisColor": "#DADADA",
-      "minorGridEnabled": true,
-      "labelRotation": 45
-    },
-    "responsive": {
-      "enabled": true,
-      "addDefaultRules": false,
-      "rules": [{
-        "minWidth": 200,
-        "maxWidth": 800,
-        "maxHeight": 800,
-        "minHeight": 200,
-        "overrides": {
-          "legend": {
-            "valueAlign": "right",
-            "enabled": true
+      "valueAxes": [{
+        "id":"v1",
+        "axisThickness": 2,
+        "gridAlpha": 0,
+        "axisAlpha": 1,
+        "labelFunction": function(value, valueText, valueAxis) {
+          if (value == 0) return 0;
+          var s = ['', '万', '億'];
+          var e = Math.floor(Math.log(value) / Math.log(10000));
+          return parseFloat((value / Math.pow(10000, e)).toFixed(1)) + s[e];
+        },
+        "position": "left"
+      }],
+      "chartScrollbar": {},
+      "chartCursor": {
+        "cursorPosition": "mouse"
+      },
+      "categoryField": "time",
+      "categoryAxis": {
+        "categoryFunction" : parseTime,
+        "axisColor": "#DADADA",
+        "minorGridEnabled": true,
+        "labelRotation": 45
+      },
+      "responsive": {
+        "enabled": true,
+        "addDefaultRules": false,
+        "rules": [{
+          "minWidth": 200,
+          "maxWidth": 800,
+          "maxHeight": 800,
+          "minHeight": 200,
+          "overrides": {
+            "legend": {
+              "valueAlign": "right",
+              "enabled": true
+            }
           }
-        }
-      }]
-    }
-  });
+        }]
+      }
+    });
+    var zoom_start = 0;
+    var zoom_end = 1;
+    chart.addListener("dataUpdated", function() {
+      chart.zoomToIndexes(zoom_start, zoom_end);
+    });
+    chart.addListener("zoomed", function(e) {
+      zoom_start = e.startIndex;
+      zoom_end = e.endIndex;
+    });
 
-  var zoom_start = 0;
-  var zoom_end = 1;
-  chart.addListener("dataUpdated", function() {
-    chart.zoomToIndexes(zoom_start, zoom_end);
-  });
-  chart.addListener("zoomed", function(e) {
-    zoom_start = e.startIndex;
-    zoom_end = e.endIndex;
-  });
+    if (data) updateAmCharts(chart, data);
+    return chart;
+  };
 
-  var updateAmCharts = function(data) {
+  var updateAmCharts = function(chart, data) {
     var graph_columns = jQuery.map(data[0], function(k, v) { return v; });
     var border_columns = jQuery.grep(graph_columns, function(c) { if (c.indexOf('border_') > -1) return true; });
     var graphs = jQuery.map(border_columns, function(border_column) {
@@ -90,10 +94,11 @@
 
     chart.dataProvider = data;
     chart.graphs = graphs;
-    zoom_end = chart.dataProvider.length - 1;
+    chart.zoomToIndexes(0, chart.dataProvider.length - 1);
     chart.validateData();
   };
 
-  updateAmCharts(<%= raw chart_data.to_json %>);
+  var chart = createAmCharts('chartdiv', 'legenddiv', <%= raw chart_data.to_json %>);
+  context.createAmCharts = createAmCharts;
 })(window);
 </script>

@@ -23,6 +23,12 @@
       "axisThickness": 2,
       "gridAlpha": 0,
       "axisAlpha": 1,
+      "labelFunction": function(value, valueText, valueAxis) {
+        if (value == 0) return 0;
+        var s = ['', '万', '億'];
+        var e = Math.floor(Math.log(value) / Math.log(10000));
+        return (value / Math.pow(10000, e)).toFixed(0) + s[e];
+      },
       "position": "left"
     }],
     "chartScrollbar": {},

@@ -1,38 +1,65 @@
-<h2>
-  <%- if @event.in_session? %>
-    開催中：
-  <%- elsif not @event.started? %>
-    開始前：
-  <%- end %>
-  <%= @event.name %>
-</h2>
-<p>開催期間: <%= @event.started_at.strf_mlevent %>〜<%= @event.ended_at.strf_mlevent %> (<%= @event.days %>日間)</p>
-<%- if @recent_event %>
-  <p>
-    前回:<%= link_to @recent_event.name, @recent_event %>
-    (<%= @recent_event.started_at.strf_mlevent %>〜<%= @recent_event.ended_at.strf_mlevent %> (<%= @recent_event.days %>日間))
-  </p>
-<%- end %>
-
-<div class='row'>
-  <div class='col-lg-10 col-md-9'>
-    <%- if @dataset.present? %>
-      <div class='chart-wrapper'>
-        <div id="chartdiv"></div>
-        <%- if @event.hhp_event? %>
-          <%= am_charts_hhp @dataset %>
-        <%- elsif @event.imc_event? %>
-          <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: 1200 } %>
-        <%- else %>
-          <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: 100 } %>
-        <%- end %>
-      </div>
-    <%- else %>
-      <p>ボーダー情報がありません。</p>
-    <%- end %>
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Events', events_path %></li>
+  <li class="active"><%= @event.name %></li>
+</ol>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%- if @event.ended? %>
+        <span class="label label-default">Finished</span>
+      <%- elsif @event.in_session? %>
+        <span class="label label-danger">Ongoing</span>
+      <%- else %>
+        <span class="label label-warning">Preparing</span>
+      <%- end %>
+      <%= @event.name %>
+    </h3>
   </div>
-  <div class='col-lg-2 col-md-3'>
-    <div id="legenddiv"></div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+      <%= @event.started_at.strf_mlevent %>〜<%= @event.ended_at.strf_mlevent %>, <%= @event.days %> days
+    </li>
+  </ul>
+  <div class="panel-body">
+    <div class="tabbable">
+      <div class="tab-content">
+        <div class="tabbable">
+          <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a href="#1" data-toggle="tab">ボーダー</a></li>
+            <li class="disabled"><a href="#2">過去の同一形式イベント</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="1">
+              <%- if @dataset.present? %>
+                <div>
+                  <div class='row'>
+                    <div class='col-md-10'>
+                      <div id="chartdiv"></div>
+                    </div>
+                    <div class='col-md-2'>
+                      <div id="legenddiv"></div>
+                    </div>
+                  </div>
+                </div>
+                <%- if @event.hhp_event? %>
+                  <%= am_charts_hhp @dataset %>
+                <%- elsif @event.imc_event? %>
+                  <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: 1200 } %>
+                <%- else %>
+                  <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: 100 } %>
+                <%- end %>
+              <%- else %>
+                <p>ボーダー情報がありません。</p>
+              <%- end %>
+            </div>
+            <div class="tab-pane" id="2">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

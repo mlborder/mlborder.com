@@ -42,12 +42,21 @@
       "minorGridEnabled": true,
       "labelRotation": 45
     },
-    "export": {
+    "responsive": {
       "enabled": true,
-      "position": "bottom-right",
-      "libs": {
-        "path": "http://www.amcharts.com/lib/3/plugins/export/libs/"
-      }
+      "addDefaultRules": false,
+      "rules": [{
+        "minWidth": 200,
+        "maxWidth": 800,
+        "maxHeight": 800,
+        "minHeight": 200,
+        "overrides": {
+          "legend": {
+            "valueAlign": "right",
+            "enabled": true
+          }
+        }
+      }]
     }
   });
 

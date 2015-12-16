@@ -11,3 +11,9 @@ before_script:
 script:
   - bundle exec rake db:create:all
   - bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: "OxQ9JQGH4QQsXc3q5N+97F/ltNZWAVm9o4natnD4ZE0xhzeX6LuNG0rpCwJYc8CNpOcX5evxuT4+ytjjYUPzNC5ZOVE01Ek9qt/KBaw/pSe2FidwIa7XVbgOsDTbPCLumGk1VlGBIMwYQeRf55LBJnOrEUmdE98NDf65GVXq+JU="
+  run: "rake db:migrate"
+  app: mlborder

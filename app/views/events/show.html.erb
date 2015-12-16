@@ -1,53 +1,98 @@
-<h2>
-  <%- if @event.in_session? %>
-    開催中：
-  <%- elsif not @event.started? %>
-    開始前：
-  <%- end %>
-  <%= @event.name %>
-</h2>
-<p>開催期間: <%= @event.started_at.strf_mlevent %>〜<%= @event.ended_at.strf_mlevent %> (<%= @event.days %>日間)</p>
-<%- if @recent_event %>
-  <p>
-    前回:<%= link_to @recent_event.name, @recent_event %>
-    (<%= @recent_event.started_at.strf_mlevent %>〜<%= @recent_event.ended_at.strf_mlevent %> (<%= @recent_event.days %>日間))
-  </p>
-<%- end %>
+<%- provide(:title, "『#{@event.name}』の詳細") %>
 
-<div class='row'>
-  <div class='col-lg-10 col-md-9'>
-    <%- if @dataset.present? %>
-      <div class='chart-wrapper'>
-        <%- if @event.hhp_event? %>
-          <%= am_charts_hhp @dataset %>
-        <%- elsif @event.imc_event? %>
-          <%= am_charts @dataset, 1200 %>
-        <%- else %>
-          <%= am_charts @dataset, 100 %>
-        <%- end %>
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Events', events_path %></li>
+  <li class="active"><%= @event.name %></li>
+</ol>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%- if @event.ended? %>
+        <span class="label label-default">Finished</span>
+      <%- elsif @event.in_session? %>
+        <span class="label label-danger">Ongoing</span>
+      <%- else %>
+        <span class="label label-warning">Preparing</span>
+      <%- end %>
+      <%= @event.name %>
+    </h3>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+      <%= @event.started_at.strf_mlevent %>〜<%= @event.ended_at.strf_mlevent %>, <%= @event.days %> days
+    </li>
+  </ul>
+  <div class="panel-body">
+    <div class="tabbable">
+      <div class="tab-content">
+        <div class="tabbable">
+          <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a href="#1" data-toggle="tab">ボーダー</a></li>
+            <li><a href="#2" data-toggle="tab">最近の同一形式イベント</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="1">
+              <%- if @dataset.present? %>
+                <div>
+                  <div class='row'>
+                    <div class='col-md-10'>
+                      <div id="chartdiv"></div>
+                    </div>
+                    <div class='col-md-2'>
+                      <div id="legenddiv"></div>
+                    </div>
+                  </div>
+                </div>
+                <%- if @event.hhp_event? %>
+                  <%= am_charts_hhp @dataset %>
+                <%- elsif @event.imc_event? %>
+                  <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: 1200 } %>
+                <%- else %>
+                  <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: 100 } %>
+                <%- end %>
+              <%- else %>
+                <p>ボーダー情報がありません。</p>
+              <%- end %>
+            </div>
+            <div class="tab-pane" id="2">
+              <%- if @recent_events.any? %>
+                <table class='table'>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>イベント名</th>
+                      <th>開催期間</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%- @recent_events.each do |event| %>
+                      <tr>
+                        <td><%= event.id %></td>
+                        <td>
+                          <%- if @event.id == event.id %>
+                            <%= event.name %><b>(このイベント)</b>
+                          <%- else %>
+                            <%= link_to event.name, event_path(event) %>
+                          <%- end %>
+                        </td>
+                        <td><%= event.started_at.strf_mlevent %>〜<%= event.ended_at.strf_mlevent %>, <%= event.days %> days</td>
+                      </tr>
+                    <%- end %>
+                  </tbody>
+                </table>
+              <%- else %>
+                <p>同一形式のイベントが見つかりません。</p>
+              <%- end %>
+            </div>
+          </div>
+        </div>
       </div>
-    <%- else %>
-      <p>ボーダー情報がありません。</p>
-    <%- end %>
-  </div>
-  <div class='col-lg-2 col-md-3'>
-    <div id="legenddiv"></div>
+    </div>
   </div>
 </div>
 
-<div>
-  <a class="twitter-timeline" href="https://twitter.com/mlborder" data-widget-id="595868231149219840">@mlborderさんのツイート</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div style="overflow: hidden; text-align: center; margin-top: 3em;">
+  <iframe class="embed-responsive-item" src="http://rcm-fe.amazon-adsystem.com/e/cm?t=treby-22&o=9&p=48&l=st1&mode=music-jp&search=IDOL M@STER&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="728" height="90" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
 </div>
-
-<h2>注意事項</h2>
-<ul>
-  <li>本家 → <%= link_to '@mlborder', 'https://twitter.com/mlborder' %></li>
-  <li>妖精さんが頑張っている関係上、ボーダーの値が正確でない場合があります。特に最初と最後。</li>
-  <li>作者は<strong>このみP</strong>です。周りにあまりいないので絡んでいただけると喜びます。</li>
-</ul>
-
-<a href="https://github.com/mlborder/borderbot-rails"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-
-<div style='margin-bottom: 100px;'></div>
-<SCRIPT charset="utf-8" type="text/javascript" src="https://ws-fe.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&MarketPlace=JP&ID=V20070822%2FJP%2Ftreby-22%2F8010%2F11e79f0b-6c50-477f-ace4-bf6af5d2e892&Operation=GetScriptTemplate"> </SCRIPT> <NOSCRIPT><A HREF="http://ws-fe.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&MarketPlace=JP&ID=V20070822%2FJP%2Ftreby-22%2F8010%2F11e79f0b-6c50-477f-ace4-bf6af5d2e892&Operation=NoScript">Amazon.co.jp ウィジェット</A></NOSCRIPT>

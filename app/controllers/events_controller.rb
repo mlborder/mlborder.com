@@ -7,9 +7,8 @@ class EventsController < ApplicationController
     @event = params[:id].present? ? Event.find(params[:id]) : Event.border_available.last
     return redirect_to events_path if @event.nil?
     @dataset = @event.border.dataset if @event.has_border?
-    @recent_event = @event.same_type_previous
+    @recent_events = Event.send(@event.event_type.to_sym).border_available.order(started_at: :desc).limit(10)
 
-    # for internal API
     respond_to do |format|
       format.html
       format.json { render json: { name: @event.name, started_at: @event.started_at, ended_at: @event.ended_at } }

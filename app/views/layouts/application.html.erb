@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @event.try(:name) || 'border bot' %></title>
+  <title><%= full_title(yield(:title)) %></title>
   <%= favicon_link_tag '/favicon.ico' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -14,7 +14,7 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <%= link_to 'ボーダーbot観測拠点β', root_path, { class: "navbar-brand" } %>
+        <%= link_to 'ミリオンボーダーbot観測所', root_path, { class: "navbar-brand" } %>
       </div>
     </div>
   </nav>

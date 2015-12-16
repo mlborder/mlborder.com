@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root 'events#show'
   get 'events/latest', to: 'events#show'
   get 'enjoy_harmony', to: 'home#enjoy_harmony'
-  resources :events, only: [:index, :show]
+  resources :events, only: [:index, :show] do
+    resources :borders, module: :events, only: :index, constraints: -> (req) { req.xhr? }
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

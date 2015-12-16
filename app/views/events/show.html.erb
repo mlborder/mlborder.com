@@ -28,7 +28,7 @@
         <div class="tabbable">
           <ul class="nav nav-tabs nav-justified">
             <li class="active"><a href="#1" data-toggle="tab">ボーダー</a></li>
-            <li class="disabled"><a href="#2">過去の同一形式イベント</a></li>
+            <li><a href="#2" data-toggle="tab">最近の同一形式イベント</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="1">
@@ -55,6 +55,34 @@
               <%- end %>
             </div>
             <div class="tab-pane" id="2">
+              <%- if @recent_events.any? %>
+                <table class='table'>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>イベント名</th>
+                      <th>開催期間</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%- @recent_events.each do |event| %>
+                      <tr>
+                        <td><%= event.id %></td>
+                        <td>
+                          <%- if @event.id == event.id %>
+                            <%= event.name %><b>(このイベント)</b>
+                          <%- else %>
+                            <%= link_to event.name, event_path(event) %>
+                          <%- end %>
+                        </td>
+                        <td><%= event.started_at.strf_mlevent %>〜<%= event.ended_at.strf_mlevent %>, <%= event.days %> days</td>
+                      </tr>
+                    <%- end %>
+                  </tbody>
+                </table>
+              <%- else %>
+                <p>同一形式のイベントが見つかりません。</p>
+              <%- end %>
             </div>
           </div>
         </div>

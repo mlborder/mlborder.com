@@ -1,13 +1,13 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.order(id: :asc)
+    @events = Event.includes(:final_borders).order(id: :asc)
   end
 
   def show
     @event = params[:id].present? ? Event.find(params[:id]) : Event.border_available.last
     return redirect_to events_path if @event.nil?
     @dataset = @event.border.dataset if @event.has_border?
-    @recent_events = Event.send(@event.event_type.to_sym).border_available.order(started_at: :desc).limit(10)
+    @recent_events = Event.includes(:final_borders).send(@event.event_type.to_sym).border_available.order(started_at: :desc).limit(10)
 
     respond_to do |format|
       format.html

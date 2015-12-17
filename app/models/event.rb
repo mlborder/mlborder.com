@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  has_many :final_borders
+
   validates :name, presence: true
   validates :started_at, presence: true
   validates :ended_at, presence: true
@@ -52,6 +54,16 @@ class Event < ActiveRecord::Base
   def same_type_previous
     event_type = self.event_type
     Event.border_available.send(event_type).where(Event.arel_table[:ended_at].lteq(self.started_at)).order(id: :desc).first
+  end
+
+  def update_final_border_info!(rank = 1200)
+    return unless self.has_border?
+    return unless self.ended?
+
+    self.final_borders.find_or_initialize_by(rank: rank).tap do |final_border|
+      final_border.point = self.border.progress.values.last.last["border_#{rank}"]
+      final_border.save!
+    end
   end
 
   def self.at(time = Time.now)

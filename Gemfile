@@ -68,3 +68,4 @@ group :test do
 end
 
 gem 'influxdb-rails'
+gem 'influxdb', '~> 0.1.0'

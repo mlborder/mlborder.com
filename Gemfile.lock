@@ -75,7 +75,7 @@ GEM
       activesupport (>= 4.1.0)
     hashie (3.4.3)
     i18n (0.7.0)
-    influxdb (0.2.3)
+    influxdb (0.1.9)
       cause
       json
     influxdb-rails (0.1.10)
@@ -136,6 +136,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
+      json (~> 1.4)
     ref (2.0.0)
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
@@ -209,6 +210,7 @@ DEPENDENCIES
   database_rewinder
   factory_girl_rails
   font-awesome-sass
+  influxdb (~> 0.1.0)
   influxdb-rails
   jbuilder (~> 2.0)
   jquery-rails

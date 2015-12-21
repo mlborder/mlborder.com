@@ -66,6 +66,10 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def default_series_name
+    "#{self.started_at.strftime('%Y%m%d')}-#{self.ended_at.strftime('%Y%m%d')}_#{self.event_type.sub('_event', '')}"
+  end
+
   def self.at(time = Time.now)
     time = Time.parse(time) if time.class == String
     where(arel_table[:started_at].lteq(time)).

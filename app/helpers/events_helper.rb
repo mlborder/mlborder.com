@@ -107,4 +107,11 @@ module EventsHelper
 
   raw graph
   end
+
+  def event_type_badge(event)
+    @event_type_config ||= YAML.load_file(Rails.root.join('config/event_type.yml').to_s)
+    cnf = @event_type_config[event.event_type]
+
+    raw "<span class='label #{cnf['label_class']}'>#{t "event_type.#{cnf['name']}"}</span>"
+  end
 end

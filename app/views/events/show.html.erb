@@ -8,15 +8,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
-      <%- if @event.ended? %>
-        <span class="label label-default">Finished</span>
-      <%- elsif @event.in_session? %>
-        <span class="label label-danger">Ongoing</span>
-      <%- else %>
-        <span class="label label-warning">Preparing</span>
-      <%- end %>
-      <%= event_type_badge @event %>
-      <%= @event.name %>
+      <%= event_status_badge @event %>&nbsp;<%= event_type_badge @event %>&nbsp;<%= @event.name %>
     </h3>
   </div>
   <ul class="list-group">

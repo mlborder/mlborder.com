@@ -8,3 +8,7 @@ ja:
     lesson:  レッスン
     psl:     PSL
     caravan: キャラバン
+  event_status:
+    preparing: 準備中
+    ongoing:   開催中
+    finished:  終了

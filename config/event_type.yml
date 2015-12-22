@@ -1,0 +1,24 @@
+unknown_event:
+  name: unknown
+  label_class: 'label-event-unknown'
+raid_event:
+  name: raid
+  label_class: 'label-event-raid'
+hhp_event:
+  name: hhp
+  label_class: 'label-event-hhp'
+imc_event:
+  name: imc
+  label_class: 'label-event-imc'
+choco_event:
+  name: choco
+  label_class: 'label-event-choco'
+lesson_event:
+  name: lesson
+  label_class: 'label-event-lesson'
+psl_event:
+  name: psl
+  label_class: 'label-event-psl'
+caravan_event:
+  name: caravan
+  label_class: 'label-event-caravan'

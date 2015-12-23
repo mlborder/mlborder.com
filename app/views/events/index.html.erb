@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <%- @events.reverse.each do |event| %>
+    <%- @events.each do |event| %>
       <tr>
         <td><%= event_type_badge(event) %>&nbsp;<%= link_to_if event.has_border?, event.name, event_path(event) %></td>
         <td>
@@ -24,3 +24,7 @@
     <%- end %>
   </tbody>
 </table>
+
+<div class='text-center'>
+  <%= paginate @events %>
+</div>

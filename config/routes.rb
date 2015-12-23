@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'events#show'
+  root 'static_pages#home'
   get 'about', to: 'static_pages#about'
   get 'events/latest', to: 'events#show'
   get 'enjoy_harmony', to: 'home#enjoy_harmony'

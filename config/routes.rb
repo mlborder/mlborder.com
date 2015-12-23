@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root 'events#show'
+  root 'static_pages#home'
   get 'about', to: 'static_pages#about'
   get 'events/latest', to: 'events#show'
-  get 'enjoy_harmony', to: 'home#enjoy_harmony'
+  get 'enjoy_harmony', to: 'static_pages#enjoy_harmony'
   resources :events, only: [:index, :show] do
     resources :borders, module: :events, only: :index, constraints: -> (req) { req.xhr? }
   end

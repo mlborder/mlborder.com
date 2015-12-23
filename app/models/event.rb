@@ -9,6 +9,8 @@ class Event < ActiveRecord::Base
   validate :periods_are_not_included_by_other
   validate :not_cover_other_one
 
+  paginates_per 25
+
   scope :border_available, -> { where.not( series_name: nil ) }
 
   enum event_type: [
@@ -61,13 +63,17 @@ class Event < ActiveRecord::Base
     return unless self.ended?
 
     self.final_borders.find_or_initialize_by(rank: rank).tap do |final_border|
-      final_border.point = self.border.progress.values.last.last["border_#{rank}"]
+      final_border.point = self.border.dataset.last["border_#{rank}"]
       final_border.save!
     end
   end
 
   def default_series_name
     "#{self.started_at.strftime('%Y%m%d')}-#{self.ended_at.strftime('%Y%m%d')}_#{self.event_type.sub('_event', '')}"
+  end
+
+  def format_period
+    "#{self.started_at.strf_mlevent}〜#{self.ended_at.strf_mlevent}, #{self.days} days"
   end
 
   def self.at(time = Time.now)

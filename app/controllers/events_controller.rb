@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.includes(:final_borders).order(id: :asc)
+    @events = Event.includes(:final_borders).order(id: :desc).page(params[:page])
   end
 
   def show

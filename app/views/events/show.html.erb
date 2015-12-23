@@ -13,8 +13,7 @@
   </div>
   <ul class="list-group">
     <li class="list-group-item">
-      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-      <%= @event.started_at.strf_mlevent %>〜<%= @event.ended_at.strf_mlevent %>, <%= @event.days %> days
+      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp;<%= @event.format_period %>
     </li>
   </ul>
   <div class="panel-body">
@@ -54,7 +53,6 @@
                 <table class='table'>
                   <thead>
                     <tr>
-                      <th>#</th>
                       <th>イベント名</th>
                       <th>最終1200位</th>
                       <th>開催期間</th>
@@ -63,10 +61,9 @@
                   <tbody>
                     <%- @recent_events.each do |event| %>
                       <tr>
-                        <td><%= event.id %></td>
                         <td>
                           <%- if @event.id == event.id %>
-                            <%= event.name %><b>(このイベント)</b>
+                            <b><%= event.name %></b>
                           <%- else %>
                             <%= link_to event.name, event_path(event) %>
                           <%- end %>
@@ -75,7 +72,7 @@
                           <%- border_1200 = event.final_borders.select{|b| b.rank == 1200}.first.try(:point) %>
                           <%= border_1200 ? "#{number_to_currency(border_1200, unit: '', precision: 0)}pt" : '-' %>
                         </td>
-                        <td><%= event.started_at.strf_mlevent %>〜<%= event.ended_at.strf_mlevent %>, <%= event.days %> days</td>
+                        <td><%= event.format_period %></td>
                       </tr>
                     <%- end %>
                   </tbody>

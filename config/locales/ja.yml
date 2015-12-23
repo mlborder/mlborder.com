@@ -1,4 +1,11 @@
 ja:
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
   event_type:
     unknown: 不明
     raid:    合同フェス

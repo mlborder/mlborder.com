@@ -63,7 +63,7 @@
                       <tr>
                         <td>
                           <%- if @event.id == event.id %>
-                            <%= event.name %><b>(このイベント)</b>
+                            <b><%= event.name %></b>
                           <%- else %>
                             <%= link_to event.name, event_path(event) %>
                           <%- end %>

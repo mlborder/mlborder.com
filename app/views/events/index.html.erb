@@ -8,8 +8,7 @@
     <tr>
       <th>name</th>
       <th>border_1200</th>
-      <th>start_time</th>
-      <th>end_time</th>
+      <th>period</th>
     </tr>
   </thead>
   <tbody>
@@ -20,8 +19,7 @@
           <%- border_1200 = event.final_borders.select{|b| b.rank == 1200}.first.try(:point) %>
           <%= border_1200 ? "#{number_to_currency(border_1200, unit: '', precision: 0)}pt" : '-' %>
         </td>
-        <td><%= event.started_at.strf_mlevent %></td>
-        <td><%= event.ended_at.strf_mlevent %></td>
+        <td><%= event.format_period %></td>
       </tr>
     <%- end %>
   </tbody>

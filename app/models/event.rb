@@ -61,7 +61,7 @@ class Event < ActiveRecord::Base
     return unless self.ended?
 
     self.final_borders.find_or_initialize_by(rank: rank).tap do |final_border|
-      final_border.point = self.border.progress.values.last.last["border_#{rank}"]
+      final_border.point = self.border.dataset.last["border_#{rank}"]
       final_border.save!
     end
   end

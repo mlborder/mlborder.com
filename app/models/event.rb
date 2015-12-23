@@ -70,6 +70,10 @@ class Event < ActiveRecord::Base
     "#{self.started_at.strftime('%Y%m%d')}-#{self.ended_at.strftime('%Y%m%d')}_#{self.event_type.sub('_event', '')}"
   end
 
+  def format_period
+    "#{self.started_at.strf_mlevent}〜#{self.ended_at.strf_mlevent}, #{self.days} days"
+  end
+
   def self.at(time = Time.now)
     time = Time.parse(time) if time.class == String
     where(arel_table[:started_at].lteq(time)).

@@ -34,7 +34,7 @@ module EventsHelper
     };
 
     var label = period.toLocaleTimeString("ja-JP", options);
-    label += "(" + dataItem.reward_rank + "枠)";
+    label += "(" + (dataItem.reward_rank || 1) + "枠)";
     return label;
   };
 

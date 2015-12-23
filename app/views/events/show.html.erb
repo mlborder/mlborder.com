@@ -54,7 +54,6 @@
                 <table class='table'>
                   <thead>
                     <tr>
-                      <th>#</th>
                       <th>イベント名</th>
                       <th>最終1200位</th>
                       <th>開催期間</th>
@@ -63,7 +62,6 @@
                   <tbody>
                     <%- @recent_events.each do |event| %>
                       <tr>
-                        <td><%= event.id %></td>
                         <td>
                           <%- if @event.id == event.id %>
                             <%= event.name %><b>(このイベント)</b>

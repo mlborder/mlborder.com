@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
   def effect_time_zone(&block)
     Time.use_zone(time_zone, &block) if block.present?
   end
+
+  helper_method :current_user
+
+  private
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
 end

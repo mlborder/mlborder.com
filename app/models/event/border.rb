@@ -7,12 +7,25 @@ class Event::Border
     @series_name = event.series_name
   end
 
+  def recent_series_data
+    return @recent_series_data if @recent_series_data
+    res = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" ORDER BY time DESC LIMIT 1;"
+    puts 'hoghoeh'
+    @recent_series_data = res.first['values'].first
+  end
+
+  def latest
+    borders = recent_series_data.select { |k, _| k.include? 'border_' }.inject({}) do |h, (rank, pt)|
+      h.merge({ rank.match(/\d+/).to_s.to_i => pt.to_i })
+    end
+
+    { time: Time.parse(recent_series_data['time']), borders: borders }
+  end
+
   def columns
     return @columns if @columns.present?
 
-    res = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" LIMIT 1;"
-    series_datas = res.first['values']
-    target_series_data = series_datas.first
+    target_series_data = recent_series_data
     raw_columns = target_series_data.keys
 
     border_columns = raw_columns.select { |k| k.include?('border_') }.sort { |a, b| a.match(/(\d+)/).to_s.to_i <=> b.match(/(\d+)/).to_s.to_i }

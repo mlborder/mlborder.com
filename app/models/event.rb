@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :final_borders
+  has_many :alarms
 
   validates :name, presence: true
   validates :started_at, presence: true

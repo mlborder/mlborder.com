@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     resources :borders, module: :events, only: :index, constraints: -> (req) { req.xhr? }
   end
 
+  resources :users, only: [] do
+    resources :alarms, module: :users, except: [:new, :edit]
+  end
+
+  get 'watch', to: 'static_pages#watch'
+
   get '/auth/:provider/callback', to: 'sessions#callback'
   post '/auth/:provider/callback', to: 'sessions#callback'
   get '/logout' => 'sessions#destroy', as: :logout

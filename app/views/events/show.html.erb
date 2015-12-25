@@ -26,14 +26,40 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="1">
-              <%- if @dataset.present? %>
+              <%- if @event.has_border? %>
                 <div>
                   <div class='row'>
-                    <div class='col-md-10'>
+                    <div class='col-md-9'>
                       <div id="chartdiv"></div>
                     </div>
-                    <div class='col-md-2'>
-                      <div id="legenddiv"></div>
+                    <div class='col-md-3'>
+                      <div class='row' style='margin-top: 1.5em;'>
+                        <div class='col-md-12'>
+                          <%- unless @event.hhp_event? %>
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <span class='glyphicon glyphicon-info-sign'></span>
+                                <%= @latest_data[:time].in_time_zone('Asia/Tokyo').strf_mlevent %>時点
+                              </div>
+                              <table class='table'>
+                                <tbody>
+                                  <%- @latest_data[:borders].sort.each do |rank, point| %>
+                                    <tr>
+                                      <th class='text-right'><%= rank %>位:</th>
+                                      <td><%= number_with_delimiter point %>pt</td>
+                                    </tr>
+                                  <%- end %>
+                                </tbody>
+                              </table>
+                            </div>
+                          <%- end %>
+                        </div>
+                      </div>
+                      <div class='row'>
+                        <div class='col-md-12'>
+                          <div id="legenddiv" style='max-width: 240px;'></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

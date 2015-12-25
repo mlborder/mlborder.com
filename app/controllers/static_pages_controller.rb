@@ -6,6 +6,12 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def watch
+    if current_user
+      redirect_to user_alarms_path(current_user) and return
+    end
+  end
+
   def enjoy_harmony
     event = Event.at('2015-05-29 17:00:00 +0900')
     return redirect_to events_path unless event

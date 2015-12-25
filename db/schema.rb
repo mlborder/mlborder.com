@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217180510) do
+ActiveRecord::Schema.define(version: 20151225160608) do
+
+  create_table "alarms", force: :cascade do |t|
+    t.integer  "event_id",               null: false
+    t.integer  "user_id",                null: false
+    t.integer  "status",     default: 0, null: false
+    t.integer  "target",                 null: false
+    t.integer  "rank",                   null: false
+    t.decimal  "value",                  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "event_final_borders", force: :cascade do |t|
     t.integer  "event_id"
@@ -36,6 +47,16 @@ ActiveRecord::Schema.define(version: 20151217180510) do
     t.datetime "ended_at",                              null: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "provider",                null: false
+    t.string   "uid",                     null: false
+    t.string   "screen_name",             null: false
+    t.string   "name",                    null: false
+    t.integer  "roll",        default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
 end

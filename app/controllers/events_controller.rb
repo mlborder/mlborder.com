@@ -12,7 +12,16 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: { name: @event.name, started_at: @event.started_at, ended_at: @event.ended_at } }
+      format.json do
+        render json: {
+          id: @event.id,
+          url: event_url(@event.id),
+          series_name: @event.series_name,
+          name: @event.name,
+          started_at: @event.started_at,
+          ended_at: @event.ended_at
+        }
+      end
     end
   end
 end

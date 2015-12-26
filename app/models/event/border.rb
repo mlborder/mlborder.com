@@ -10,7 +10,6 @@ class Event::Border
   def recent_series_data
     return @recent_series_data if @recent_series_data
     res = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" ORDER BY time DESC LIMIT 1;"
-    puts 'hoghoeh'
     @recent_series_data = res.first['values'].first
   end
 

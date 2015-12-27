@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :alarms, module: :users, except: [:new, :edit]
   end
 
-  get 'watch', to: 'static_pages#watch'
+  get 'alarm', to: 'static_pages#alarm'
 
   get '/auth/:provider/callback', to: 'sessions#callback'
   post '/auth/:provider/callback', to: 'sessions#callback'

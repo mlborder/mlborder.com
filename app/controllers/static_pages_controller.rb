@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-  def watch
+  def alarm
     if current_user
       redirect_to user_alarms_path(current_user) and return
     end

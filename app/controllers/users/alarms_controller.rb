@@ -16,7 +16,7 @@ class Users::AlarmsController < ApplicationController
     (redirect_to watch_path and return) unless current_user
     (redirect_to user_alarms_path(@user) and return) if @user.id != current_user.id
 
-    alarm = @user.alarms.build(alarm_params).tap { |a| a.target = :target_border }
+    alarm = @user.alarms.build(alarm_params).tap { |a| a.target = :target_border; a.status = :status_valid }
     alarm.save
 
     redirect_to user_alarms_path(@user)

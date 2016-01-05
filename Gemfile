@@ -30,6 +30,7 @@ gem 'font-awesome-sass'
 gem 'kaminari'
 
 gem 'rubimas'
+gem 'active_hash'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

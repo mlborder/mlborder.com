@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225160608) do
+ActiveRecord::Schema.define(version: 20160105213517) do
 
   create_table "alarms", force: :cascade do |t|
     t.integer  "event_id",               null: false
@@ -39,14 +39,15 @@ ActiveRecord::Schema.define(version: 20151225160608) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer  "event_type_id", limit: 4
-    t.string   "name",          limit: 255,             null: false
-    t.integer  "event_type",    limit: 4,   default: 0
-    t.string   "series_name",   limit: 255
-    t.datetime "started_at",                            null: false
-    t.datetime "ended_at",                              null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.integer  "event_type_id",     limit: 4
+    t.string   "name",              limit: 255,                 null: false
+    t.integer  "event_type",        limit: 4,   default: 0
+    t.string   "series_name",       limit: 255
+    t.datetime "started_at",                                    null: false
+    t.datetime "ended_at",                                      null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.boolean  "records_available",             default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|

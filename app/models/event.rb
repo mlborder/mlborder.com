@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
   paginates_per 25
 
   scope :border_available, -> { where.not( series_name: nil ) }
+  scope :records_available, -> { where( records_available: true ) }
 
   enum event_type: [
     :unknown_event,
@@ -32,6 +33,11 @@ class Event < ActiveRecord::Base
   def border
     return @border if @border.present?
     @border = Event::Border.new self
+  end
+
+  def records
+    return [] unless records_available?
+    Record.get("events/#{self.id}/records")
   end
 
   def duration

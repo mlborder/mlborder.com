@@ -1,5 +1,26 @@
 <div class="page-header">
-  <h1>『<%= event.name %>』の最終ランキング</h1>
+  <h1>
+    『<%= event.name %>』の最終ランキング
+    <%= "(#{idol.name.gsub(' ', '')})" if idol %>
+  </h1>
+</div>
+<div>
+  <ul class="pager">
+    <%- if page > 1 %>
+      <li class="previous">
+      <%= link_to records_path(event_id: event.id, idol_id: idol.try(:id), page: page - 1) do %>
+        <span aria-hidden="true">&larr;</span> 前へ
+      <%- end %>
+      </li>
+    <%- end %>
+    <%- if records.any? %>
+      <li class="next">
+      <%= link_to records_path(event_id: event.id, idol_id: idol.try(:id), page: page + 1) do %>
+        次へ <span aria-hidden="true">&rarr;</span>
+      <%- end %>
+      </li>
+    <%- end %>
+  </ul>
 </div>
 <table class='table'>
   <thead>
@@ -24,3 +45,21 @@
     <%- end %>
   </tbody>
 </table>
+<div>
+  <ul class="pager">
+    <%- if page > 1 %>
+      <li class="previous">
+      <%= link_to records_path(event_id: event.id, idol_id: idol.try(:id), page: page - 1) do %>
+        <span aria-hidden="true">&larr;</span> 前へ
+      <%- end %>
+      </li>
+    <%- end %>
+    <%- if records.any? %>
+      <li class="next">
+      <%= link_to records_path(event_id: event.id, idol_id: idol.try(:id), page: page + 1) do %>
+        次へ <span aria-hidden="true">&rarr;</span>
+      <%- end %>
+      </li>
+    <%- end %>
+  </ul>
+</div>

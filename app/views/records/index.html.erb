@@ -2,7 +2,7 @@
 
 <%- if @event || @player %>
   <%= render partial: 'form', locals: { event: @event, player: @player, events: @events } %>
-  <%= render partial: 'event_records', locals: { event: @event, records: @records } if @event %>
+  <%= render partial: 'event_records', locals: { event: @event, records: @records, idol: @idol, page: @page_num } if @event %>
   <%= render partial: 'player_records', locals: { player: @player, records: @records, events: @events } if @player %>
 <%- else %>
   <ol class="breadcrumb">

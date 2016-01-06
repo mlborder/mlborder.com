@@ -25,7 +25,7 @@
           <ul>
             <li>順位: <%= number_with_delimiter record.rank %>&nbsp;位</li>
             <li>ポイント: <%= number_with_delimiter record.point %>&nbsp;pt</li>
-            <li><%= link_to '最終ランキング', records_path(event_id: record.event_id) %></li>
+            <li><%= link_to '最終ランキング', records_path(event_id: record.event_id, idol_id: record.idol_id) %></li>
             <li><%= link_to 'ボーダー情報', event_path(record.event_id) %></li>
           </ul>
         </div>

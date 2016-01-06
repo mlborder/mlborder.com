@@ -1,5 +1,26 @@
 <div class="page-header">
-  <h1>『<%= event.name %>』の最終ランキング</h1>
+  <h1>
+    『<%= event.name %>』の最終ランキング
+    <%= "(#{idol.name.gsub(' ', '')})" if idol %>
+  </h1>
+</div>
+<div>
+  <ul class="pager">
+    <%- if page > 1 %>
+      <li class="previous">
+      <%= link_to records_path(event_id: event.id, idol_id: idol.try(:id), page: page - 1) do %>
+        <span aria-hidden="true">&larr;</span> 前へ
+      <%- end %>
+      </li>
+    <%- end %>
+    <%- if records.any? %>
+      <li class="next">
+      <%= link_to records_path(event_id: event.id, idol_id: idol.try(:id), page: page + 1) do %>
+        次へ <span aria-hidden="true">&rarr;</span>
+      <%- end %>
+      </li>
+    <%- end %>
+  </ul>
 </div>
 <table class='table'>
   <thead>
@@ -12,7 +33,15 @@
   <tbody>
     <%- records.each do |record| %>
       <tr>
-        <td><%= number_with_delimiter record.rank %></td>
+        <td>
+          <%= number_with_delimiter record.rank %>&nbsp;位
+          <%- if record.idol_id %>
+            <span style="color: <%= Idol.find(record.idol_id).color %>">■</span>
+            <%= link_to records_path(event_id: record.event_id, idol_id: record.idol_id) do %>
+              <%= Idol.find(record.idol_id).name.gsub(' ', '') %>
+            <%- end %>
+          <%- end %>
+        </td>
         <td>
           <%= link_to record.player_id, records_path(player_id: record.player_id) %>
           <%= link_to "http://imas.gree-apps.net/app/index.php/mypage/user_profile/id/#{record.player_id}", target: '_blank' do %>
@@ -24,3 +53,21 @@
     <%- end %>
   </tbody>
 </table>
+<div>
+  <ul class="pager">
+    <%- if page > 1 %>
+      <li class="previous">
+      <%= link_to records_path(event_id: event.id, idol_id: idol.try(:id), page: page - 1) do %>
+        <span aria-hidden="true">&larr;</span> 前へ
+      <%- end %>
+      </li>
+    <%- end %>
+    <%- if records.any? %>
+      <li class="next">
+      <%= link_to records_path(event_id: event.id, idol_id: idol.try(:id), page: page + 1) do %>
+        次へ <span aria-hidden="true">&rarr;</span>
+      <%- end %>
+      </li>
+    <%- end %>
+  </ul>
+</div>

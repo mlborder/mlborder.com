@@ -35,9 +35,11 @@ class Event < ActiveRecord::Base
     @border = Event::Border.new self
   end
 
-  def records
+  def records(page_num = 0, idol_id = nil)
     return [] unless records_available?
-    Record.get("events/#{self.id}/records")
+    par = Record.page2offlim(page_num)
+    par.merge!({'idol_id' => idol_id}) if idol_id
+    Record.get("events/#{self.id}/records?#{URI.encode_www_form(par)}")
   end
 
   def duration

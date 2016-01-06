@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1>『<%= event.name %>』の最終ランキング</h1>
+</div>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>順位</th>
+      <th>ID</th>
+      <th>ポイント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- records.each do |record| %>
+      <tr>
+        <td><%= number_with_delimiter record.rank %></td>
+        <td>
+          <%= link_to record.player_id, records_path(player_id: record.player_id) %>
+          <%= link_to "http://imas.gree-apps.net/app/index.php/mypage/user_profile/id/#{record.player_id}", target: '_blank' do %>
+            <span class='glyphicon glyphicon-new-window'></span>
+          <%- end %>
+        </td>
+        <td><%= number_with_delimiter record.point %></td>
+      </tr>
+    <%- end %>
+  </tbody>
+</table>

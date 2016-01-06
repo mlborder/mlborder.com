@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>
+    ID:<%= player.id %>さんのイベントランキング履歴
+    <small>
+      <%= link_to "http://imas.gree-apps.net/app/index.php/mypage/user_profile/id/#{player.id}", target: '_blank' do %>
+        <span class='glyphicon glyphicon-new-window'></span>
+      <%- end %>
+    </small>
+  </h1>
+</div>
+<div class="row">
+  <%- records.each do |record| %>
+    <%- event = events.select { |ev| ev.id == record.event_id.to_i }.first %>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+      <div class="panel panel-default" style='height: 13em;'>
+        <div class="panel-heading" style='font-size: .9em;'>
+          <%- if event %>
+            <%= event_type_badge(event) %>&nbsp;<%= event.try(:name) %>
+            <%- if event.hhp_event? %>
+              &nbsp;(<%= Idol.find(record.idol_id).name.gsub(' ', '') %>)
+            <%- end %>
+          <%- end %>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li>順位: <%= number_with_delimiter record.rank %>&nbsp;位</li>
+            <li>ポイント: <%= number_with_delimiter record.point %>&nbsp;pt</li>
+            <li><%= link_to '最終ランキング', records_path(event_id: record.event_id) %></li>
+            <li><%= link_to 'ボーダー情報', event_path(record.event_id) %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <%- end %>
+</div>

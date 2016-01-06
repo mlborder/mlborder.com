@@ -51,6 +51,14 @@
                                   <%- end %>
                                 </tbody>
                               </table>
+                              <%- if @event.records_available? %>
+                                <div class="panel-footer text-right" style='font-size: .9em;'>
+                                  <%= link_to records_path(event_id: @event.id) do %>
+                                    <span class="glyphicon glyphicon-log-in"></span>
+                                    最終ランキングを確認する
+                                  <%- end %>
+                                </div>
+                              <%- end %>
                             </div>
                           <%- end %>
                         </div>

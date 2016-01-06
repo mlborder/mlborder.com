@@ -75,3 +75,4 @@ end
 
 gem 'influxdb-rails'
 gem 'influxdb'
+gem 'her'

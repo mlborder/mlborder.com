@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   get 'alarm', to: 'static_pages#alarm'
+  get 'records', to: 'records#index'
 
   get '/auth/:provider/callback', to: 'sessions#callback'
   post '/auth/:provider/callback', to: 'sessions#callback'

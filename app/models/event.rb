@@ -92,7 +92,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.dump_seeds
-    events = self.all.map do |ev|
+    events = self.order(id: :asc).map do |ev|
       <<~EVENT_SEED.indent(2).chomp
       { name: '#{ev.name}',
         event_type: '#{ev.event_type}',

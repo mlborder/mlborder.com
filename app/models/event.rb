@@ -89,6 +89,24 @@ class Event < ActiveRecord::Base
     where(arel_table[:ended_at].gteq(time)).first
   end
 
+  def self.dump_seeds
+    events = self.all.map do |ev|
+      <<~EVENT_SEED.indent(2).chomp
+      { name: '#{ev.name}',
+        event_type: '#{ev.event_type}',
+        started_at: '#{ev.started_at.in_time_zone('Asia/Tokyo').strftime('%Y-%m-%d %H:%M:%S %z')}',
+        ended_at: '#{ev.ended_at.in_time_zone('Asia/Tokyo').strftime('%Y-%m-%d %H:%M:%S %z')}'
+      }
+      EVENT_SEED
+    end
+
+    <<~SEED_RB
+    Event.create([
+    #{events.join(",\n")}
+    ])
+    SEED_RB
+  end
+
   private
   def end_comes_after_start
     return if errors.present?

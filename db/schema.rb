@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160105213517) do
+ActiveRecord::Schema.define(version: 20160108093450) do
 
   create_table "alarms", force: :cascade do |t|
     t.integer  "event_id",               null: false
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20160105213517) do
     t.string   "uid",                     null: false
     t.string   "screen_name",             null: false
     t.string   "name",                    null: false
-    t.integer  "roll",        default: 0, null: false
+    t.integer  "role",        default: 0, null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

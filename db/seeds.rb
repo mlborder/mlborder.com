@@ -1,77 +1,86 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 Event.create([
   { name: '開幕！アイドルイントロダクション',
+    event_type: 'unknown_event',
     started_at: '2013-03-05 17:00:00 +0900',
     ended_at: '2013-03-11 16:59:59 +0900'
   },
   { name: '開演！ロケットスタートライブ!',
+    event_type: 'unknown_event',
     started_at: '2013-03-14 17:00:00 +0900',
     ended_at: '2013-03-25 16:59:59 +0900'
   },
   { name: '輝け！春の野外音楽フェスティバル',
+    event_type: 'unknown_event',
     started_at: '2013-03-28 17:00:00 +0900',
     ended_at: '2013-04-08 16:59:59 +0900'
   },
   { name: 'ようこそ！アイドル学園天国',
+    event_type: 'unknown_event',
     started_at: '2013-04-11 17:00:00 +0900',
     ended_at: '2013-04-22 16:59:59 +0900'
   },
   { name: '風雲！アイドルキャッスル！',
+    event_type: 'unknown_event',
     started_at: '2013-04-25 17:00:00 +0900',
     ended_at: '2013-05-07 16:59:59 +0900'
   },
   { name: '大爆走！765レーサーグランプリ',
+    event_type: 'unknown_event',
     started_at: '2013-05-09 17:00:00 +0900',
     ended_at: '2013-05-20 16:59:59 +0900'
   },
   { name: '輝け！アイドルライブバトルアリーナ',
+    event_type: 'unknown_event',
     started_at: '2013-05-23 17:00:00 +0900',
     ended_at: '2013-05-27 16:59:59 +0900'
   },
   { name: '大合戦！戦国アイドル活劇',
+    event_type: 'unknown_event',
     started_at: '2013-05-29 17:00:00 +0900',
     ended_at: '2013-06-10 16:59:59 +0900'
   },
   { name: '激闘！NAMCOアイドルサッカーフェス2013',
+    event_type: 'unknown_event',
     started_at: '2013-06-13 17:00:00 +0900',
     ended_at: '2013-06-24 16:59:59 +0900'
   },
   { name: '夏直前！アイドル水上大運動会！',
+    event_type: 'unknown_event',
     started_at: '2013-06-27 17:00:00 +0900',
     ended_at: '2013-07-08 16:59:59 +0900'
   },
   { name: '納涼！アイドル夏祭り',
+    event_type: 'unknown_event',
     started_at: '2013-07-11 17:00:00 +0900',
     ended_at: '2013-07-22 16:59:59 +0900'
   },
   { name: '白熱！アイドルユニットトーナメント',
+    event_type: 'unknown_event',
     started_at: '2013-07-25 17:00:00 +0900',
     ended_at: '2013-07-30 16:59:59 +0900'
   },
   { name: '熱唱！真夏のサマーライブフェス',
+    event_type: 'unknown_event',
     started_at: '2013-08-02 17:00:00 +0900',
     ended_at: '2013-08-12 16:59:59 +0900'
   },
   { name: '大激闘！765プロ野球',
+    event_type: 'unknown_event',
     started_at: '2013-08-15 17:00:00 +0900',
     ended_at: '2013-08-26 16:59:59 +0900'
   },
   { name: '恐怖！アイドルドキドキ肝だめし',
+    event_type: 'unknown_event',
     started_at: '2013-08-29 14:00:00 +0900',
     ended_at: '2013-09-09 16:59:59 +0900'
   },
   { name: '遊べ！アイドルゲームフェス',
+    event_type: 'unknown_event',
     started_at: '2013-09-12 17:00:00 +0900',
     ended_at: '2013-09-24 16:59:59 +0900'
   },
   { name: '大航海！アイドルパイレーツ',
+    event_type: 'unknown_event',
     started_at: '2013-09-26 14:00:00 +0900',
     ended_at: '2013-10-07 16:59:59 +0900'
   },
@@ -91,6 +100,7 @@ Event.create([
     ended_at: '2013-11-12 16:59:59 +0900'
   },
   { name: 'GO!GO! アイドルゴルフ大会',
+    event_type: 'unknown_event',
     started_at: '2013-11-14 17:00:00 +0900',
     ended_at: '2013-11-25 16:59:59 +0900'
   },
@@ -379,7 +389,7 @@ Event.create([
     started_at: '2015-06-25 17:00:00 +0900',
     ended_at: '2015-07-05 23:59:59 +0900'
   },
-  { name: 'キラキラ★アイドル七夕祭り',
+  { name: 'キラキラ★アイドル七夕祭',
     event_type: 'lesson_event',
     started_at: '2015-07-07 17:00:00 +0900',
     ended_at: '2015-07-15 23:59:59 +0900'
@@ -443,5 +453,35 @@ Event.create([
     event_type: 'lesson_event',
     started_at: '2015-11-10 17:00:00 +0900',
     ended_at: '2015-11-17 23:59:59 +0900'
+  },
+  { name: '飛翔！エアポートライブ',
+    event_type: 'caravan_event',
+    started_at: '2015-11-19 18:00:00 +0900',
+    ended_at: '2015-11-29 23:59:59 +0900'
+  },
+  { name: '大乱闘！サンタだらけの雪合戦',
+    event_type: 'raid_event',
+    started_at: '2015-12-01 17:00:00 +0900',
+    ended_at: '2015-12-09 23:59:59 +0900'
+  },
+  { name: 'アイドルマスターズカップ14',
+    event_type: 'imc_event',
+    started_at: '2015-12-11 17:00:00 +0900',
+    ended_at: '2015-12-15 23:59:59 +0900'
+  },
+  { name: '【復刻】恐怖！アイドルドキドキ肝だめし',
+    event_type: 'raid_event',
+    started_at: '2015-12-17 17:00:00 +0900',
+    ended_at: '2015-12-23 23:59:59 +0900'
+  },
+  { name: 'アイドルスペースウォーズ EpisodeIV',
+    event_type: 'choco_event',
+    started_at: '2015-12-25 17:00:00 +0900',
+    ended_at: '2016-01-04 23:59:59 +0900'
+  },
+  { name: '大ヒット！アイドル商品開発部',
+    event_type: 'lesson_event',
+    started_at: '2016-01-08 17:00:00 +0900',
+    ended_at: '2016-01-19 23:59:59 +0900'
   }
 ])

@@ -43,7 +43,7 @@
           <%- end %>
         </td>
         <td>
-          <%= link_to record.player_id, records_path(player_id: record.player_id) %>
+          <%= link_to (record.name || "【不明なプロデューサー(#{record.player_id})】"), records_path(player_id: record.player_id) %>
           <%= link_to "http://imas.gree-apps.net/app/index.php/mypage/user_profile/id/#{record.player_id}", target: '_blank' do %>
             <span class='glyphicon glyphicon-new-window'></span>
           <%- end %>

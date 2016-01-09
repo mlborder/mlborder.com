@@ -64,6 +64,7 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'pry'
 end
 
 group :test do

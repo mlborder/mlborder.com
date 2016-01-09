@@ -5,10 +5,16 @@
   <li><%= link_to 'Events', events_path %></li>
   <li class="active"><%= @event.name %></li>
 </ol>
+
+<%= render partial: 'layouts/shared/alert_box', locals: { alert: flash[:alert] } if flash[:alert] %>
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
       <%= event_status_badge @event %>&nbsp;<%= event_type_badge @event %>&nbsp;<%= @event.name %>
+      <%- if current_user.try(:role_admin?) %>
+        <small style='color: #666;'>[<%= link_to 'Edit', edit_event_path(@event) %>]</small>
+      <%- end %>
     </h3>
   </div>
   <ul class="list-group">

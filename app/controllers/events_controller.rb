@@ -1,4 +1,8 @@
 class EventsController < ApplicationController
+  include AuthActions
+  before_action :authenticate_admin!, only: %i(new create edit update)
+  before_action :set_event, only: %i(edit update default_series_name)
+
   def index
     @events = Event.includes(:final_borders).order(id: :desc).page(params[:page])
   end
@@ -23,5 +27,54 @@ class EventsController < ApplicationController
         }
       end
     end
+  end
+
+  def new
+    today = Date.today
+    @event = Event.new(
+      started_at: Time.new(today.year, today.month, today.day, 17),
+      ended_at: today.end_of_day
+    )
+  end
+
+  def create
+    @event = Event.new(event_params)
+
+    if @event.save
+      redirect_to event_path(@event), flash: { alert: { type: 'success', message: 'イベントを作成しました' } }
+    else
+      render :new
+    end
+  end
+
+  def edit; end
+  def update
+    @event.assign_attributes(event_params)
+
+    if @event.save
+      redirect_to event_path(@event), flash: { alert: { type: 'success', message: 'イベントを更新しました' } }
+    else
+      render :edit
+    end
+  end
+
+  def default_series_name
+    render json: { series_name: @event.default_series_name }
+  end
+
+  private
+  def event_params
+    params.require(:event).permit(
+      :name,
+      :event_type,
+      :started_at,
+      :ended_at,
+      :series_name,
+      :records_available
+    )
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
   end
 end

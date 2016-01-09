@@ -51,6 +51,9 @@
               <%- end %>
               <ul class="dropdown-menu">
                 <li><%= link_to 'Alarms', user_alarms_path(current_user) %></li>
+                <%- if current_user.role_admin? %>
+                  <li><%= link_to 'New Event', new_event_path %></li>
+                <%- end %>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to 'Logout', logout_path %></li>
               </ul>

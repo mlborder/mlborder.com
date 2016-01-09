@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'events/latest', to: 'events#show'
   get 'enjoy_harmony', to: 'static_pages#enjoy_harmony'
   resources :events, except: [:destroy] do
+    get 'default_series_name', on: :member, constraints: -> (req) { req.xhr? }
+
     resources :borders, module: :events, only: :index, constraints: -> (req) { req.xhr? }
   end
 

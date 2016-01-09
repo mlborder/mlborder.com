@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   include AuthActions
   before_action :authenticate_admin!, only: %i(new create edit update)
-  before_action :set_event, only: %i(edit update)
+  before_action :set_event, only: %i(edit update default_series_name)
 
   def index
     @events = Event.includes(:final_borders).order(id: :desc).page(params[:page])
@@ -56,6 +56,10 @@ class EventsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def default_series_name
+    render json: { series_name: @event.default_series_name }
   end
 
   private

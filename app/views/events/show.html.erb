@@ -5,6 +5,9 @@
   <li><%= link_to 'Events', events_path %></li>
   <li class="active"><%= @event.name %></li>
 </ol>
+
+<%= render partial: 'layouts/shared/alert_box', locals: { alert: flash[:alert] } if flash[:alert] %>
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">

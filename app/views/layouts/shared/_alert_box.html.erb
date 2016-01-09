@@ -1,0 +1,12 @@
+<%#
+  alert(Hash)
+    - type(Optional) : for CSS class name
+    - title(Optional)
+    - message
+%>
+
+<div class="alert alert-<%= alert['type'] || 'notice' %> alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <%= alert['title'] ? raw("<strong>#{alert['title']}</strong>") : '' %>
+  <%= alert['message'] %>
+</div>

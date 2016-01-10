@@ -85,38 +85,7 @@
             </div>
             <div class="tab-pane" id="2">
               <%- if @recent_events.any? %>
-                <table class='table'>
-                  <thead>
-                    <tr>
-                      <th>イベント名</th>
-                      <th>最終1200位</th>
-                      <th>開催期間</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <%- @recent_events.each do |event| %>
-                      <tr>
-                        <td>
-                          <%- if @event.id == event.id %>
-                            <b><%= event.name %></b>
-                          <%- else %>
-                            <%= link_to event.name, event_path(event) %>
-                          <%- end %>
-                        </td>
-                        <td>
-                          <%- border_1200 = event.final_borders.select{|b| b.rank == 1200}.first.try(:point) %>
-                          <%= border_1200 ? "#{number_to_currency(border_1200, unit: '', precision: 0)}pt" : '-' %>
-                          <%- if event.records_available? %>
-                            <%= link_to event_records_path(event, page: 12) do %>
-                              <span class='glyphicon glyphicon-link'></span>
-                            <%- end %>
-                          <%- end %>
-                        </td>
-                        <td><%= event.format_period %></td>
-                      </tr>
-                    <%- end %>
-                  </tbody>
-                </table>
+                <%= render partial: 'list', locals: { events: @recent_events } %>
               <%- else %>
                 <p>同一形式のイベントが見つかりません。</p>
               <%- end %>

@@ -28,7 +28,10 @@
         <div class="tabbable">
           <ul class="nav nav-tabs nav-justified">
             <li class="active"><a href="#1" data-toggle="tab">ボーダー</a></li>
-            <li><a href="#2" data-toggle="tab">最近の同一形式イベント</a></li>
+            <%- if @event.records_available? %>
+              <li><a href="#3" data-toggle="tab">最終ランキング</a></li>
+            <%- end %>
+            <li><a href="#2" data-toggle="tab">最近の<%= t("event_type.#{@event.event_type.sub('_event', '')}")%>イベント</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="1">
@@ -44,8 +47,18 @@
                           <%- unless @event.hhp_event? %>
                             <div class="panel panel-default">
                               <div class="panel-heading">
-                                <span class='glyphicon glyphicon-info-sign'></span>
-                                <%= @latest_data[:time].in_time_zone('Asia/Tokyo').strf_mlevent %>時点
+                                <%- border_updated_at = @latest_data[:time].in_time_zone('Asia/Tokyo') %>
+                                <%- if border_updated_at > @event.ended_at %>
+                                  <i class="fa fa-coffee"></i>
+                                  最終ボーダー
+                                <%- else %>
+                                  <%- if @event.in_session? %>
+                                    <i class="fa fa-bolt"></i>
+                                  <%- else %>
+                                    <i class="fa fa-beer"></i>
+                                  <%- end %>
+                                  <%= border_updated_at.strf_mlevent %>時点
+                                <%- end %>
                               </div>
                               <table class='table'>
                                 <tbody>
@@ -57,14 +70,6 @@
                                   <%- end %>
                                 </tbody>
                               </table>
-                              <%- if @event.records_available? %>
-                                <div class="panel-footer text-right" style='font-size: .9em;'>
-                                  <%= link_to records_path(event_id: @event.id) do %>
-                                    <span class="glyphicon glyphicon-log-in"></span>
-                                    最終ランキングを確認する
-                                  <%- end %>
-                                </div>
-                              <%- end %>
                             </div>
                           <%- end %>
                         </div>
@@ -90,33 +95,7 @@
             </div>
             <div class="tab-pane" id="2">
               <%- if @recent_events.any? %>
-                <table class='table'>
-                  <thead>
-                    <tr>
-                      <th>イベント名</th>
-                      <th>最終1200位</th>
-                      <th>開催期間</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <%- @recent_events.each do |event| %>
-                      <tr>
-                        <td>
-                          <%- if @event.id == event.id %>
-                            <b><%= event.name %></b>
-                          <%- else %>
-                            <%= link_to event.name, event_path(event) %>
-                          <%- end %>
-                        </td>
-                        <td>
-                          <%- border_1200 = event.final_borders.select{|b| b.rank == 1200}.first.try(:point) %>
-                          <%= border_1200 ? "#{number_to_currency(border_1200, unit: '', precision: 0)}pt" : '-' %>
-                        </td>
-                        <td><%= event.format_period %></td>
-                      </tr>
-                    <%- end %>
-                  </tbody>
-                </table>
+                <%= render partial: 'list', locals: { events: @recent_events } %>
               <%- else %>
                 <p>同一形式のイベントが見つかりません。</p>
               <%- end %>
@@ -124,6 +103,24 @@
                 <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=treby-22&o=9&p=15&l=st1&mode=music-jp&search=THE IDOL M@STER&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="468" height="240" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
               </div>
             </div>
+            <%- if @event.records_available? %>
+              <div class="tab-pane" id="3">
+                <p style='margin-top: 1em;'>『<%= @event.name %>』の最終ランキング情報を確認できます。</p>
+                <%- if @event.hhp_event? %>
+                  <%= link_to '確認する', event_records_path(@event), class: 'btn btn-primary btn-block' %>
+                <%- else %>
+                  <div class="btn-group btn-group-justified" role="group">
+                    <%= link_to "トップ", event_records_path(@event), class: 'btn btn-default' %>
+                    <%= link_to "301位〜", event_records_path(@event, page: 7), class: 'btn btn-default' %>
+                    <%= link_to "501位〜", event_records_path(@event, page: 11), class: 'btn btn-default' %>
+                    <%= link_to "1201位〜", event_records_path(@event, page: 25), class: 'btn btn-primary' %>
+                  </div>
+                <%- end %>
+                <div style="overflow: hidden; text-align: center; margin-top: 3em;">
+                  <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=treby-22&o=9&p=15&l=st1&mode=music-jp&search=THE IDOL M@STER&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="468" height="240" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
+                </div>
+              </div>
+            <%- end %>
           </div>
         </div>
       </div>

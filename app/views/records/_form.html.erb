@@ -3,9 +3,9 @@
     <div class="col-lg-6 col-md-6 col-sm-6">
       <%= form_tag records_path, method: 'GET', enforce_utf8: false do %>
         <div class="input-group">
-          <%= select_tag :event_id, options_from_collection_for_select(events, :id, :name, event.try(:id)), include_blank: true, class: 'text-right form-control' %>
+          <%= select_tag :event_id, options_from_collection_for_select(events, :id, :name), include_blank: true, class: 'text-right form-control' %>
           <span class="input-group-btn">
-            <%= submit_tag 'イベントで検索', class: 'btn btn-primary', name: nil %>
+            <%= submit_tag '確認する', class: 'btn btn-primary', name: nil %>
           </span>
         </div>
       <%- end %>
@@ -13,9 +13,9 @@
     <div class="col-lg-6 col-md-6 col-sm-6">
       <%= form_tag records_path, method: 'GET', enforce_utf8: false do %>
         <div class="input-group">
-          <%= text_field_tag 'player_id', player.try(:id), class: 'form-control'%>
+          <%= text_field_tag 'player_id', player.try(:id), placeholder: 'ミリオンのID(例: 1200000000000024530)', class: 'form-control'%>
           <span class="input-group-btn">
-            <%= submit_tag 'ミリオンのIDで検索', class: 'btn btn-primary', name: nil %>
+            <%= submit_tag '確認する', class: 'btn btn-primary', name: nil %>
           </span>
         </div>
       <%- end %>

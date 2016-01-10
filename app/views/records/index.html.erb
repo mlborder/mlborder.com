@@ -1,17 +1,16 @@
 <%- provide(:title, "最終ランキング検索") %>
 
-<%- if @event || @player %>
-  <%= render partial: 'form', locals: { event: @event, player: @player, events: @events } %>
-  <%= render partial: 'event_records', locals: { event: @event, records: @records, idol: @idol, page: @page_num } if @event %>
-  <%= render partial: 'player_records', locals: { player: @player, records: @records, events: @events } if @player %>
+<%- if @player %>
+  <%= render partial: 'form', locals: { player: @player, events: @events } %>
+  <%= render partial: 'player_records', locals: { player: @player, records: @records, events: @events } %>
 <%- else %>
   <ol class="breadcrumb">
     <li><%= link_to 'Home', root_path %></li>
     <li class="active">Records</li>
   </ol>
   <div class="page-header">
-    <h1>最終ランキング検索</h1>
+    <h1>イベント最終ランキング検索</h1>
   </div>
-  <p>ミリオンのID、もしくはイベントから最終ランキング情報を検索できます。</p>
+  <p>イベントの最終ランキング情報を確認できます。また、ミリオンのIDを指定して、イベント最終ランキング状況を確認できます。</p>
   <%= render partial: 'form', locals: { event: nil, player: nil, events: @events } %>
 <%- end %>

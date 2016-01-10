@@ -1,0 +1,33 @@
+<%- event_title = @idol ? "#{@event.name}(#{@idol.name.gsub(' ', '')})" : @event.name %>
+<%- provide(:title, "『#{event_title}』の最終ランキング") %>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Events', events_path %></li>
+  <li><%= link_to event_title, event_path(@event) %></li>
+  <li class="active">最終ランキング</li>
+</ol>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= event_type_badge @event %>&nbsp;<%= @event.name %>の最終ランキング
+    </h3>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp;<%= @event.format_period %>
+    </li>
+  </ul>
+  <div class="panel-body">
+    <%- unless @event.hhp_event? %>
+      <div class="btn-group btn-group-justified" role="group">
+        <%= link_to "トップ", event_records_path(@event), class: 'btn btn-default' %>
+        <%= link_to "301位〜", event_records_path(@event, page: 7), class: 'btn btn-default' %>
+        <%= link_to "501位〜", event_records_path(@event, page: 11), class: 'btn btn-default' %>
+        <%= link_to "1201位〜", event_records_path(@event, page: 25), class: 'btn btn-default' %>
+      </div>
+    <%- end %>
+    <%= render partial: 'users', locals: { records: @records } %>
+    <%= render partial: 'pager', locals: { event: @event, idol: @idol, page: @page_num, has_next: @records.any? } %>
+  </div>
+</div>

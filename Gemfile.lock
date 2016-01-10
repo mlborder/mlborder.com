@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/influxdata/influxdb-rails.git
+  revision: a24b1f7b5972d4813c86c52b7fc3e7947c63db21
+  specs:
+    influxdb-rails (0.1.10)
+      influxdb (~> 0.2.0)
+      railties
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -88,9 +96,6 @@ GEM
     influxdb (0.2.3)
       cause
       json
-    influxdb-rails (0.1.10)
-      influxdb
-      railties
     jbuilder (2.4.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -243,7 +248,7 @@ DEPENDENCIES
   font-awesome-sass
   her
   influxdb
-  influxdb-rails
+  influxdb-rails!
   jbuilder (~> 2.0)
   jquery-rails
   kaminari

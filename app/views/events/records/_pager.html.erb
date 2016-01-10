@@ -1,0 +1,18 @@
+<div>
+  <ul class="pager">
+    <%- if page > 1 %>
+      <li class="previous">
+        <%= link_to event_records_path(event, idol_id: idol.try(:id), page: page - 1) do %>
+        <span aria-hidden="true">&larr;</span> 前へ
+      <%- end %>
+      </li>
+    <%- end %>
+    <%- if has_next %>
+      <li class="next">
+        <%= link_to event_records_path(event, idol_id: idol.try(:id), page: page + 1) do %>
+        次へ <span aria-hidden="true">&rarr;</span>
+      <%- end %>
+      </li>
+    <%- end %>
+  </ul>
+</div>

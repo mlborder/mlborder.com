@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :events, except: [:destroy] do
     get 'default_series_name', on: :member, constraints: -> (req) { req.xhr? }
 
+    resources :records, module: :events, only: :index
     resources :borders, module: :events, only: :index, constraints: -> (req) { req.xhr? }
   end
 

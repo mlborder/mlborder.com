@@ -31,7 +31,7 @@
             <%- if @event.records_available? %>
               <li><a href="#3" data-toggle="tab">最終ランキング</a></li>
             <%- end %>
-            <li><a href="#2" data-toggle="tab">最近の同一形式イベント</a></li>
+            <li><a href="#2" data-toggle="tab">最近の<%= t("event_type.#{@event.event_type.sub('_event', '')}")%>イベント</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="1">

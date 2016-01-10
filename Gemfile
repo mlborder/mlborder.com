@@ -74,6 +74,6 @@ group :test do
   gem 'database_rewinder'
 end
 
-gem 'influxdb-rails'
+gem 'influxdb-rails', github: 'influxdata/influxdb-rails'
 gem 'influxdb'
 gem 'her'

@@ -19,6 +19,14 @@
     </li>
   </ul>
   <div class="panel-body">
+    <%- unless @event.hhp_event? %>
+      <div class="btn-group btn-group-justified" role="group">
+        <%= link_to "トップ", event_records_path(@event), class: 'btn btn-default' %>
+        <%= link_to "301位〜", event_records_path(@event, page: 7), class: 'btn btn-default' %>
+        <%= link_to "501位〜", event_records_path(@event, page: 11), class: 'btn btn-default' %>
+        <%= link_to "1201位〜", event_records_path(@event, page: 25), class: 'btn btn-default' %>
+      </div>
+    <%- end %>
     <%= render partial: 'users', locals: { records: @records } %>
     <%= render partial: 'pager', locals: { event: @event, idol: @idol, page: @page_num, has_next: @records.any? } %>
   </div>

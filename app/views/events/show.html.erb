@@ -28,6 +28,9 @@
         <div class="tabbable">
           <ul class="nav nav-tabs nav-justified">
             <li class="active"><a href="#1" data-toggle="tab">ボーダー</a></li>
+            <%- if @event.records_available? %>
+              <li><a href="#3" data-toggle="tab">最終ランキング</a></li>
+            <%- end %>
             <li><a href="#2" data-toggle="tab">最近の同一形式イベント</a></li>
           </ul>
           <div class="tab-content">
@@ -57,14 +60,6 @@
                                   <%- end %>
                                 </tbody>
                               </table>
-                              <%- if @event.records_available? %>
-                                <div class="panel-footer text-right" style='font-size: .9em;'>
-                                  <%= link_to records_path(event_id: @event.id) do %>
-                                    <span class="glyphicon glyphicon-log-in"></span>
-                                    最終ランキングを確認する
-                                  <%- end %>
-                                </div>
-                              <%- end %>
                             </div>
                           <%- end %>
                         </div>
@@ -111,6 +106,11 @@
                         <td>
                           <%- border_1200 = event.final_borders.select{|b| b.rank == 1200}.first.try(:point) %>
                           <%= border_1200 ? "#{number_to_currency(border_1200, unit: '', precision: 0)}pt" : '-' %>
+                          <%- if event.records_available? %>
+                            <%= link_to event_records_path(event, page: 12) do %>
+                              <span class='glyphicon glyphicon-link'></span>
+                            <%- end %>
+                          <%- end %>
                         </td>
                         <td><%= event.format_period %></td>
                       </tr>
@@ -124,6 +124,24 @@
                 <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=treby-22&o=9&p=15&l=st1&mode=music-jp&search=THE IDOL M@STER&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="468" height="240" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
               </div>
             </div>
+            <%- if @event.records_available? %>
+              <div class="tab-pane" id="3">
+                <p style='margin-top: 1em;'>『<%= @event.name %>』の最終ランキング情報を確認できます。</p>
+                <%- if @event.hhp_event? %>
+                  <%= link_to '確認する', event_records_path(@event), class: 'btn btn-primary btn-block' %>
+                <%- else %>
+                  <div class="btn-group btn-group-justified" role="group">
+                    <%= link_to "トップ", event_records_path(@event), class: 'btn btn-default' %>
+                    <%= link_to "301位〜", event_records_path(@event, page: 4), class: 'btn btn-default' %>
+                    <%= link_to "501位〜", event_records_path(@event, page: 6), class: 'btn btn-default' %>
+                    <%= link_to "1201位〜", event_records_path(@event, page: 13), class: 'btn btn-primary' %>
+                  </div>
+                <%- end %>
+                <div style="overflow: hidden; text-align: center; margin-top: 3em;">
+                  <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=treby-22&o=9&p=15&l=st1&mode=music-jp&search=THE IDOL M@STER&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="468" height="240" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
+                </div>
+              </div>
+            <%- end %>
           </div>
         </div>
       </div>

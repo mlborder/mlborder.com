@@ -23,6 +23,11 @@
         <td>
           <%- border_1200 = event.final_borders.select{|b| b.rank == 1200}.first.try(:point) %>
           <%= border_1200 ? "#{number_to_currency(border_1200, unit: '', precision: 0)}pt" : '-' %>
+          <%- if event.records_available? %>
+            <%= link_to event_records_path(event, page: 12) do %>
+              <span class='glyphicon glyphicon-link'></span>
+            <%- end %>
+          <%- end %>
         </td>
         <td><%= event.format_period %></td>
       </tr>

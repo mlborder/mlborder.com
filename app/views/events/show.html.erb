@@ -47,8 +47,18 @@
                           <%- unless @event.hhp_event? %>
                             <div class="panel panel-default">
                               <div class="panel-heading">
-                                <span class='glyphicon glyphicon-info-sign'></span>
-                                <%= @latest_data[:time].in_time_zone('Asia/Tokyo').strf_mlevent %>時点
+                                <%- border_updated_at = @latest_data[:time].in_time_zone('Asia/Tokyo') %>
+                                <%- if border_updated_at > @event.ended_at %>
+                                  <i class="fa fa-coffee"></i>
+                                  最終ボーダー
+                                <%- else %>
+                                  <%- if @event.in_session? %>
+                                    <i class="fa fa-bolt"></i>
+                                  <%- else %>
+                                    <i class="fa fa-beer"></i>
+                                  <%- end %>
+                                  <%= border_updated_at.strf_mlevent %>時点
+                                <%- end %>
                               </div>
                               <table class='table'>
                                 <tbody>

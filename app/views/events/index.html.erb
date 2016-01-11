@@ -7,6 +7,10 @@
 
 <%= render partial: 'list', locals: { events: @events } %>
 
+<div class='well well-sm'>
+  <%= render partial: 'layouts/shared/twitter_button' %>
+</div>
+
 <div class='text-center'>
   <%= paginate @events %>
 </div>

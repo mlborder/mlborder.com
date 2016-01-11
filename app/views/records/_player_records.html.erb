@@ -1,11 +1,11 @@
 <div class="page-header">
   <h1>
-    <%= player.name %>さんのイベント最終ランキング履歴
+    <%= player.name %>さん
     <small>
-      <%= link_to "http://imas.gree-apps.net/app/index.php/mypage/user_profile/id/#{player.id}", target: '_blank' do %>
-        <span class='glyphicon glyphicon-new-window'></span>
-      <%- end %>
+      <%= link_to "http://imas.gree-apps.net/app/index.php/mypage/user_profile/id/#{player.id}", target: '_blank' do %><span class='glyphicon glyphicon-new-window'></span><%- end %>
     </small>
+    のイベント最終ランキング履歴
+    <%= render partial: 'layouts/shared/twitter_button' %>
   </h1>
 </div>
 <div class="row" style='white-space: nowrap;'>

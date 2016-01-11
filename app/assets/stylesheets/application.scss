@@ -3,3 +3,9 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "events.scss";
+
+footer.footer {
+    border-top: 1px solid #ccc;
+    padding-top: .5em;
+    margin-top: 2em;
+}

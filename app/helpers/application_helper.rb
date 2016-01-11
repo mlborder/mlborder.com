@@ -8,6 +8,6 @@ module ApplicationHelper
   end
 
   def service_name
-    'ミリオンボーダーbot観測所'
+    'mlborder.com'
   end
 end

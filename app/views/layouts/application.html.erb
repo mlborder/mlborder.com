@@ -20,20 +20,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to 'ミリオンボーダーbot観測所', root_path, { class: "navbar-brand" } %>
+        <%= link_to service_name, root_path, { class: "navbar-brand" } %>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <%= link_to root_path do %>
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home
-            <%- end %>
-          </li>
-          <li>
-            <%= link_to about_path do %>
-              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>&nbsp;About
-            <%- end %>
-          </li>
           <li>
             <%= link_to events_path do %>
               <span class="glyphicon glyphicon-stats"></span>&nbsp;Events
@@ -42,11 +32,6 @@
           <li>
             <%= link_to records_path do %>
               <span class="glyphicon glyphicon-search"></span>&nbsp;Records
-            <%- end %>
-          </li>
-          <li>
-            <%= link_to 'https://twitter.com/mlborder', target: '_blank' do %>
-              <i class="fa fa-twitter"></i>&nbsp;Twitter
             <%- end %>
           </li>
           <%- if current_user %>
@@ -68,10 +53,15 @@
       </div>
     </div>
   </nav>
-  <div class='container'>
+  <div class='container-fluid'>
     <%= yield %>
   </div>
 
+  <footer class='footer text-center'>
+    <div class='container'>
+      <p style='color: #777;'>2015-2016 by <%= link_to '@mlborder', 'https://twitter.com/mlborder', target: '_blank' %> with <span class='glyphicon glyphicon-heart'></span></p>
+    </div>
+  </footer>
   <%- if Rails.env.production? %>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

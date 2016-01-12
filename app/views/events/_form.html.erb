@@ -24,9 +24,9 @@
     </div>
   </div>
   <div class='form-group'>
-    <%= f.label :ended_at, class: 'col-sm-2 control-label', placeholder: '2016-12-31 23:59:59 +0900' %>
+    <%= f.label :ended_at, class: 'col-sm-2 control-label' %>
     <div class="col-sm-10">
-      <%= f.text_field :ended_at, class: 'form-control' %>
+      <%= f.text_field :ended_at, class: 'form-control', placeholder: '2016-12-31 23:59:59 +0900' %>
     </div>
   </div>
   <%- unless event.new_record? %>

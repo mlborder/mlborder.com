@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   has_many :final_borders
   has_many :alarms
   has_many :prizes, class_name: Event::Prize
+  accepts_nested_attributes_for :prizes, allow_destroy: true, reject_if: :all_blank
 
   validates :name, presence: true
   validates :started_at, presence: true

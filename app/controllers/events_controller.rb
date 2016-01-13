@@ -34,7 +34,7 @@ class EventsController < ApplicationController
     @event = Event.new(
       started_at: Time.new(today.year, today.month, today.day, 17),
       ended_at: today.end_of_day
-    )
+    ).prizes.build
   end
 
   def create
@@ -47,7 +47,9 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @event.prizes.build unless @event.prizes.any?
+  end
   def update
     @event.assign_attributes(event_params)
 
@@ -70,7 +72,8 @@ class EventsController < ApplicationController
       :started_at,
       :ended_at,
       :series_name,
-      :records_available
+      :records_available,
+      prizes_attributes: [:id, :idol_id, :_destroy]
     )
   end
 

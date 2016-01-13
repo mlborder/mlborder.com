@@ -8,3 +8,14 @@ $(document).on 'ready page:load', ->
         event_id = $('#event_id').text()
         $.get "/events/#{event_id}/default_series_name", (data) =>
             $('input', area).val(data['series_name'])
+
+    $('form').on 'click', '.remove_fields', (e) ->
+        $('input[type=hidden]', $(this).parents('.input-group')).val('true')
+        $(this).closest('.input-group').hide()
+        e.preventDefault()
+
+    $('form').on 'click', '.add_fields', (e) ->
+        time = new Date().getTime()
+        regexp = new RegExp($(this).data('id'), 'g')
+        $(this).before($(this).data('fields').replace(regexp, time))
+        e.preventDefault()

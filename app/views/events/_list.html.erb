@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>イベント名</th>
+      <th>上位アイドル</th>
       <th>1200位ボーダー</th>
       <th>開催期間</th>
     </tr>
@@ -14,6 +15,9 @@
           <%- if current_user.try(:role_admin?) %>
             <small>[<%= link_to 'Edit', edit_event_path(event) %>]</small>
           <%- end %>
+        </td>
+        <td>
+          <%= prizes_text_for(event.prizes) %>
         </td>
         <td>
           <%- border_1200 = event.final_borders.select{|b| b.rank == 1200}.first.try(:point) %>

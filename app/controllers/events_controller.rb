@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i(edit update default_series_name)
 
   def index
-    @events = Event.includes(:final_borders).order(id: :desc).page(params[:page])
+    @events = Event.includes(:prizes).includes(:final_borders).order(id: :desc).page(params[:page])
   end
 
   def show
@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     return redirect_to events_path if @event.nil?
     @latest_data = @event.border.latest if @event.has_border?
     @dataset = @event.border.dataset if @event.has_border?
-    @recent_events = Event.includes(:final_borders).send(@event.event_type.to_sym).border_available.order(started_at: :desc).limit(10)
+    @recent_events = Event.includes(:prizes).includes(:final_borders).send(@event.event_type.to_sym).border_available.order(started_at: :desc).limit(10)
 
     respond_to do |format|
       format.html
@@ -34,7 +34,7 @@ class EventsController < ApplicationController
     @event = Event.new(
       started_at: Time.new(today.year, today.month, today.day, 17),
       ended_at: today.end_of_day
-    )
+    ).prizes.build
   end
 
   def create
@@ -47,7 +47,9 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @event.prizes.build unless @event.prizes.any?
+  end
   def update
     @event.assign_attributes(event_params)
 
@@ -70,7 +72,8 @@ class EventsController < ApplicationController
       :started_at,
       :ended_at,
       :series_name,
-      :records_available
+      :records_available,
+      prizes_attributes: [:id, :idol_id, :_destroy]
     )
   end
 

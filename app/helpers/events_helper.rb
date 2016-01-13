@@ -127,4 +127,18 @@ module EventsHelper
 
     raw "<span class='label #{cnf['label_class']}'>#{t "event_type.#{cnf['name']}"}</span>"
   end
+
+  def prizes_text_for(prizes)
+    if prizes.count > 3
+      "#{prizes.first(3).map { |pz| pz.idol.name.split(' ').last }.join('・')}...他#{prizes.count - 3}名"
+    elsif prizes.any?
+      if prizes.count > 1
+        prizes.map { |pz| pz.idol.name.split(' ').last }.join('・')
+      else
+        prizes.first.idol.name
+      end
+    else
+      '-'
+    end
+  end
 end

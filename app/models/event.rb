@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   has_many :final_borders
   has_many :alarms
   has_many :prizes, class_name: Event::Prize
+  accepts_nested_attributes_for :prizes, allow_destroy: true, reject_if: :all_blank
 
   validates :name, presence: true
   validates :started_at, presence: true
@@ -94,12 +95,22 @@ class Event < ActiveRecord::Base
 
   def self.dump_seeds
     events = self.order(id: :asc).map do |ev|
+
+      prizes_attributes = \
+        if ev.prizes.any?
+          prize_list = ev.prizes.map do |pz|
+            <<~PRIZE_SEED.indent(2).chomp
+            { idol_id: #{pz.idol_id} }, \# #{pz.idol.name.gsub(' ','')}
+            PRIZE_SEED
+          end
+          "prizes_attributes: [\n#{prize_list.join("\n")}\n]"
+        end
+
       <<~EVENT_SEED.indent(2).chomp
       { name: '#{ev.name}',
         event_type: '#{ev.event_type}',
         started_at: '#{ev.started_at.in_time_zone('Asia/Tokyo').strftime('%Y-%m-%d %H:%M:%S %z')}',
-        ended_at: '#{ev.ended_at.in_time_zone('Asia/Tokyo').strftime('%Y-%m-%d %H:%M:%S %z')}'
-      }
+        ended_at: '#{ev.ended_at.in_time_zone('Asia/Tokyo').strftime('%Y-%m-%d %H:%M:%S %z')}'#{prizes_attributes ? ",\n#{prizes_attributes.indent(2)}\n" : "\n"}}
       EVENT_SEED
     end
 

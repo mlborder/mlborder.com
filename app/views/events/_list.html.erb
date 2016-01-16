@@ -17,7 +17,7 @@
           <%- end %>
         </td>
         <td>
-          <%= prizes_text_for(event.prizes) %>
+          <%= prizes_text_for(event.prizes.to_a) %>
         </td>
         <td>
           <%- border_1200 = event.final_borders.select{|b| b.rank == 1200}.first.try(:point) %>

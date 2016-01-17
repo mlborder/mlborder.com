@@ -98,7 +98,6 @@
     chart.validateData();
   };
 
-  var chart = createAmCharts('chartdiv', 'legenddiv', <%= raw chart_data.to_json %>);
   context.createAmCharts = createAmCharts;
 })(window);
 </script>

@@ -36,58 +36,23 @@
           <div class="tab-content">
             <div class="tab-pane active" id="1">
               <%- if @event.has_border? %>
-                <div>
+                <%- if @event.hhp_event? %>
                   <div class='row'>
                     <div class='col-md-9'>
-                      <div id="chartdiv"></div>
+                      <div id='chartdiv'></div>
                     </div>
                     <div class='col-md-3'>
                       <div class='row' style='margin-top: 1.5em;'>
                         <div class='col-md-12'>
-                          <%- unless @event.hhp_event? %>
-                            <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <%- border_updated_at = @latest_data[:time].in_time_zone('Asia/Tokyo') %>
-                                <%- if border_updated_at > @event.ended_at %>
-                                  <i class="fa fa-coffee"></i>
-                                  最終ボーダー
-                                <%- else %>
-                                  <%- if @event.in_session? %>
-                                    <i class="fa fa-bolt"></i>
-                                  <%- else %>
-                                    <i class="fa fa-beer"></i>
-                                  <%- end %>
-                                  <%= border_updated_at.strf_mlevent %>時点
-                                <%- end %>
-                              </div>
-                              <table class='table'>
-                                <tbody>
-                                  <%- @latest_data[:borders].sort.each do |rank, point| %>
-                                    <tr>
-                                      <th class='text-right'><%= rank %>位:</th>
-                                      <td><%= number_with_delimiter point %>pt</td>
-                                    </tr>
-                                  <%- end %>
-                                </tbody>
-                              </table>
-                            </div>
-                          <%- end %>
-                        </div>
-                      </div>
-                      <div class='row'>
-                        <div class='col-md-12'>
-                          <div id="legenddiv" style='max-width: 240px;'></div>
+                          <div id='legenddiv'></div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <%- if @event.hhp_event? %>
                   <%= am_charts_hhp @dataset %>
-                <%- elsif @event.imc_event? %>
-                  <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: 1200 } %>
                 <%- else %>
-                  <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: 100 } %>
+                  <%= react_component('MlborderEventBorderBox', url: event_borders_path(@event), border_summary: @latest_data) %>
+                  <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: (@event.imc_event? ? 1200 : 100) } %>
                 <%- end %>
               <%- else %>
                 <p>ボーダー情報がありません。</p>

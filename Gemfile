@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'omniauth'
 gem 'omniauth-twitter'
 
+gem 'react-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'kaminari'

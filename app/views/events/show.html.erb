@@ -70,20 +70,15 @@
             </div>
             <%- if @event.records_available? %>
               <div class="tab-pane" id="3">
-                <p style='margin-top: 1em;'>『<%= @event.name %>』の最終ランキング情報を確認できます。</p>
                 <%- if @event.hhp_event? %>
+                  <p style='margin-top: 1em;'>『<%= @event.name %>』の最終ランキング情報を確認できます。</p>
                   <%= link_to '確認する', event_records_path(@event), class: 'btn btn-primary btn-block' %>
-                <%- else %>
-                  <div class="btn-group btn-group-justified" role="group">
-                    <%= link_to "トップ", event_records_path(@event), class: 'btn btn-default' %>
-                    <%= link_to "301位〜", event_records_path(@event, page: 7), class: 'btn btn-default' %>
-                    <%= link_to "501位〜", event_records_path(@event, page: 11), class: 'btn btn-default' %>
-                    <%= link_to "1201位〜", event_records_path(@event, page: 25), class: 'btn btn-primary' %>
+                  <div style="overflow: hidden; text-align: center; margin-top: 3em;">
+                    <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=treby-22&o=9&p=15&l=st1&mode=music-jp&search=THE IDOL M@STER&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="468" height="240" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
                   </div>
+                <%- else %>
+                  <%= react_component('MlborderEventRecordBox', url: event_records_path(@event), recordsUrl: records_path) %>
                 <%- end %>
-                <div style="overflow: hidden; text-align: center; margin-top: 3em;">
-                  <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=treby-22&o=9&p=15&l=st1&mode=music-jp&search=THE IDOL M@STER&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="468" height="240" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
-                </div>
               </div>
             <%- end %>
           </div>

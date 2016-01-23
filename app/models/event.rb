@@ -52,6 +52,10 @@ class Event < ActiveRecord::Base
     (self.duration.to_f / 86400).ceil
   end
 
+  def preparing?
+    Time.now < self.started_at
+  end
+
   def started?
     Time.now >= self.started_at
   end

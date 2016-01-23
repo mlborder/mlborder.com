@@ -3,7 +3,13 @@
     Welcome
     <%= render partial: 'layouts/shared/twitter_button' %>
   </h1>
-  <p>mlborder.comへようこそ</p>
+  <%- if @latest_event && @latest_event.in_session? %>
+    <p>現在『<%= link_to @latest_event.name, event_path(@latest_event) %>』が開催中です(<%= @latest_event.ended_at.strf_mlevent %>まで)。</p>
+  <%- elsif @latest_event.preparing? %>
+    <p><%= @latest_event.started_at.strf_mlevent %>より『<%= link_to @latest_event.name, event_path(@latest_event) %>』が開催予定です。</p>
+  <%- else %>
+    <p>mlborder.comへようこそ</p>
+  <%- end %>
 </div>
 
 <div class='row'>

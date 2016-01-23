@@ -60,7 +60,7 @@
             </div>
             <div class="tab-pane" id="2">
               <%- if @recent_events.any? %>
-                <%= render partial: 'list', locals: { events: @recent_events } %>
+                <%= render partial: 'list', locals: { events: @recent_events, current_event: @event } %>
               <%- else %>
                 <p>同一形式のイベントが見つかりません。</p>
               <%- end %>

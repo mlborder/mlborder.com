@@ -33,7 +33,11 @@
           </div>
           <div class="list-group-item">
             <span class="fa fa-star" aria-hidden="true"></span>
-            <%= prizes_text_for(event.prizes.to_a) %>
+            <%- if record.idol_id %>
+              <%= Idol.find(record.idol_id).name %>
+            <%- else %>
+              <%= prizes_text_for(event.prizes.to_a) %>
+            <%- end %>
           </div>
           <div class="list-group-item">
             <span class="fa fa-trophy" aria-hidden="true"></span>

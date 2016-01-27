@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   def index
-    @events = Event.where(records_available: true).order(id: :desc)
+    @events = Event.where(records_available: true).includes(:prizes).order(id: :desc)
 
     if params[:player_id].present?
       @player = Player.find(params[:player_id])

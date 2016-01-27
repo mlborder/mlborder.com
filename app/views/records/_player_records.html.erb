@@ -33,6 +33,10 @@
           </div>
           <div class="list-group-item">
             <span class="fa fa-star" aria-hidden="true"></span>
+            <%= prizes_text_for(event.prizes.to_a) %>
+          </div>
+          <div class="list-group-item">
+            <span class="fa fa-trophy" aria-hidden="true"></span>
             個人&nbsp;<%= record.rank %>&nbsp;位&nbsp;
             <%= link_to event_records_path(event, idol_id: record.idol_id) do %>
               <small><span class='glyphicon glyphicon-link'></span></small>

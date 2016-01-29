@@ -20,6 +20,8 @@
   <ul class="list-group">
     <li class="list-group-item">
       <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp;<%= @event.format_period %>
+      ：
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;<%= prizes_text_for(@event.prizes.to_a) %>
     </li>
   </ul>
   <div class="panel-body">

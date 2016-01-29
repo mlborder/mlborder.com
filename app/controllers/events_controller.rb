@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = params[:id].present? ? Event.find(params[:id]) : Event.border_available.last
+    @event = params[:id].present? ? Event.includes(:prizes).find(params[:id]) : Event.includes(:prizes).border_available.last
     return redirect_to events_path if @event.nil?
 
     if @event.has_border?

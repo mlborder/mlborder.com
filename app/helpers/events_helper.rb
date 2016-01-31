@@ -129,11 +129,13 @@ module EventsHelper
   end
 
   def prizes_text_for(prizes)
+    idol_text_list = prizes.map { |pz| pz.idol.name.split(' ').last }
+
     if prizes.count > 3
-      "#{prizes.first(3).map { |pz| pz.idol.name.split(' ').last }.join('・')}...他#{prizes.count - 3}名"
+      "#{idol_text_list.first(3).join('／')}／他#{prizes.count - 3}名"
     elsif prizes.any?
       if prizes.count > 1
-        prizes.map { |pz| pz.idol.name.split(' ').last }.join('・')
+        idol_text_list.join('／')
       else
         prizes.first.idol.name
       end

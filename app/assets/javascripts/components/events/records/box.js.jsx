@@ -126,7 +126,7 @@ var MlborderEventRecordBoxTableRow = React.createClass({
             <span className='glyphicon glyphicon-new-window'></span>
           </a>
         </td>
-        <td>{pointWithDelimiter} pt</td>
+        <td className='text-right'>{pointWithDelimiter}</td>
       </tr>
     );
   }

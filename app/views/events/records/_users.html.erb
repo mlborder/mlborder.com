@@ -1,4 +1,4 @@
-<table class='table'>
+<table class='table table-striped table-bordered'>
   <thead>
     <tr>
       <th>順位</th>
@@ -22,7 +22,7 @@
             <span class='glyphicon glyphicon-new-window'></span>
           <%- end %>
         </td>
-        <td><%= number_with_delimiter record.point %></td>
+        <td class='text-right'><%= number_with_delimiter record.point %></td>
       </tr>
     <%- end %>
   </tbody>

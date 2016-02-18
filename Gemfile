@@ -30,7 +30,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'kaminari'
 
-gem 'rubimas'
+gem 'rubimas', github: 'imas/rubimas'
 gem 'active_hash'
 
 # Use ActiveModel has_secure_password

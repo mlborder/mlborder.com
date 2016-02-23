@@ -20,7 +20,7 @@
               <%= link_to event_path(event) do %>
                 <%= event.try(:name) %>
                 <%- if event.hhp_event? %>
-                  &nbsp;(<%= Idol.find(record.idol_id).name.gsub(' ', '') %>)
+                  &nbsp;(<%= Idol.find(record.idol_id).name %>)
                 <%- end %>
                 <small><span class='glyphicon glyphicon-link'></span></small>
               <%- end %>

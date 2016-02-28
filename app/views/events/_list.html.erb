@@ -1,8 +1,11 @@
-<table class='table'>
+<%- excludes_columns = defined?(excludes) ? excludes : [] %>
+<%- excludes_columns = [excludes_columns] unless excludes_columns.is_a? Array %>
+
+<table class='table table-striped table-bordered'>
   <thead>
     <tr>
       <th>イベント名</th>
-      <th>上位アイドル</th>
+      <%- unless excludes_columns.include? :prizes %><th>上位アイドル</th><%- end %>
       <th>1200位ボーダー</th>
       <th>開催期間</th>
     </tr>
@@ -11,7 +14,7 @@
     <%- events.each do |event| %>
       <tr>
         <td>
-          <%= event_type_badge(event) %>
+          <%- unless excludes_columns.include? :event_type %><%= event_type_badge(event) %><%- end %>
           <%- if defined?(current_event) && event.id == current_event.id %>
             <b><%= event.name %></b>
           <%- else %>
@@ -21,9 +24,11 @@
             <small>[<%= link_to 'Edit', edit_event_path(event) %>]</small>
           <%- end %>
         </td>
-        <td>
-          <%= prizes_text_for(event.prizes.to_a) %>
-        </td>
+        <%- unless excludes_columns.include? :prizes %>
+          <td>
+            <%= prizes_text_for(event.prizes.to_a) %>
+          </td>
+        <%- end %>
         <td>
           <%- border_1200 = event.final_borders.select{|b| b.rank == 1200}.first.try(:point) %>
           <%= border_1200 ? "#{number_to_currency(border_1200, unit: '', precision: 0)}pt" : '-' %>

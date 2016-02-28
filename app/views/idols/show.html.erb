@@ -58,7 +58,7 @@
 </table>
 
 <h2>上位報酬のイベント</h2>
-<%= render partial: 'events/list', locals: { events: @events } %>
+<%= render partial: 'events/list', locals: { events: @events, excludes: :prizes } %>
 
 <div class='well well-sm'>
   <%= render partial: 'layouts/shared/twitter_button' %>

@@ -1,0 +1,65 @@
+<%- provide(:title, "#{@idol.name}の詳細情報") %>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Idols', idols_path %></li>
+  <li><%= @idol.name %></li>
+</ol>
+
+<div class='page-header'>
+  <h1 style="color: <%= @idol.color %>">
+    <%= @idol.id %>.&nbsp;<%= @idol.name %>(<%= @idol.idol_type %>)
+  </h1>
+</div>
+
+<table class='table table-bordered'>
+  <tbody>
+    <tr>
+      <th>名前</th>
+      <td><%= @idol.name %></td>
+    </tr>
+    <tr>
+      <th>年齢</th>
+      <td><%= @idol.age %>歳</td>
+    </tr>
+    <tr>
+      <th>身長</th>
+      <td><%= @idol.height %>cm</td>
+    </tr>
+    <tr>
+      <th>体重</th>
+      <td><%= @idol.weight %>kg</td>
+    </tr>
+    <tr>
+      <th>B-W-H</th>
+      <td><%= "#{@idol.bust}cm/#{@idol.waist}cm/#{@idol.hip}cm" %></td>
+    </tr>
+    <tr>
+      <th>誕生日</th>
+      <td><%= @idol.birthday %></td>
+    </tr>
+    <tr>
+      <th>血液型</th>
+      <td><%= @idol.blood_type %>型</td>
+    </tr>
+    <tr>
+      <th>趣味</th>
+      <td><%= @idol.hobbies.try(:join, '、') || '-' %></td>
+    </tr>
+    <tr>
+      <th>特技</th>
+      <td><%= @idol.talents.try(:join, '、') || '-' %></td>
+    </tr>
+    <tr>
+      <th>好きなもの</th>
+      <td><%= @idol.favorites.try(:join, '、') || '-' %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>上位報酬のイベント</h2>
+<%= render partial: 'events/list', locals: { events: @events } %>
+
+<div class='well well-sm'>
+  <%= render partial: 'layouts/shared/twitter_button' %>
+</div>

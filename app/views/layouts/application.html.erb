@@ -30,6 +30,11 @@
             <%- end %>
           </li>
           <li>
+            <%= link_to week_idol_records_path(week_id: 'latest') do %>
+              <i class="fa fa-star"></i>&nbsp;Ranking
+            <%- end %>
+          </li>
+          <li>
             <%= link_to records_path do %>
               <span class="glyphicon glyphicon-search"></span>&nbsp;Records
             <%- end %>

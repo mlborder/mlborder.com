@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     resources :borders, module: :events, only: :index, constraints: -> (req) { req.xhr? }
   end
   resources :idols, only: [:index, :show]
+  resources :weeks, only: [] do
+    resources :idol_records, module: :weeks, only: :index
+  end
 
   resources :users, only: [:index] do
     resources :alarms, module: :users, except: [:new, :edit]

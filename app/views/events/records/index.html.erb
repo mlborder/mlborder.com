@@ -1,4 +1,4 @@
-<%- event_title = @idol ? "#{@event.name}(#{@idol.name.gsub(' ', '')})" : @event.name %>
+<%- event_title = @idol ? "#{@event.name}(#{@idol.name})" : @event.name %>
 <%- provide(:title, "『#{event_title}』の最終ランキング") %>
 
 <ol class="breadcrumb">

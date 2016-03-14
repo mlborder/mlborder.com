@@ -104,7 +104,7 @@ class Event < ActiveRecord::Base
         if ev.prizes.any?
           prize_list = ev.prizes.map do |pz|
             <<~PRIZE_SEED.indent(2).chomp
-            { idol_id: #{pz.idol_id} }, \# #{pz.idol.name.gsub(' ','')}
+            { idol_id: #{pz.idol_id} }, \# #{pz.idol.name}
             PRIZE_SEED
           end
           "prizes_attributes: [\n#{prize_list.join("\n")}\n]"

@@ -13,7 +13,7 @@
           <%= number_with_delimiter record.rank %>&nbsp;位
           <%- if record.idol_id %>
             <span style="color: <%= Idol.find(record.idol_id).color %>">■</span>
-            <%= link_to Idol.find(record.idol_id).name.gsub(' ', ''), event_records_path(record.event_id, idol_id: record.idol_id) %>
+            <%= link_to Idol.find(record.idol_id).name, event_records_path(record.event_id, idol_id: record.idol_id) %>
           <%- end %>
         </td>
         <td>

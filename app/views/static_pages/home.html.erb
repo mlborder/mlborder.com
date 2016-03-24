@@ -34,6 +34,13 @@
           </h4>
           <p class="list-group-item-text">ミリオンで行われたイベントをまとめています。ボーダーの変遷を過去分含めてグラフで確認することもできます。</p>
         <%- end %>
+        <%= link_to week_idol_records_path(week_id: 'latest'), class: 'list-group-item' do %>
+          <h4 class="list-group-item-heading">
+            <span class="fa fa-star"></span>
+            週間アイドルランキング
+          </h4>
+          <p class="list-group-item-text">2016年以降の週間アイドルランキングを確認できます。</p>
+        <%- end %>
         <%= link_to alarm_path, class: 'list-group-item' do %>
           <h4 class="list-group-item-heading">
             <span class='glyphicon glyphicon-bell'></span>

@@ -1,4 +1,4 @@
-<%- provide(:title, "週間アイドルランキング") %>
+<%- provide(:title, "週間アイドルランキング(#{@week.format_term})") %>
 
 <ol class="breadcrumb">
   <li><%= link_to 'Home', root_path %></li>
@@ -20,6 +20,13 @@
       <%- end %>
     </div>
   </div>
+</div>
+
+<div class="page-header">
+  <h1>
+    週間アイドルランキング(<%= @week.format_term %>)
+    <%= render partial: 'layouts/shared/twitter_button' %>
+  </h1>
 </div>
 
 <table class='table table-bordered'>

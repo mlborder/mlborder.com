@@ -28,6 +28,8 @@
       <th>順位</th>
       <th>アイドル名</th>
       <th>ファン人数/週</th>
+      <th>プロデューサー数</th>
+      <th>P一人あたりの平均獲得ファン人数/週</th>
     </tr>
   </thead>
   <tbody>
@@ -36,6 +38,8 @@
         <td><%= record.rank %></td>
         <td><span style="color: <%= record.idol.color %>">■</span><%= link_to record.idol.name, idol_path(record.idol) %></td>
         <td><%= number_with_delimiter record.fan_count %></td>
+        <td><%= number_with_delimiter record.player_count %></td>
+        <td><%= number_with_delimiter (record.fan_count.to_f / record.player_count.to_f).round %></td>
       </tr>
     <%- end %>
   </tbody>

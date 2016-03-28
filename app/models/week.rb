@@ -3,7 +3,7 @@ class Week < ActiveHash::Base
   fields :id, :start_date
 
   VERY_BEGINNING_DATE = Date.new(2015, 12, 28).beginning_of_week
-  max_week_id = ENV['MAX_WEEK_ID'] || 12
+  max_week_id = ENV['MAX_WEEK_ID'].try(:to_i) || 12
 
   (1..max_week_id).each do |id|
     create id: id, start_date: (VERY_BEGINNING_DATE + (id - 1).weeks).beginning_of_week

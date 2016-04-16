@@ -21,6 +21,29 @@ class Event::Border
     { time: Time.parse(recent_series_data['time']), borders: borders }
   end
 
+  def border_with_velocity(target_time = Time.now, duration = 1.hour)
+    target_time = @event.ended_at + 1.second if @event.ended?
+    str_time_to = target_time.to_i
+    str_time_from = (target_time - duration).to_i
+    ret = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" WHERE time <= #{str_time_to}s AND time >= #{str_time_from - 300}s"
+    values = ret.first['values'].reverse
+
+    index = -1
+    latest_time = Time.parse(values.first['time'])
+    values.each_with_index do |data, i|
+      if (latest_time.to_i - Time.parse(data['time']).to_i) >= duration
+        index = i
+        break
+      end
+    end
+
+    [values.first, values[index]].map do |raw_data|
+      raw_data.select { |k, _| k.include? 'border_' }.inject({}) do |h, (rank, pt)|
+        h.merge({ rank.match(/\d+/).to_s.to_i => pt.to_i })
+      end
+    end
+  end
+
   def columns
     return @columns if @columns.present?
 

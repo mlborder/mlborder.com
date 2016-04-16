@@ -26,4 +26,9 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#callback'
   post '/auth/:provider/callback', to: 'sessions#callback'
   get '/logout' => 'sessions#destroy', as: :logout
+
+  namespace :api, module: :api, defaults: { format: :json } do
+    get 'events/latest', to: 'events#show'
+    resources :events, only: [:show]
+  end
 end

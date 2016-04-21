@@ -13,7 +13,10 @@ class EventsController < ApplicationController
 
     if @event.has_border?
       @latest_data = @event.border.latest
-      @dataset = @event.border.dataset if @event.hhp_event?
+      if @event.hhp_event? && @event.id == 75
+        @@eh_dataset ||= @event.border.dataset
+        @dataset = @@eh_dataset
+      end
     end
     @recent_events = Event.includes(:prizes).includes(:final_borders).send(@event.event_type.to_sym).border_available.order(started_at: :desc).limit(10)
 

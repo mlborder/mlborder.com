@@ -1,3 +1,5 @@
+<%- provide(:title, "キャスト投票キャンペーン") %>
+
 <ol class="breadcrumb">
   <li><%= link_to 'Home', root_path %></li>
   <li class="active">キャスト投票キャンペーン</li>
@@ -12,6 +14,7 @@
     <div class="panel-body">
       <%- theme.idol_roles.each_with_index do |idol_role, i| %>
         <%- vote_hash = @latest_vote[theme.id][i + 1] %>
+        <%- previous_vote_hash = @previous_vote[theme.id][i + 1] %>
         <%- sorted_array = vote_hash.sort_by { |idol_id, vote_cnt| vote_cnt }.reverse %>
         <div class="col-lg-4 col-md-4 col-sm-6">
           <div class="panel panel-default">
@@ -26,8 +29,14 @@
                   <%- if j == 0 %>
                     <span class="fa fa-star" aria-hidden="true"></span>
                   <%- end %>
+                  <%- previous_vote_count = previous_vote_hash[val.first.to_i] %>
+                  <%- latest_vote_count = val.last %>
+
                   <%= Idol.find(val.first.to_i).name %>:
                   <%= number_with_delimiter val.last %>票
+                  <%- if previous_vote_count.try(:<, latest_vote_count) %>
+                    (+<%= val.last - previous_vote_hash[val.first.to_i] %>票)
+                  <%- end %>
                 </div>
               <%- end %>
             </div>

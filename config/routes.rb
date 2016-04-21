@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :records, module: :events, only: :index
     resources :borders, module: :events, only: :index, constraints: -> (req) { req.xhr? }
   end
+  resources :dramacd_themes, only: [:index]
   resources :idols, only: [:index, :show]
   resources :weeks, only: [] do
     resources :idol_records, module: :weeks, only: :index

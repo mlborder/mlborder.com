@@ -1,0 +1,39 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li class="active">キャスト投票キャンペーン</li>
+</ol>
+<%- @themes.each do |theme| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= theme.title %> (<%= @latest_updated.strf_mlevent %>時点)
+      </h3>
+    </div>
+    <div class="panel-body">
+      <%- theme.idol_roles.each_with_index do |idol_role, i| %>
+        <%- vote_hash = @latest_vote[theme.id][i + 1] %>
+        <%- sorted_array = vote_hash.sort_by { |idol_id, vote_cnt| vote_cnt }.reverse %>
+        <div class="col-lg-4 col-md-4 col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class='panel-title' style='font-size: .9em;'>
+                <%= idol_role %>
+              </h3>
+            </div>
+            <div class="list-group">
+              <%- sorted_array[0..4].each_with_index do |val, j|%>
+                <div class="list-group-item">
+                  <%- if j == 0 %>
+                    <span class="fa fa-star" aria-hidden="true"></span>
+                  <%- end %>
+                  <%= Idol.find(val.first.to_i).name %>:
+                  <%= number_with_delimiter val.last %>票
+                </div>
+              <%- end %>
+            </div>
+          </div>
+        </div>
+      <%- end %>
+    </div>
+  </div>
+<%- end %>

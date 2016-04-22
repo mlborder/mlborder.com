@@ -10,14 +10,6 @@ class DramacdThemesController < ApplicationController
 
   def show
     @theme = DramacdTheme.find(params[:id])
-
-    @@dramacd_cached_dataset ||= {}
-    @@dramacd_cached_at ||= nil
-    if @@dramacd_cached_at.nil? || (@@dramacd_cached_at < Time.now - 30.minutes)
-      @@dramacd_cached_at = Time.now
-      @@dramacd_cached_dataset = {}
-    end
-    @@dramacd_cached_dataset[@theme.id] ||= @theme.vote_progress.dataset
-    @dataset = @@dramacd_cached_dataset[@theme.id]
+    @dataset = @theme.vote_progress.dataset
   end
 end

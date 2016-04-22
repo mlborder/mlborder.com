@@ -1,4 +1,6 @@
 class DramacdTheme::VoteProgress
+  @@meta_columns = %w(time updated_at)
+
   def initialize(theme)
     raise ArgumentError unless theme.instance_of? DramacdTheme
     @theme = theme
@@ -6,8 +8,7 @@ class DramacdTheme::VoteProgress
   end
 
   def recent_series_data
-    res = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" ORDER BY time DESC LIMIT 1;"
-    @recent_series_data = res.first['values'].first
+    @recent_series_data ||= InfluxDB::Rails.client.query("SELECT * FROM \"#{@series_name}\" ORDER BY time DESC LIMIT 1;").first['values'].first
   end
 
   def latest
@@ -62,5 +63,38 @@ class DramacdTheme::VoteProgress
 
       { time: Time.parse(raw_data['time']).in_time_zone('Tokyo'), values: values }
     end
+  end
+
+  def dataset
+    ret = { 1 => [], 2 => [], 3 => [], 4 => [], 5 => [] }
+    progress['values'].each do |data|
+      time = Time.parse(data['time']).to_i
+      (1..5).each do |role_id|
+        val = data.select do |k, v|
+          next unless k.include? 'vote_'
+          k.match(/_\d+_(\d+)_/)[1].to_i == role_id
+        end
+        val = val.merge({ 'time' => time })
+        ret[role_id] << val
+      end
+    end
+    ret
+  end
+
+  def progress
+    select_target = columns.map { |column| "MIN(#{column}) AS #{column}" }
+    query = "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" WHERE time >= #{@theme.start_time.to_i}s AND time <= #{@theme.end_time.to_i + 1}s GROUP BY time(1h) fill(previous);"
+    InfluxDB::Rails.client.query(query).first
+  end
+
+  def columns
+    raw_columns = recent_series_data.keys
+
+    vote_columns = raw_columns.select { |k| k.include? "vote_#{@theme.id}_" }
+    other_columns = raw_columns.select do |k|
+      !(k.include?('vote_') || @@meta_columns.include?(k))
+    end
+
+    @columns = vote_columns.concat other_columns
   end
 end

@@ -57,6 +57,11 @@
                     </div>
                   </div>
                 <%- end %>
+                <div class='col-lg-12 col-md-12 col-sm-12'>
+                  <%= link_to dramacd_theme_path(theme), class: 'btn btn-primary btn-block' do %>
+                    <span class='fa fa-line-chart'></span> 『<%= theme.title %>』のグラフを確認する
+                  <%- end %>
+                </div>
               </div>
             <%- end %>
           </div>

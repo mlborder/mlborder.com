@@ -1,0 +1,67 @@
+<%- provide(:title, "キャスト投票キャンペーン『#{@theme.title}』の詳細") %>
+
+<%= render partial: 'am_charts', locals: { display_until: 50 } %>
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'キャスト投票キャンペーン', dramacd_themes_path %></li>
+  <li class="active"><%= @theme.title %></li>
+</ol>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= @theme.title %>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="tabbable">
+      <div class="tab-content">
+        <div class="tabbable">
+          <ul class="nav nav-tabs nav-justified">
+            <%- @theme.idol_roles.each_with_index do |role, i| %>
+              <li class="<%= 'active' if i == 0 %>">
+                <a href="#<%= i + 1 %>" data-toggle="tab"><%= role %></a>
+              </li>
+            <%- end %>
+          </ul>
+          <div class="tab-content">
+            <%- @theme.idol_roles.each_with_index do |role, i| %>
+              <div class="tab-pane <%= 'active' if i == 0 %>" id="<%= i + 1 %>" style='padding-top: 30px;'>
+                <div class='row'>
+                  <div class='col-md-9'>
+                    <div id="chartdiv-<%= i + 1 %>" style='height: 550px;'></div>
+                  </div>
+                  <div class='col-md-3'>
+                    <div class='row' style='margin-top: 1.5em;'>
+                      <div class='col-md-12'>
+                        <div id="legenddiv-<%= i + 1 %>"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <%- end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type='text/javascript'>
+  $(document).ready(function() {
+    var data = <%= raw @dataset.to_json %>;
+    var charts = {};
+    charts[1] = window.createAmCharts('chartdiv-1', 'legenddiv-1', data[1]);
+
+    window.mycharts = charts;
+
+    $('.nav.nav-tabs a').on('click', function(e) {
+      var role_id = $(e.target).attr('href').replace(/#/, '');
+      window.setTimeout(function() {
+        if (charts[role_id]) return;
+        charts[role_id] = window.createAmCharts('chartdiv-' + role_id, 'legenddiv-' + role_id, data[role_id]);
+        charts[role_id].validateData();
+      }, 100);
+    });
+  });
+</script>

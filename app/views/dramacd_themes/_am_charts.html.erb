@@ -1,0 +1,113 @@
+<script type='text/javascript'>
+(function(context) {
+  var idolHash = <%= raw Idol.all.inject({}) { |h, idol| h.merge( { idol.id => { name: idol.name.to_s, color: idol.color } } ) }.to_json %>;
+  var parseTime = function(category, dataItem, categoryAxis) {
+    var period = new Date(category * 1000);
+    var options = {
+      day: "numeric", hour: "2-digit", minute: "2-digit"
+    };
+    return period.toLocaleTimeString("ja-JP", options);
+  };
+  var createAmCharts = function (chart_elm_id, legend_elm_id, data) {
+    var chart = AmCharts.makeChart(chart_elm_id, {
+      "type": "serial",
+      "theme": "light",
+      "pathToImages": "http://www.amcharts.com/lib/3/images/",
+      "legend": {
+        "divId": legend_elm_id,
+        "useGraphSettings": true,
+        "labelText": "[[title]]",
+        "valueText": "",
+        "valueAlign": "left"
+      },
+      "valueAxes": [{
+        "id":"v1",
+        "axisThickness": 2,
+        "gridAlpha": 0,
+        "axisAlpha": 1,
+        "position": "left"
+      }],
+      "chartScrollbar": {},
+      "chartCursor": {
+        "cursorPosition": "mouse"
+      },
+      "categoryField": "time",
+      "categoryAxis": {
+        "categoryFunction" : parseTime,
+        "axisColor": "#DADADA",
+        "minorGridEnabled": true,
+        "labelRotation": 45
+      },
+      "responsive": {
+        "enabled": true,
+        "addDefaultRules": false,
+        "rules": [{
+          "minWidth": 400,
+          "maxWidth": 800,
+          "maxHeight": 800,
+          "minHeight": 200,
+          "overrides": {
+            "legend": {
+              "valueAlign": "right",
+              "enabled": true
+            }
+          }
+        }]
+      }
+    });
+    var zoom_start = 0;
+    var zoom_end = 1;
+    chart.addListener("dataUpdated", function() {
+      chart.zoomToIndexes(zoom_start, zoom_end);
+    });
+    chart.addListener("zoomed", function(e) {
+      zoom_start = e.startIndex;
+      zoom_end = e.endIndex;
+    });
+
+    if (data) updateAmCharts(chart, data);
+    return chart;
+  };
+
+  var updateAmCharts = function(chart, data) {
+    var graph_columns = jQuery.map(data[0], function(k, v) { return v; });
+    var vote_columns = jQuery.grep(graph_columns, function(c) { if (c.indexOf('vote_') > -1) return true; });
+    var graphs = jQuery.map(vote_columns, function(vote_column) {
+      var idol_id = vote_column.match(/_(\d+)$/)[1];
+      return {
+        'valueAxis': 'v1',
+        'bullet': 'round',
+        'bulletBorderThickness': 1,
+        'hideBulletsCount': 30,
+        'title': idolHash[idol_id].name,
+        'bulletColor': idolHash[idol_id].color,
+        'lineColor': idolHash[idol_id].color,
+        'valueField': vote_column,
+        'balloonText': "[[title]]:[[value]]票",
+        'fillAlphas':  0,
+      };
+    });
+
+    var knownProperties = [];
+    for (var i = 0; i < data.length; i++) {
+      var dp = data[i];
+      for (var x in dp) {
+        if (dp.hasOwnProperty(x) && knownProperties.indexOf(x) < 0) {
+          knownProperties.push(x);
+        }
+      }
+      for (var knownP in knownProperties) {
+        if (!dp.hasOwnProperty(knownP)) {
+          dp[knownP] = 0;
+        }
+      }
+    }
+    chart.dataProvider = data;
+    chart.graphs = graphs;
+    chart.zoomToIndexes(0, chart.dataProvider.length - 1);
+    chart.validateData();
+  };
+
+  context.createAmCharts = createAmCharts;
+})(window);
+</script>

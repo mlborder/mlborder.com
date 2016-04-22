@@ -13,9 +13,20 @@ class EventsController < ApplicationController
 
     if @event.has_border?
       @latest_data = @event.border.latest
-      if @event.hhp_event? && @event.id == 75
-        @@eh_dataset ||= @event.border.dataset
-        @dataset = @@eh_dataset
+      if @event.hhp_event?
+        if @event.ended?
+          @@cached_dataset ||= {}
+          @@cached_dataset[@event.id] ||= @event.border.dataset
+          @dataset = @@cached_dataset[@event.id]
+        else
+          @@cached_bmd_dataset ||= nil
+          @@cached_bmd_time ||= nil
+          if @@cached_bmd_dataset.nil? || @@cached_bmd_time.nil? || @@cached_bmd_time < Time.now - 30.minutes
+            @@cached_bmd_time = Time.now
+            @@cached_bmd_dataset = @event.border.dataset
+          end
+          @dataset = @@cached_bmd_dataset
+        end
       end
     end
     @recent_events = Event.includes(:prizes).includes(:final_borders).send(@event.event_type.to_sym).border_available.order(started_at: :desc).limit(10)

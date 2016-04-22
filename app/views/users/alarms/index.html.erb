@@ -18,7 +18,7 @@
         </h3>
       </div>
       <div class="panel-body">
-        <%- if @event.in_session? %>
+        <%- if @event.in_session? && !@event.hhp_event? %>
           <div class="panel panel-default">
             <div class="panel-heading">
               以下の場合にお知らせする

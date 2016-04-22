@@ -31,6 +31,12 @@ class DramacdTheme::VoteProgress
     str_time_to = target_time.to_i
     str_time_from = (target_time - duration).to_i
     ret = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" WHERE time <= #{str_time_to}s AND time >= #{str_time_from - 300}s"
+    while ret.empty?
+      target_time -= 1.hour
+      str_time_to = target_time.to_i
+      str_time_from = (target_time - duration).to_i
+      ret = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" WHERE time <= #{str_time_to}s AND time >= #{str_time_from - 300}s"
+    end
     values = ret.first['values'].reverse
 
     latest_time = Time.parse(values.first['time'])

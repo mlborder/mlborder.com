@@ -66,19 +66,12 @@ class DramacdTheme::VoteProgress
   end
 
   def dataset
-    @@vote_progress_cache ||= nil
-    @@vote_progress_cached_at ||= nil
-    if @@vote_progress_cache.nil? || @@vote_progress_cached_at.nil? || (@@vote_progress_cached_at < Time.now - 30.minutes)
-      @@vote_progress_cache = progress['values']
-      @@vote_progress_cached_at = Time.now
-    end
-
     ret = { 1 => [], 2 => [], 3 => [], 4 => [], 5 => [] }
-    @@vote_progress_cache.each do |data|
+    progress['values'].each do |data|
       time = Time.parse(data['time']).to_i
       (1..5).each do |role_id|
         val = data.select do |k, v|
-          next unless k.include? "vote_#{@theme.id}_"
+          next unless k.include? 'vote_'
           k.match(/_\d+_(\d+)_/)[1].to_i == role_id
         end
         val = val.merge({ 'time' => time })
@@ -90,14 +83,14 @@ class DramacdTheme::VoteProgress
 
   def progress
     select_target = columns.map { |column| "MIN(#{column}) AS #{column}" }
-    query = "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" WHERE time >= #{@theme.start_time.to_i}s AND time <= #{@theme.end_time.to_i + 1}s GROUP BY time(2h) fill(previous);"
+    query = "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" WHERE time >= #{@theme.start_time.to_i}s AND time <= #{@theme.end_time.to_i + 1}s GROUP BY time(1h) fill(previous);"
     InfluxDB::Rails.client.query(query).first
   end
 
   def columns
     raw_columns = recent_series_data.keys
 
-    vote_columns = raw_columns.select { |k| k.include? "vote_" }
+    vote_columns = raw_columns.select { |k| k.include? "vote_#{@theme.id}_" }
     other_columns = raw_columns.select do |k|
       !(k.include?('vote_') || @@meta_columns.include?(k))
     end

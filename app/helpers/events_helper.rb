@@ -51,6 +51,12 @@ module EventsHelper
     "valueAxes": [{
       "id":"v1",
       "axisThickness": 2,
+      "labelFunction": function(value, valueText, valueAxis) {
+        if (value == 0) return 0;
+        var s = ['', '万', '億'];
+        var e = Math.floor(Math.log(value) / Math.log(10000));
+        return parseFloat((value / Math.pow(10000, e)).toFixed(1)) + s[e];
+      },
       "gridAlpha": 0,
       "axisAlpha": 1,
       "position": "left"

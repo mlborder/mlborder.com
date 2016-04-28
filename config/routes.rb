@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   get 'alarm', to: 'static_pages#alarm'
   get 'records', to: 'records#index'
 
+  scope '/misc' do
+    get 'bmd_runner', to: 'misc#bmd_runner'
+  end
+
   get '/auth/:provider/callback', to: 'sessions#callback'
   post '/auth/:provider/callback', to: 'sessions#callback'
   get '/logout' => 'sessions#destroy', as: :logout

@@ -9,6 +9,9 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/amcharts.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/serial.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.13.0/themes/light.js"></script>
+  <%- if controller.controller_name == 'records' %>
+    <meta name='robots' content='noindex'/>
+  <%- end %>
   <%= csrf_meta_tags %>
 </head>
 <body>

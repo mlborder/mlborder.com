@@ -4,6 +4,9 @@ unknown_event:
 raid_event:
   name: raid
   label_class: 'label-event-raid'
+battle_event:
+  name: battle
+  label_class: 'label-event-battle'
 hhp_event:
   name: hhp
   label_class: 'label-event-hhp'

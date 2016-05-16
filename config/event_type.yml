@@ -25,3 +25,6 @@ psl_event:
 caravan_event:
   name: caravan
   label_class: 'label-event-caravan'
+ula_event:
+  name: ula
+  label_class: 'label-event-ula'

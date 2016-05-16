@@ -26,7 +26,8 @@ class Event < ActiveRecord::Base
     :lesson_event,
     :psl_event,
     :caravan_event,
-    :battle_event
+    :battle_event,
+    :ula_event
   ]
 
   def has_border?

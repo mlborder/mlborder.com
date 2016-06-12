@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.3.0
+  - 2.3.1
 bundler_args: --jobs=2
 before_script:
   - mysql -e 'create database mlborder_test;'

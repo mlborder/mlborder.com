@@ -13,6 +13,9 @@ hhp_event:
 imc_event:
   name: imc
   label_class: 'label-event-imc'
+imce_event:
+  name: imce
+  label_class: 'label-event-imce'
 choco_event:
   name: choco
   label_class: 'label-event-choco'

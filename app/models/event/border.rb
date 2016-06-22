@@ -62,7 +62,7 @@ class Event::Border
     return @progress if @progress.present?
 
     select_target = columns.map { |column| "MIN(#{column}) AS #{column}" }
-    span =  @event.imc_event? ? '5m' : '30m'
+    span = (@event.imc_event? || @event.imce_event?) ? '5m' : '30m'
 
     query = "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" WHERE time >= #{@event.started_at.to_i}s AND time <= #{@event.ended_at.to_i + 1}s GROUP BY time(#{span}) fill(previous);"
     @progress = InfluxDB::Rails.client.query(query).first

@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'ready page:load', ->
+$(document).on 'turbolinks:load', ->
     area = $('#event_default_series_area')
     $('button', area).on 'click', (e) =>
         event_id = $('#event_id').text()

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/influxdata/influxdb-rails.git
-  revision: 10016d0b0fa2c1fefcf14e18347ef3dcd55782a4
+  revision: 96181c2b304d205317144b2bb60f33e4bad664c4
   specs:
     influxdb-rails (0.1.10)
       influxdb (~> 0.2.0)
@@ -50,7 +50,7 @@ GEM
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
     arel (6.0.3)
-    autoprefixer-rails (6.3.7)
+    autoprefixer-rails (6.4.0.1)
       execjs
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -177,7 +177,7 @@ GEM
     rake (11.2.2)
     rdoc (4.2.2)
       json (~> 1.4)
-    react-rails (1.8.0)
+    react-rails (1.8.2)
       babel-transpiler (>= 0.7.0)
       coffee-script-source (~> 1.8)
       connection_pool
@@ -187,7 +187,7 @@ GEM
     ref (2.0.0)
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
-    rspec-core (3.5.1)
+    rspec-core (3.5.2)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -234,12 +234,12 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.5)
     timecop (0.8.1)
-    turbolinks (5.0.0)
+    turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.0.0)
+    uglifier (3.0.1)
       execjs (>= 0.3.0, < 3)
     web-console (2.3.0)
       activemodel (>= 4.0)

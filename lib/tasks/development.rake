@@ -17,7 +17,7 @@ namespace :mlborder do
         event.records_available = true if event.id > 72
         event.save
 
-        next if event.hhp_event?
+        next if event.hhp_event? || event.ula_event?
         puts " update final border..."
         event.update_final_border_info!
       end

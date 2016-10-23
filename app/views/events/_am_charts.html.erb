@@ -1,13 +1,20 @@
 <script type='text/javascript'>
 (function(context) {
-  var parseTime = function(category, dataItem, categoryAxis) {
+  var getCategory = function(category, dataItem, categoryAxis) {
     var period = new Date(category * 1000);
+    var reward = dataItem.reward_rank;
+
     var options = {
       day: "numeric", hour: "2-digit", minute: "2-digit"
     };
-    return period.toLocaleTimeString("ja-JP", options);
+
+    if (reward === undefined) {
+      return period.toLocaleTimeString("ja-JP", options);
+    } else {
+      return period.toLocaleTimeString("ja-JP", options) + '(' + (reward || 1) + '枠)';
+    }
   };
-  var createAmCharts = function (chart_elm_id, legend_elm_id, data) {
+  var createAmCharts = function (chart_elm_id, legend_elm_id, display_until, title_map, data) {
     var chart = AmCharts.makeChart(chart_elm_id, {
       "type": "serial",
       "theme": "light",
@@ -38,7 +45,7 @@
       },
       "categoryField": "time",
       "categoryAxis": {
-        "categoryFunction" : parseTime,
+        "categoryFunction" : getCategory,
         "axisColor": "#DADADA",
         "minorGridEnabled": true,
         "labelRotation": 45
@@ -70,25 +77,30 @@
       zoom_end = e.endIndex;
     });
 
-    if (data) updateAmCharts(chart, data);
+    if (data) updateAmCharts(chart, display_until, title_map, data);
     return chart;
   };
 
-  var updateAmCharts = function(chart, data) {
+  var updateAmCharts = function(chart, display_until, title_map, data) {
     var graph_columns = jQuery.map(data[0], function(k, v) { return v; });
     var border_columns = jQuery.grep(graph_columns, function(c) { if (c.indexOf('border_') > -1) return true; });
     var graphs = jQuery.map(border_columns, function(border_column) {
-      var rank = border_column.match(/\d+/)[0];
+      var idx = border_column.match(/\d+/)[0];
+      if (title_map) {
+        var title = title_map[idx];
+      } else {
+        var title = idx + "位";
+      }
       return {
         'valueAxis': 'v1',
         'bullet': 'round',
         'bulletBorderThickness': 1,
         'hideBulletsCount': 30,
-        'title': rank + "位",
+        'title': title,
         'valueField': border_column,
         'balloonText': "[[title]]:[[value]]pt",
         'fillAlphas':  0,
-        'hidden': (rank < <%= display_until %>)
+        'hidden': (idx < display_until)
       };
     });
 

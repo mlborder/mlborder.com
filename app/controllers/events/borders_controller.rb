@@ -3,7 +3,11 @@ class Events::BordersController < ApplicationController
 
   def index
     if @event.has_border?
-      render json: @event.border.dataset.to_json
+      if params['team_rank']
+        render json: @event.border(Event::ULA_FINAL_TEAM_SERIES_NAME).dataset.to_json
+      else
+        render json: @event.border.dataset.to_json
+      end
     else
       render json: nil, status: :not_found
     end

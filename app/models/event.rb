@@ -1,4 +1,7 @@
 class Event < ActiveRecord::Base
+  ULA_FINAL_EVENT_ID = 136
+  ULA_FINAL_TEAM_SERIES_NAME = '20161021-20161030_ula-team'
+
   has_many :final_borders
   has_many :alarms
   has_many :prizes, class_name: Event::Prize
@@ -36,9 +39,15 @@ class Event < ActiveRecord::Base
     series_name.present?
   end
 
-  def border
-    return @border if @border.present?
-    @border = Event::Border.new self
+  def border(name = nil)
+    name ||= series_name
+    @border ||= {}
+    return @border[name] if @border[name].present?
+    @border[name] = Event::Border.new(self, name)
+  end
+
+  def ula_final?
+    id == ULA_FINAL_EVENT_ID
   end
 
   def records(page_num = 0, idol_id = nil)

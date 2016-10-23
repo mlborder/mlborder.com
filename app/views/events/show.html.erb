@@ -41,7 +41,7 @@
                 <%- if @event.hhp_event? %>
                   <div class='row'>
                     <div class='col-md-9'>
-                      <div id='chartdiv'></div>
+                      <div id='chartdiv' class='chart-area'></div>
                     </div>
                     <div class='col-md-3'>
                       <div class='row' style='margin-top: 1.5em;'>
@@ -53,8 +53,15 @@
                   </div>
                   <%= am_charts_hhp @dataset %>
                 <%- else %>
-                  <%= react_component('MlborderEventBorderBox', url: event_borders_path(@event), border_summary: @latest_data) %>
-                  <%= render partial: 'am_charts', locals: { chart_data: @dataset, display_until: (@event.imc_event? ? 1200 : 100) } %>
+                  <%- if @event.ula_final? %>
+                    <h3>チームランキング</h3>
+                    <%= react_component('MlborderEventBorderBox', url: event_borders_path(@event, team_rank: true), border_summary: @latest_data_team, chart_div_id: 'teamchart', legend_div_id: 'teamlegend', display_until: 0, title_map: ula_final_titles) %>
+                    <hr />
+                    <h3>通常ランキング</h3>
+                  <%- end %>
+
+                  <%= react_component('MlborderEventBorderBox', url: event_borders_path(@event), border_summary: @latest_data, chart_div_id: 'chartdiv', legend_div_id: 'legenddiv', display_until: (@event.imc_event? ? 1200 : 100)) %>
+                  <%= render partial: 'am_charts' %>
                 <%- end %>
               <%- else %>
                 <p>ボーダー情報がありません。</p>

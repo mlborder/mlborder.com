@@ -13,6 +13,7 @@ class EventsController < ApplicationController
 
     if @event.has_border?
       @latest_data = @event.border.latest
+      @latest_data_team = @event.border(Event::ULA_FINAL_TEAM_SERIES_NAME).latest if @event.ula_final?
       if @event.hhp_event?
         if @event.ended?
           @@cached_dataset ||= {}

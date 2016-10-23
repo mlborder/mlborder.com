@@ -5,10 +5,10 @@ var MlborderEventBorderBox = React.createClass({
   render: function() {
     var chartBox;
     if(this.isBorderLoaded()) {
-      chartBox = <div id="chartdiv" />;
+      chartBox = <div id={this.props.chart_div_id} className='chart-area' />;
     } else {
       chartBox = (
-        <div id="chartdiv" className="text-center" style={this.style.borderSummary}>
+        <div id={this.props.chart_div_id} className="text-center" style={this.style.borderSummary} className='chart-area' >
           <i className="fa fa-spin fa-spinner"></i>
           Loading...
         </div>
@@ -22,11 +22,11 @@ var MlborderEventBorderBox = React.createClass({
         </div>
         <div className='col-md-3'>
           <div className='row' style={this.style.borderSummary}>
-            <MlborderEventBorderBoxSummary time={this.props.border_summary.time} data={this.props.border_summary.borders} />
+            <MlborderEventBorderBoxSummary time={this.props.border_summary.time} title_map={this.props.title_map} data={this.props.border_summary.borders} />
           </div>
           <div className='row'>
             <div className='col-md-12'>
-              <div id="legenddiv" style={this.style.legendDiv}></div>
+              <div id={this.props.legend_div_id} style={this.style.legendDiv}></div>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@ var MlborderEventBorderBox = React.createClass({
   },
   componentDidUpdate : function () {
     if(this.isBorderLoaded()) {
-      window.createAmCharts('chartdiv', 'legenddiv', this.state.data);
+      window.createAmCharts(this.props.chart_div_id, this.props.legend_div_id, this.props.display_until, this.props.title_map, this.state.data);
     } else {
       this.loadBorder();
     }
@@ -81,8 +81,9 @@ var MlborderEventBorderBoxSummary = React.createClass({
       + ('00' + String(adjustedDate.getUTCMinutes())).substr(-2)
     );
 
-    var borderList = Object.keys(this.props.data).map(function(rank) {
-      return <MlborderEventBorderBoxSummaryData key={rank} rank={rank} point={this.props.data[rank]} />
+    var borderList = Object.keys(this.props.data).map(function(idx) {
+      var title = this.props.title_map ? this.props.title_map[idx] : (idx + '位');
+      return <MlborderEventBorderBoxSummaryData key={idx} title={title} point={this.props.data[idx]} />
     }, this);
 
     return (
@@ -108,7 +109,7 @@ var MlborderEventBorderBoxSummaryData = React.createClass({
 
     return (
       <tr>
-        <th className='text-right'>{this.props.rank}位:</th>
+        <th className='text-right'>{this.props.title}:</th>
         <td>{pointWithDelimiter}pt</td>
       </tr>
     );

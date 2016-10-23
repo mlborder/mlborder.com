@@ -1,10 +1,10 @@
 class Event::Border
   @@meta_columns = %w(time updated_at)
 
-  def initialize(event)
+  def initialize(event, series_name = nil)
     raise ArgumentError unless event.instance_of? Event
     @event = event
-    @series_name = event.series_name
+    @series_name = series_name || event.series_name
   end
 
   def recent_series_data

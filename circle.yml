@@ -1,0 +1,10 @@
+machine:
+  ruby:
+    version: 2.3.1
+test:
+  override:
+    - bundle exec rspec
+database:
+  override:
+    - cp config/database.yml.ci config/database.yml
+    - bundle exec rake db:create:all

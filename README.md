@@ -1,6 +1,5 @@
-borderbot-rails [![Build Status](https://travis-ci.org/mlborder/borderbot-rails.svg)](https://travis-ci.org/mlborder/borderbot-rails)
+mlborder.com [![CircleCI](https://circleci.com/gh/mlborder/mlborder.com.svg?style=shield)](https://circleci.com/gh/mlborder/mlborder.com)
 ===
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 The source code of [mlborder.com](http://mlborder.com).
 

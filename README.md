@@ -1,4 +1,4 @@
-borderbot-rails [![CircleCI](https://circleci.com/gh/mlborder/borderbot-rails.svg?style=shield)](https://circleci.com/gh/mlborder/borderbot-rails)
+mlborder.com [![CircleCI](https://circleci.com/gh/mlborder/mlborder.com.svg?style=shield)](https://circleci.com/gh/mlborder/mlborder.com)
 ===
 
 The source code of [mlborder.com](http://mlborder.com).

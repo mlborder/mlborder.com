@@ -8,3 +8,8 @@ database:
   override:
     - cp config/database.yml.ci config/database.yml
     - bundle exec rake db:create:all
+deployment:
+  production:
+    branch: master
+    heroku:
+      appname: mlborder

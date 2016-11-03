@@ -1,5 +1,0 @@
-test:
-  adapter: sqlite3
-  database: mlborder_test
-  username: root
-  encoding: utf8

@@ -33,6 +33,8 @@ gem 'kaminari'
 gem 'rubimas'
 gem 'active_hash'
 
+gem 'browserify-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

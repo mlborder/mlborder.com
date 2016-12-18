@@ -1,0 +1,8 @@
+{
+  "name": "mlborder.com",
+  "private": true,
+  "dependencies": {
+    "browserify": "~10.2.4",
+    "browserify-incremental": "^3.0.1"
+  }
+}

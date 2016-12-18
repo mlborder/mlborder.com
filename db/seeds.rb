@@ -1190,5 +1190,46 @@ Event.create([
       { idol_id: 27 }, # 高山紗代子
       { idol_id: 46 }, # 百瀬莉緒
     ]
+  },
+  { name: '【復刻】大激闘！765プロ野球',
+    event_type: 'choco_event',
+    started_at: '2016-11-08 12:00:00 +0900',
+    ended_at: '2016-11-14 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 26 }, # 七尾百合子
+    ]
+  },
+  { name: 'アイドルマスターズカップ エボリューション3',
+    event_type: 'imce_event',
+    started_at: '2016-11-17 12:00:00 +0900',
+    ended_at: '2016-11-20 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 35 }, # 木下ひなた
+    ]
+  },
+  { name: '【復刻】大戦乱！アイドル三国志',
+    event_type: 'battle_event',
+    started_at: '2016-11-22 12:00:00 +0900',
+    ended_at: '2016-11-30 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 13 }, # 我那覇響
+    ]
+  },
+  { name: '陽だまり☆Sunshine Rhythm!!',
+    event_type: 'nplive_event',
+    started_at: '2016-12-02 12:00:00 +0900',
+    ended_at: '2016-12-14 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 36 }, # 矢吹可奈
+      { idol_id: 43 }, # 福田のり子
+    ]
+  },
+  { name: '取り戻せ！サンタたちのプリンセス',
+    event_type: 'battle_event',
+    started_at: '2016-12-16 12:00:00 +0900',
+    ended_at: '2016-12-25 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 8 }, # 四条貴音
+    ]
   }
 ])

@@ -1231,5 +1231,13 @@ Event.create([
     prizes_attributes: [
       { idol_id: 8 }, # 四条貴音
     ]
+  },
+  { name: 'みんなで年越し！生っすか！？レボリューション×50',
+    event_type: 'choco_event',
+    started_at: '2016-12-27 12:00:00 +0900',
+    ended_at: '2017-01-04 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 42 }, # 宮尾美也
+    ]
   }
 ])

@@ -1,9 +1,12 @@
-var MlborderEventBorderBox = React.createClass({
-  getInitialState : function() {
-    return {data: []};
-  },
-  render: function() {
-    var chartBox;
+class MlborderEventBorderBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+  }
+  render() {
+    let chartBox;
     if(this.isBorderLoaded()) {
       chartBox = <div id={this.props.chart_div_id} className='chart-area' />;
     } else {
@@ -21,40 +24,47 @@ var MlborderEventBorderBox = React.createClass({
           {chartBox}
         </div>
         <div className='col-md-3'>
-          <div className='row' style={this.style.borderSummary}>
+          <div className='row' style={this.style().borderSummary}>
             <MlborderEventBorderBoxSummary time={this.props.border_summary.time} title_map={this.props.title_map} data={this.props.border_summary.borders} />
           </div>
           <div className='row'>
             <div className='col-md-12'>
-              <div id={this.props.legend_div_id} style={this.style.legendDiv}></div>
+              <div id={this.props.legend_div_id} style={this.style().legendDiv}></div>
             </div>
           </div>
         </div>
       </div>
     );
-  },
-  componentDidMount : function() {
+  }
+
+  componentDidMount() {
     this.loadBorder();
-  },
-  componentDidUpdate : function () {
+  }
+
+  componentDidUpdate() {
     if(this.isBorderLoaded()) {
       window.createAmCharts(this.props.chart_div_id, this.props.legend_div_id, this.props.display_until, this.props.title_map, this.state.data);
     } else {
       this.loadBorder();
     }
-  },
-  style: {
-    borderSummary: {
-      marginTop: "1.5em"
-    },
-    legendDiv: {
-      maxWidth: "240px"
-    }
-  },
-  isBorderLoaded : function () {
+  }
+
+  style() {
+    return {
+      borderSummary: {
+        marginTop: "1.5em"
+      },
+      legendDiv: {
+        maxWidth: "240px"
+      }
+    };
+  }
+
+  isBorderLoaded() {
     return (this.state.data.length > 0);
-  },
-  loadBorder : function () {
+  }
+
+  loadBorder() {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -66,14 +76,14 @@ var MlborderEventBorderBox = React.createClass({
         console.error(status, err.toString());
       }.bind(this)
     });
-  },
-});
+  }
+}
 
-var MlborderEventBorderBoxSummary = React.createClass({
-  render: function() {
-    var recent = new Date(this.props.time);
-    var adjustedDate = new Date(recent.getTime() - (recent.getTimezoneOffset() * 60000));
-    var timeString = (
+class MlborderEventBorderBoxSummary extends React.Component {
+  render() {
+    const recent = new Date(this.props.time);
+    const adjustedDate = new Date(recent.getTime() - (recent.getTimezoneOffset() * 60000));
+    const timeString = (
       adjustedDate.getUTCFullYear() + '/'
       + ('00' + String(adjustedDate.getUTCMonth() + 1)).substr(-2) + '/'
       + ('00' + String(adjustedDate.getUTCDate())).substr(-2) + ' '
@@ -81,8 +91,8 @@ var MlborderEventBorderBoxSummary = React.createClass({
       + ('00' + String(adjustedDate.getUTCMinutes())).substr(-2)
     );
 
-    var borderList = Object.keys(this.props.data).map(function(idx) {
-      var title = this.props.title_map ? this.props.title_map[idx] : (idx + '位');
+    const borderList = Object.keys(this.props.data).map(function(idx) {
+      const title = this.props.title_map ? this.props.title_map[idx] : (idx + '位');
       return <MlborderEventBorderBoxSummaryData key={idx} title={title} point={this.props.data[idx]} />
     }, this);
 
@@ -101,11 +111,11 @@ var MlborderEventBorderBoxSummary = React.createClass({
       </div>
     );
   }
-});
+};
 
-var MlborderEventBorderBoxSummaryData = React.createClass({
-  render: function() {
-    var pointWithDelimiter = this.props.point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+class MlborderEventBorderBoxSummaryData extends React.Component {
+  render() {
+    const pointWithDelimiter = this.props.point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     return (
       <tr>
@@ -114,4 +124,4 @@ var MlborderEventBorderBoxSummaryData = React.createClass({
       </tr>
     );
   }
-});
+};

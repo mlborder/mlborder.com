@@ -1,8 +1,10 @@
-var MlborderEventRecordBox = React.createClass({
-  getInitialState : function() {
-    return {data: [], isLoading: true};
-  },
-  render: function() {
+class MlborderEventRecordBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {data: [], isLoading: true};
+  }
+
+  render() {
     return (
       <div style={{marginTop: '1.5em'}}>
         <MlborderEventRecordBoxNavigation quickRanks={[1, 301, 501, 1201]} loadRecords={this.loadEventRecords} />
@@ -11,15 +13,18 @@ var MlborderEventRecordBox = React.createClass({
         <p className='text-right'><a href={this.props.url}>もっと見る</a></p>
       </div>
     );
-  },
-  componentDidMount : function() {
+  }
+
+  componentDidMount() {
     this.loadEventRecords();
-  },
-  isRecordsLoaded : function () {
+  }
+
+  isRecordsLoaded() {
     return (this.state.data.length > 0);
-  },
-  loadEventRecords : function (page_num) {
-    get_params = { page: (page_num || 1) };
+  }
+
+  loadEventRecords(page_num) {
+    const get_params = { page: (page_num || 1) };
     $.ajax({
       url: this.props.url + '?' + $.param(get_params),
       dataType: 'json',
@@ -31,12 +36,13 @@ var MlborderEventRecordBox = React.createClass({
         console.error(status, err.toString());
       }.bind(this)
     });
-  },
-});
+  }
 
-var MlborderEventRecordBoxNavigation = React.createClass({
-  render : function() {
-    var navLinks = this.props.quickRanks.map(function(rank) {
+};
+
+class MlborderEventRecordBoxNavigation extends React.Component {
+  render() {
+    const navLinks = this.props.quickRanks.map(function(rank) {
       return <div className='btn btn-default' key={rank} onClick={this.navigationButtonHandler(rank, this)}>{rank}位〜</div>;
     }, this);
 
@@ -45,21 +51,23 @@ var MlborderEventRecordBoxNavigation = React.createClass({
         {navLinks}
       </div>
     );
-  },
-  navigationButtonHandler : function (rank, self) {
+  }
+
+  navigationButtonHandler(rank, self) {
     return function (e) {
       e.preventDefault();
       self.props.loadRecords(self.calcPageNumFromRank(rank));
       return;
     };
-  },
-  calcPageNumFromRank : function (rank) {
+  }
+
+  calcPageNumFromRank(rank) {
     return Math.ceil(rank / 50);
   }
-});
+};
 
-var MlborderEventRecordBoxPager = React.createClass({
-  render : function() {
+class MlborderEventRecordBoxPager extends React.Component {
+  render() {
     return (
       <ul className="pager">
         <li className="previous">
@@ -71,11 +79,11 @@ var MlborderEventRecordBoxPager = React.createClass({
       </ul>
     );
   }
-});
+};
 
-var MlborderEventRecordBoxTable = React.createClass({
-  render : function() {
-    var tableRows;
+class MlborderEventRecordBoxTable extends React.Component {
+  render() {
+    let tableRows;
     if(this.props.isLoading) {
       tableRows = (
         <tr className='text-center'>
@@ -110,10 +118,11 @@ var MlborderEventRecordBoxTable = React.createClass({
       </table>
     );
   }
-});
-var MlborderEventRecordBoxTableRow = React.createClass({
-  render : function() {
-    var pointWithDelimiter = this.props.point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+class MlborderEventRecordBoxTableRow extends React.Component {
+  render() {
+    const pointWithDelimiter = this.props.point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     return (
       <tr>
@@ -130,4 +139,4 @@ var MlborderEventRecordBoxTableRow = React.createClass({
       </tr>
     );
   }
-});
+}

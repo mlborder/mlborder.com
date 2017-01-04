@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   ULA_FINAL_EVENT_ID = 136
   ULA_FINAL_TEAM_SERIES_NAME = '20161021-20161030_ula-team'
 

@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :alarms
 
   enum role: %i(role_none role_admin)

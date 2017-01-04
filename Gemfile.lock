@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/imas/rubimas.git
+  remote: https://github.com/imas/rubimas.git
   revision: 35c67b6c9ad4e9faa4ed7e71673f20e4347f44fc
   specs:
     rubimas (0.4.0)
@@ -7,7 +7,7 @@ GIT
       hashie (>= 3.0)
 
 GIT
-  remote: git://github.com/influxdata/influxdb-rails.git
+  remote: https://github.com/influxdata/influxdb-rails.git
   revision: e9e11a71e02698b45f0760a58194b0734a7398e0
   specs:
     influxdb-rails (0.1.11)

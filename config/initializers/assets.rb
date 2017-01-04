@@ -10,13 +10,14 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
+
 if Rails.application.config.respond_to?(:browserify_rails)
   Rails.application.config.browserify_rails.paths << '--paths ./app/assets/javascripts/'
-  Rails.application.config.browserify_rails.commandline_options = [
-    '--fast',
-    '-t coffeeify --extension=.coffee',
-    '-t [ babelify --presets [ react es2015 ] ]'
-  ]
-  Rails.application.config.browserify_rails.source_map_environments << 'development'
-  Rails.application.config.browserify_rails.node_env = 'production'
+     Rails.application.config.browserify_rails.commandline_options = [
+  '--fast',
+  '-t coffeeify --extension=.coffee',
+  '-t [ babelify --presets [ react es2015 ] ]'
+       ]
+       Rails.application.config.browserify_rails.source_map_environments << 'development'
+       Rails.application.config.browserify_rails.node_env = 'production'
 end

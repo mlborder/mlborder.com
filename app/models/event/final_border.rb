@@ -1,3 +1,3 @@
-class Event::FinalBorder < ActiveRecord::Base
+class Event::FinalBorder < ApplicationRecord
   belongs_to :event
 end

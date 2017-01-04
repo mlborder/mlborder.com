@@ -1,4 +1,4 @@
-class Alarm < ActiveRecord::Base
+class Alarm < ApplicationRecord
   belongs_to :user
   belongs_to :event
 

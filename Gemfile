@@ -1,9 +1,14 @@
 source 'https://rubygems.org'
 
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+  "https://github.com/#{repo_name}.git"
+end
+
 ruby '2.3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.7.1'
+gem 'rails', '~> 5.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -30,7 +35,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'kaminari'
 
-gem 'rubimas'
+gem 'rubimas', github: 'imas/rubimas'
 gem 'active_hash'
 
 gem 'browserify-rails'

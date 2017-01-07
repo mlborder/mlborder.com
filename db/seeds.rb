@@ -1239,5 +1239,14 @@ Event.create([
     prizes_attributes: [
       { idol_id: 42 }, # 宮尾美也
     ]
+  },
+  { name: '月明かり☆BlueMoon Harmony!!',
+    event_type: 'nplive_event',
+    started_at: '2017-01-06 12:00:00 +0900',
+    ended_at: '2017-01-18 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 20 }, # 所恵美
+      { idol_id: 48 }, # 北上麗花
+    ]
   }
 ])

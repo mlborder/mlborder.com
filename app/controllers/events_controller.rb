@@ -48,10 +48,10 @@ class EventsController < ApplicationController
   end
 
   def new
-    today = Date.today
+    t = Time.current
     @event = Event.new(
-      started_at: Time.local(today.year, today.month, today.day, 17),
-      ended_at: today.end_of_day
+      started_at: Time.local(t.year, t.month, t.day, 12),
+      ended_at: t.end_of_day
     )
     @event.prizes.build
   end

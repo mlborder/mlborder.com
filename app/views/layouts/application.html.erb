@@ -59,6 +59,12 @@
                 <li><%= link_to 'Logout', logout_path %></li>
               </ul>
             </li>
+          <%- else %>
+            <li>
+              <%= link_to '/auth/twitter' do %>
+                <span class="glyphicon glyphicon-log-in"></span>&nbsp;Login
+              <%- end %>
+            </li>
           <%- end %>
         </ul>
       </div>

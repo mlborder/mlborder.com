@@ -27,13 +27,6 @@
           </h4>
           <p class="list-group-item-text">元祖ミリオンボーダーbotちゃん。イベントお役立ち情報を発信してくれています。</p>
         <%- end %>
-        <%= link_to dramacd_themes_path, class: 'list-group-item' do %>
-          <h4 class="list-group-item-heading">
-            <span class="fa fa-film"></span>
-            キャスト投票キャンペーン
-          </h4>
-          <p class="list-group-item-text">キャスト投票キャンペーンの特設ページです。</p>
-        <%- end %>
         <%= link_to events_path, class: 'list-group-item' do %>
           <h4 class="list-group-item-heading">
             <span class="fa fa-line-chart"></span>
@@ -61,6 +54,41 @@
             イベント最終ランキング検索
           </h4>
           <p class="list-group-item-text">『特番！生っすか！？サンデー×50』(2015年5月)からのイベント最終ランキングについて、イベント・プロデューサーの双方から検索できる機能です。</p>
+        <%- end %>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class='panel-title'>過去のコンテンツ</h3>
+      </div>
+      <div class="list-group">
+        <%= link_to dramacd_themes_path, class: 'list-group-item' do %>
+          <h4 class="list-group-item-heading">
+            <span class="fa fa-film"></span>
+            キャスト投票キャンペーン
+          </h4>
+          <p class="list-group-item-text">THE@TER ACTIVITIESシリーズのキャスト選挙の結果です(2016/04/18 00:00～2016/05/02 09:59)</p>
+        <%- end %>
+        <%= link_to event_path(75), class: 'list-group-item' do %>
+          <h4 class="list-group-item-heading">
+            <span class="fa fa-music"></span>
+            ENJOY H@RMONY!!
+          </h4>
+          <p class="list-group-item-text">ENJOY H@RMONY!!のボーダーの変遷です(2015/05/29 17:00〜2015/06/07 23:59)</p>
+        <%- end %>
+        <%= link_to event_path(107), class: 'list-group-item' do %>
+          <h4 class="list-group-item-heading">
+            <span class="fa fa-music"></span>
+            BELIEVE MY DRE@M!!
+          </h4>
+          <p class="list-group-item-text">BELIEVE MY DRE@M!!のボーダーの変遷です(2016/04/22 17:00〜2016/04/30 23:59)</p>
+        <%- end %>
+        <%= link_to event_path(136), class: 'list-group-item' do %>
+          <h4 class="list-group-item-heading">
+            <span class="fa fa-rocket"></span>
+            アルティメットライブアリーナ ファイナルリーグ
+          </h4>
+          <p class="list-group-item-text">ULAファイナルリーグのボーダーの変遷です(2016/10/21 17:00〜2016/10/30 23:59)</p>
         <%- end %>
       </div>
     </div>

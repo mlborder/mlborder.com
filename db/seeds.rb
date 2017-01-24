@@ -1248,5 +1248,13 @@ Event.create([
       { idol_id: 20 }, # 所恵美
       { idol_id: 48 }, # 北上麗花
     ]
+  },
+  { name: 'アイドルマスターズカップ エボリューション4',
+    event_type: 'imce_event',
+    started_at: '2017-01-20 12:00:00 +0900',
+    ended_at: '2017-01-23 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 37 }, # 横山奈緒
+    ]
   }
 ])

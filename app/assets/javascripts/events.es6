@@ -1,9 +1,8 @@
 $(document).on('turbolinks:load', () => {
-  const area = $('#event_default_series_area');
-  $('button', area).on('click', (e) => {
+  $('button#default_series_button').on('click', (e) => {
     const event_id = $('#event_id').text();
     $.get(`/events/${event_id}/default_series_name`, (data) => {
-      $('input', area).val(data['series_name']);
+      $('input#series_name').val(data['series_name']);
     });
   });
 
@@ -18,5 +17,12 @@ $(document).on('turbolinks:load', () => {
     const time = new Date().getTime();
     const regexp = new RegExp($(this).data('id'), 'g');
     $(this).before($(this).data('fields').replace(regexp, time));
+  });
+
+  $('#recent_border').on('click', (e) => {
+    const event_id = $('#event_id').text();
+    $.post(`/events/${event_id}/borders/recent`, (data) => {
+      alert(data.message);
+    });
   });
 });

@@ -1,4 +1,6 @@
 class Events::BordersController < ApplicationController
+  include AuthActions
+  before_action :authenticate_admin!, only: %i(update)
   before_action :set_event
 
   def index
@@ -11,6 +13,20 @@ class Events::BordersController < ApplicationController
     else
       render json: nil, status: :not_found
     end
+  end
+
+  def recent
+    if @event.has_border?
+      if @event.update_final_border_info!
+        render json: { message: 'ボーダー情報を更新しました' }, status: :created
+      else
+        raise RuntimeError
+      end
+    else
+      render json: nil, status: :not_found
+    end
+  rescue => e
+    render json: { message: 'ボーダー情報の更新に失敗しました' }, status: :internal_server_error
   end
 
   private

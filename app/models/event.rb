@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id                :integer          not null, primary key
+#  event_type_id     :integer
+#  name              :string(255)      not null
+#  event_type        :integer          default("unknown_event")
+#  series_name       :string(255)
+#  started_at        :datetime         not null
+#  ended_at          :datetime         not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  records_available :boolean          default(FALSE), not null
+#
+
 class Event < ApplicationRecord
   ULA_FINAL_EVENT_ID = 136
   ULA_FINAL_TEAM_SERIES_NAME = '20161021-20161030_ula-team'

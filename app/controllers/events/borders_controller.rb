@@ -1,5 +1,4 @@
 class Events::BordersController < ApplicationController
-  include AuthActions
   before_action :authenticate_admin!, only: %i(update)
   before_action :set_event
 

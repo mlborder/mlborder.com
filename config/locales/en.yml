@@ -20,4 +20,27 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+  event_type:
+    unknown: Unknown
+    raid:    Fes
+    battle:  Live Battle
+    hhp:     Anniv LIVE
+    imc:     IMC
+    imce:    IMCE
+    choco:   Choco
+    lesson:  Lesson
+    psl:     PSL
+    caravan: Caravan
+    nplive:  NP Live
+    ula:     ULA
+  event_status:
+    preparing: Preparing
+    ongoing:   On Going
+    finished:  Finished

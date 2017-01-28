@@ -2,5 +2,6 @@ en:
   users:
     alarms:
       index:
+        alarms: Alarms
         alarm_list: Alarm list
         setting_description_html: '<b>%{rank}</b>位のボーダーが<b>%{point}</b>ptを超えたらお知らせ'

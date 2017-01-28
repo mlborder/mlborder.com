@@ -22,6 +22,7 @@ ja:
     root: ホーム
     events: イベント
     idols: アイドル
+    users: プロデューサー
   actions:
     new: 新規作成
     edit: 編集
@@ -30,3 +31,4 @@ ja:
   status:
     valid: 有効
     invalid: 無効
+  login_succeeded: ログインに成功しました

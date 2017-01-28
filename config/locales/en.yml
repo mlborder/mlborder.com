@@ -22,6 +22,7 @@ en:
     root: Home
     events: Events
     idols: Idols
+    users: Users
   actions:
     new: New
     edit: Edit
@@ -30,3 +31,4 @@ en:
   status:
     valid: Valid
     invalid: Invalid
+  login_succeeded: Login Succeeded

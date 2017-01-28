@@ -6,3 +6,5 @@ en:
       title_x: '%{x} Detail'
     new:
       title_x: 'New %{x}'
+    edit:
+      title_x: 'Edit %{x}'

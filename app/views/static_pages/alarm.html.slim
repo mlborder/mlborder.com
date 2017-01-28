@@ -1,0 +1,28 @@
+- provide(:title, "Alarm")
+ol.breadcrumb
+  li
+    = link_to 'Home', root_path
+  li.active
+    | Alarm
+.page-header
+  h1
+    | ボーダーアラーム機能β
+.row
+  .col-lg-8.col-md-8.col-sm-6
+    h3
+      | サービス概要
+    p
+      | 現在のボーダー速報値が指定された値を越えたタイミングでミリオンボーダーbotからあなたにTwitterのメンションを飛ばします。
+    - unless current_user
+      = link_to 'Twitterでログイン', '/auth/twitter', class: 'btn btn-lg btn-primary btn-block'
+  .col-lg-4.col-md-4.col-sm-6
+    div[style="max-width: 320px;"]
+      blockquote.twitter-tweet[lang="ja"]
+        p[lang="ja" dir="ltr"]
+          a[href="https://twitter.com/mlborder"]
+            | @mlborder
+          |  【ボーダーお知らせ：12/27 03:45更新】 1200位のボーダーが5000000ptを超えました(現在:5001166pt) 『アイドルスペースウォーズ EpisodeIV』
+        | — ミリオンボーダーbot (@mlborder) 
+        a[href="https://twitter.com/mlborder/status/680821901988466689"]
+          | 2015, 12月 26
+      script[async src="//platform.twitter.com/widgets.js" charset="utf-8"]

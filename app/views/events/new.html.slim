@@ -1,0 +1,11 @@
+- provide(:title, 'イベントの新規作成')
+ol.breadcrumb
+  li
+    = link_to 'Home', root_path
+  li
+    = link_to 'Events', events_path
+  li.active
+    | New
+.panel.panel-default
+  .panel-body
+    = render partial: 'form', locals: { event: @event }

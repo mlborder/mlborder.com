@@ -1,0 +1,127 @@
+.jumbotron
+  h1
+    | Welcome
+    = render partial: 'layouts/shared/twitter_button'
+  - if @latest_event && @latest_event.in_session?
+    p
+      | 現在『
+      = link_to @latest_event.name, event_path(@latest_event)
+      | 』が開催中です(
+      = @latest_event.ended_at.strf_mlevent
+      | まで)。
+  - elsif @latest_event.preparing?
+    p
+      = @latest_event.started_at.strf_mlevent
+      | より『
+      = link_to @latest_event.name, event_path(@latest_event)
+      | 』が開催予定です。
+  - else
+    p mlborder.comへようこそ
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          | 提供中のサービス
+      .list-group
+        = link_to 'https://twitter.com/mlborder', target: '_blank', class: 'list-group-item' do
+          h4.list-group-item-heading
+            span.fa.fa-twitter
+            |  ミリオンボーダーbot
+            small
+              span.glyphicon.glyphicon-new-window
+          p.list-group-item-text
+            | 元祖ミリオンボーダーbotちゃん。イベントお役立ち情報を発信してくれています。
+          = link_to events_path, class: 'list-group-item' do
+            h4.list-group-item-heading
+              span.fa.fa-line-chart
+              |  イベントアーカイブ
+            p.list-group-item-text
+              | ミリオンで行われたイベントをまとめています。ボーダーの変遷を過去分含めてグラフで確認することもできます。
+            = link_to week_idol_records_path(week_id: 'latest'), class: 'list-group-item' do
+              h4.list-group-item-heading
+                span.fa.fa-star
+                |  週間アイドルランキング 
+              p.list-group-item-text
+                | 2016年以降の週間アイドルランキングを確認できます。
+              = link_to alarm_path, class: 'list-group-item' do
+                h4.list-group-item-heading
+                  span.glyphicon.glyphicon-bell
+                  |  ボーダーお知らせ機能（β）
+                p.list-group-item-text
+                  | ボーダーが指定したポイントに達したら、ミリオンボーダーbotからメンションが飛んでくる機能です。現状、雑な作りなのであまり期待はしないでください。
+                = link_to records_path, class: 'list-group-item' do
+                  h4.list-group-item-heading
+                    span.glyphicon.glyphicon-search
+                    |  イベント最終ランキング検索
+                  p.list-group-item-text
+                    | 『特番！生っすか！？サンデー×50』(2015年5月)からのイベント最終ランキングについて、イベント・プロデューサーの双方から検索できる機能です。
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          | 過去のコンテンツ
+      .list-group
+        = link_to dramacd_themes_path, class: 'list-group-item' do
+          h4.list-group-item-heading
+            span.fa.fa-film
+            |  キャスト投票キャンペーン
+          p.list-group-item-text
+            | THE@TER ACTIVITIESシリーズのキャスト選挙の結果です(2016/04/18 00:00～2016/05/02 09:59)
+          = link_to event_path(75), class: 'list-group-item' do
+            h4.list-group-item-heading
+              span.fa.fa-music
+              |  ENJOY H@RMONY!!
+            p.list-group-item-text
+              | ENJOY H@RMONY!!のボーダーの変遷です(2015/05/29 17:00〜2015/06/07 23:59)
+            = link_to event_path(107), class: 'list-group-item' do
+              h4.list-group-item-heading
+                span.fa.fa-music
+                |  BELIEVE MY DRE@M!!
+              p.list-group-item-text
+                | BELIEVE MY DRE@M!!のボーダーの変遷です(2016/04/22 17:00〜2016/04/30 23:59)
+              = link_to event_path(136), class: 'list-group-item' do
+                h4.list-group-item-heading
+                  span.fa.fa-rocket
+                  |  アルティメットライブアリーナ ファイナルリーグ
+                p.list-group-item-text
+                  | ULAファイナルリーグのボーダーの変遷です(2016/10/21 17:00〜2016/10/30 23:59)
+  .col-md-6
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            h3.panel-title
+              | About mlborder.com
+          .panel-body
+            p
+              = link_to 'アイドルマスターミリオンライブ！', 'http://jp.apps.gree.net/ja/58737', target: '_blank'
+              | 内のイベント情報（ボーダー、ランキング）を集めています。 
+              = link_to 'アイドルマスターシンデレラガールズ', 'http://sp.pf.mbga.jp/12008305/', target: '_blank'
+              | における
+              = link_to 'PPDB', 'https://ppdb.momoka-sakurai.com/', target: '_blank'
+              | と似たようなことができることを目指しています。 
+            p
+              | このみPがゆるーくやっているので、日本酒でも楽しみながらゆるーく見守っていただけますと幸いです。
+          .list-group
+            = link_to 'もっと詳しく', about_path, class: 'list-group-item text-right'
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            h3.panel-title
+              | データ更新頻度について
+          .panel-body
+            |  プロデューサー名は週一くらいで、最終ランキングはイベント後にやっています。 
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            h3.panel-title
+              | ミリオンライブをさらに楽しむ...
+          .panel-body
+            p
+              | アルバムの未埋めを管理したい？
+              = link_to '@hamaco', 'https://twitter.com/hamaco'
+              | さんが運営されている
+              = link_to 'ml', 'http://imas-ml.hamaco.org/', target: '_blank'
+              | をご利用ください。

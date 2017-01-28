@@ -1,0 +1,79 @@
+- provide(:title, "#{@idol.name}の詳細情報")
+ol.breadcrumb
+  li
+    = link_to 'Home', root_path
+  li
+    = link_to 'Idols', idols_path
+  li
+    = @idol.name
+.page-header
+  |  <h1 style="color: 
+  = @idol.color
+  | "> 
+  = @idol.id
+  | . 
+  = @idol.name
+  | (
+  = @idol.idol_type
+  | )
+table.table.table-bordered
+  tbody
+    tr
+      th
+        | 名前
+      td
+        = @idol.name
+    tr
+      th
+        | 年齢
+      td
+        = @idol.age
+        | 歳
+    tr
+      th
+        | 身長
+      td
+        = @idol.height
+        | cm
+    tr
+      th
+        | 体重
+      td
+        = @idol.weight
+        | kg
+    tr
+      th
+        | B-W-H
+      td
+        = "#{@idol.bust}cm/#{@idol.waist}cm/#{@idol.hip}cm"
+    tr
+      th
+        | 誕生日
+      td
+        = @idol.birthday
+    tr
+      th
+        | 血液型
+      td
+        = @idol.blood_type
+        | 型
+    tr
+      th
+        | 趣味
+      td
+        = @idol.hobbies.try(:join, '、') || '-'
+    tr
+      th
+        | 特技
+      td
+        = @idol.talents.try(:join, '、') || '-'
+    tr
+      th
+        | 好きなもの
+      td
+        = @idol.favorites.try(:join, '、') || '-'
+h2
+  | 上位報酬のイベント
+= render partial: 'events/list', locals: { events: @events, excludes: :prizes }
+.well.well-sm
+  = render partial: 'layouts/shared/twitter_button'

@@ -1,0 +1,12 @@
+- provide(:title, "イベントアーカイブ")
+ol.breadcrumb
+  li
+    = link_to 'Home', root_path
+  li.active
+    | Events
+div style="overflow: auto"
+  = render partial: 'list', locals: { events: @events }
+.well.well-sm
+  = render partial: 'layouts/shared/twitter_button'
+.text-center
+  = paginate @events

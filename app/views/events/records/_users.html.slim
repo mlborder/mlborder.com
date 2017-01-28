@@ -1,0 +1,25 @@
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th
+        | 順位
+      th
+        | プレイヤー
+      th
+        | ポイント
+  tbody
+    - records.each do |record|
+      tr
+        td
+          = number_with_delimiter record.rank
+          |  位
+          - if record.idol_id
+            span style="color: #{Idol.find(record.idol_id).color}"
+              | ■
+            = link_to Idol.find(record.idol_id).name, event_records_path(record.event_id, idol_id: record.idol_id)
+        td
+          = link_to (record.name || "【不明なプロデューサー(#{record.player_id})】"), records_path(player_id: record.player_id)
+          = link_to "http://imas.gree-apps.net/app/index.php/mypage/user_profile/id/#{record.player_id}", target: '_blank' do
+            span.glyphicon.glyphicon-new-window
+        td.text-right
+          = number_with_delimiter record.point

@@ -7,7 +7,7 @@ class MlborderEventRecordBox extends React.Component {
   render() {
     return (
       <div style={{marginTop: '1.5em'}}>
-        <MlborderEventRecordBoxNavigation quickRanks={[1, 301, 501, 1201]} loadRecords={this.loadEventRecords} />
+        <MlborderEventRecordBoxNavigation quickRanks={[1, 301, 501, 1201]} loadRecords={this.loadEventRecords.bind(this)} />
         <div style={{marginTop: '1em'}}/>
         <MlborderEventRecordBoxTable data={this.state.data} recordsUrl={this.props.recordsUrl} isLoading={this.state.isLoading} />
         <p className='text-right'><a href={this.props.url}>もっと見る</a></p>
@@ -37,7 +37,6 @@ class MlborderEventRecordBox extends React.Component {
       }.bind(this)
     });
   }
-
 };
 
 class MlborderEventRecordBoxNavigation extends React.Component {

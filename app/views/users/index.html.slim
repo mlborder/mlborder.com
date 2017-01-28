@@ -1,0 +1,34 @@
+ol.breadcrumb
+  li
+    = link_to 'Home', root_path
+  li.active
+    | Users
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th
+        | #
+      th
+        | UID
+      th
+        | Name
+      th
+        | Role
+      th
+        | Created at
+  tbody
+    - @users.each do |user|
+      tr
+        td
+          = user.id
+        td
+          = user.uid
+        td
+          = user.name
+          | (
+          = link_to "@#{user.screen_name}", "https://twitter.com/#{user.screen_name}", target: '_blank'
+          | )
+        td
+          = user.role
+        td
+          = user.created_at

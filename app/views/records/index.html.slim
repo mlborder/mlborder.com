@@ -1,0 +1,20 @@
+- if @player
+  - provide(:title, "#{@player.name}さんのイベント最終ランキング履歴")
+  = render partial: 'form', locals: { player: @player, events: @events }
+  = render partial: 'player_records', locals: { player: @player, records: @records, events: @events }
+- else
+  - provide(:title, "イベント最終ランキング検索")
+  ol.breadcrumb
+    li
+      = link_to 'Home', root_path
+    li.active
+      | Records
+  .page-header
+    h1
+      | イベント最終ランキング検索
+      = render partial: 'layouts/shared/twitter_button'
+  p
+    | イベントの最終ランキング情報を確認できます。また、
+    = link_to 'ミリオンのID', 'http://imas.gree-apps.net/app/index.php/friend/id_search', target: '_blank'
+    | を指定して、イベント最終ランキング状況を確認できます。
+  = render partial: 'form', locals: { event: nil, player: nil, events: @events }

@@ -1,0 +1,14 @@
+div
+  ul.pager
+    - if page > 1
+      li.previous
+        = link_to event_records_path(event, idol_id: idol.try(:id), page: page - 1) do
+          span[aria-hidden="true"]
+            | ←
+          |  前へ
+    - if has_next
+      li.next
+        = link_to event_records_path(event, idol_id: idol.try(:id), page: page + 1) do
+          |  次へ
+          span[aria-hidden="true"]
+            | →

@@ -1,0 +1,10 @@
+/   alert(Hash)
+/     - type(Optional) : for CSS class name
+/     - title(Optional)
+/     - message
+.alert.alert-dismissible class="alert-#{alert['type'] || 'notice'}" role="alert"
+  button.close[type="button" data-dismiss="alert" aria-label="Close"]
+    span[aria-hidden="true"]
+      | ×
+  = alert['title'] ? "<strong>#{alert['title']}</strong>".html_safe : ''
+  = alert['message']

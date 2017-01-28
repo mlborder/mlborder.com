@@ -1,0 +1,44 @@
+- provide(:title, "About")
+ol.breadcrumb
+  li
+    = link_to 'Home', root_path
+  li.active
+    | About
+.page-header
+  h1
+    | About mlborder.com
+.row
+  .col-lg-8.col-md-8.col-sm-6
+    h3
+      | このサイトについて
+    p
+      | ミリオンのイベントボーダー情報を中心にデータを集めて公開しています。
+    h3
+      | ソースコード
+    p
+      | グラフの元となる
+      = link_to 'ボーダー情報を公開', 'https://github.com/mlborder/borderbot-dataset/tree/master/raw', target: '_blank'
+      | しています。また、このサイトのソースコードも
+      = link_to 'GitHub', 'https://github.com/mlborder/mlborder.com', target: '_blank'
+      | で公開しています。
+    h3
+      | オンラインショップ
+    p
+      | ミリオンボーダーbot関連の個人誌を
+      = link_to 'オンラインで頒布', 'http://mlborder.thebase.in/', target: '_blank'
+      | しています。ご興味のある方はどうぞ。
+    h3
+      | 要望・質問等
+    p
+      = link_to '@mlborder', 'https://twitter.com/mlborder', target: '_blank'
+      | までメンションもしくはDMいただければ、対応するかもしれません。
+  .col-lg-4.col-md-4.col-sm-6
+    div[style="max-width: 320px;"]
+      blockquote.twitter-tweet[lang="ja"]
+        p[lang="und" dir="ltr"]
+          a[href="http://t.co/r7FuqMlVrF"]
+            | pic.twitter.com/r7FuqMlVrF
+        | — ミリオンボーダーbot (@mlborder)
+        a[href="https://twitter.com/mlborder/status/632768505402626048"]
+          | 2015, 8月 16
+      script[async src="//platform.twitter.com/widgets.js" charset="utf-8"]

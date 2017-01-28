@@ -1,0 +1,101 @@
+- provide(:title, "@#{@user.screen_name}さんのアラーム")
+ol.breadcrumb
+  li
+    = link_to 'Home', root_path
+  li.active
+    | @
+    = @user.screen_name
+    | さんのアラーム
+.alert.alert-warning[role="alert"]
+  span.glyphicon.glyphicon-exclamation-sign[aria-hidden="true"]
+  span.sr-only
+    | Caution:
+  |  ボーダーアラーム管理機能はβ版です。正常動作は保証しません。
+.row
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          |  アラームを新規追加する
+      .panel-body
+        - if @event.in_session? && !@event.hhp_event?
+          .panel.panel-default
+            .panel-heading
+              |  以下の場合にお知らせする
+            .panel-body
+              = form_for @alarm, url: user_alarms_path(@user) do |f|
+                = f.hidden_field :event_id, value: @event.id
+                .form-group
+                  .row
+                    .col-md-8
+                      .input-group
+                        = f.select :rank, @latest_data[:borders].keys.sort, {selected: 1200}, class: 'text-right form-control'
+                        span.input-group-addon
+                          | 位
+                    .col-md-4
+                      .text-right[style="font-size: .9em; margin-top: 1em;"]
+                        |  のボーダーが
+                  .row
+                    .col-md-8
+                      .input-group
+                        = f.number_field :value, value: @latest_data[:borders][1200], class: 'text-right form-control'
+                        span.input-group-addon
+                          | pt
+                    .col-md-4
+                      .text-right[style="font-size: .9em; margin-top: 1em;"]
+                        |  を超えた時 
+                = f.submit '作成', class: 'btn btn-primary btn-block'
+          .panel.panel-default
+            .panel-heading
+              = link_to @event.name, event_path(@event)
+            table.table
+              tbody
+                - @latest_data[:borders].sort.each do |rank, point|
+                  tr
+                    th.text-right
+                      = rank
+                      | 位:
+                    td
+                      = number_with_delimiter point
+                      | pt
+            .panel-footer.text-right
+              span.glyphicon.glyphicon-time
+              = @latest_data[:time].in_time_zone('Asia/Tokyo').strf_mlevent
+              | 時点
+        - else
+          p
+            | 現在アラームを設定可能なイベントはありません。
+  .col-md-8
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          |  アラーム一覧
+      .panel-body
+        table.table
+          thead
+            tr
+              th
+                | #
+              th
+                | content
+              th
+                | status
+          tbody
+            - if @alarms.any?
+              - @alarms.each do |alarm|
+                tr
+                  td
+                    = alarm.id
+                  td
+                    b
+                      = alarm.rank
+                    | 位のボーダーが
+                    b
+                      = number_with_delimiter alarm.value.floor
+                    | ptを超えたらお知らせ
+                  td
+                    = alarm.status_valid? ? '有効' : '無効'
+            - else
+              tr
+                td.text-center[colspan="3"]
+                  | 設定がありません

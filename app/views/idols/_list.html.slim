@@ -1,0 +1,33 @@
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th
+        | #
+      th
+        | 属性
+      th
+        | アイドル名
+      th
+        | 誕生日
+      th
+        | 年齢
+      th
+        | 血液型
+  tbody
+    - idols.each do |idol|
+      tr
+        td
+          = idol.id
+        td
+          = idol.idol_type
+        td
+          | <span style="color: 
+          = idol.color
+          | ">■
+          = link_to idol.name, idol_path(idol)
+        td
+          = idol.birthday
+        td
+          = idol.age
+        td
+          = idol.blood_type

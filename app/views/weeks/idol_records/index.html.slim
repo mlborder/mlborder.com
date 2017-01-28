@@ -1,0 +1,52 @@
+- provide(:title, "週間アイドルランキング(#{@week.format_term})")
+ol.breadcrumb
+  li
+    = link_to 'Home', root_path
+  li
+    | Weeks
+  li
+    = @week.to_ymd
+  li
+    | Idol rankings
+.well.well-sm
+  .row
+    .col-lg-12.col-md-12.col-sm-12
+      = form_tag week_idol_records_path(week_id: 'search'), method: 'GET', enforce_utf8: false do
+        .input-group
+          = select_tag :search_week_id, options_from_collection_for_select(@weeks, :id, :format_term, selected: @week.id), include_blank: true, class: 'text-right form-control'
+          span.input-group-btn
+            = submit_tag '確認する', class: 'btn btn-primary', name: nil
+.page-header
+  h1
+    |  週間アイドルランキング(
+    = @week.format_term
+    | )
+    = render partial: 'layouts/shared/twitter_button'
+table.table.table-bordered
+  thead
+    tr
+      th
+        | 順位
+      th
+        | アイドル名
+      th
+        | ファン人数/週
+      th
+        | プロデューサー数
+      th
+        | P一人あたりの平均獲得ファン人数/週
+  tbody
+    - @idol_records.each do |record|
+      tr
+        td
+          = record.rank
+        td
+          span style="color: #{record.idol.color}"
+            |&nbsp;■
+          = link_to record.idol.name, idol_path(record.idol)
+        td
+          = number_with_delimiter record.fan_count
+        td
+          = number_with_delimiter record.player_count
+        td
+          = number_with_delimiter (record.fan_count.to_f / record.player_count.to_f).round

@@ -1,0 +1,14 @@
+.well.well-sm
+  .row
+    .col-lg-6.col-md-6.col-sm-6
+      = form_tag records_path, method: 'GET', enforce_utf8: false do
+        .input-group
+          = select_tag :event_id, options_from_collection_for_select(events, :id, :name), include_blank: true, class: 'text-right form-control'
+          span.input-group-btn
+            = submit_tag '確認する', class: 'btn btn-primary', name: nil
+    .col-lg-6.col-md-6.col-sm-6
+      = form_tag records_path, method: 'GET', enforce_utf8: false do
+        .input-group
+          = text_field_tag 'player_id', player.try(:id), placeholder: 'ミリオンのID(例: 1200000000000024530)', class: 'form-control'
+          span.input-group-btn
+            = submit_tag '確認する', class: 'btn btn-primary', name: nil

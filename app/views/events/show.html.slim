@@ -1,0 +1,97 @@
+- provide(:title, "『#{@event.name}』の詳細")
+ol.breadcrumb
+  li
+    = link_to 'Home', root_path
+  li
+    = link_to 'Events', events_path
+  li.active
+    = @event.name
+= render partial: 'layouts/shared/alert_box', locals: { alert: flash[:alert] } if flash[:alert]
+.panel.panel-default
+  .panel-heading
+    h3.panel-title
+      = event_status_badge @event
+      |  
+      = event_type_badge @event
+      |  
+      = @event.name
+      - if current_user.try(:role_admin?)
+        small[style="color: #666;"]
+          | [
+          = link_to 'Edit', edit_event_path(@event)
+          | ]
+  ul.list-group
+    li.list-group-item
+      span.glyphicon.glyphicon-calendar[aria-hidden="true"]
+      |  
+      = @event.format_period
+      |  ：
+      span.glyphicon.glyphicon-star[aria-hidden="true"]
+      |  
+      = prizes_text_for(@event.prizes.to_a)
+  .panel-body
+    .tabbable
+      .tab-content
+        .tabbable
+          ul.nav.nav-tabs.nav-justified
+            li.active
+              a[href="#1" data-toggle="tab"]
+                | ボーダー
+            - if @event.records_available?
+              li
+                a[href="#3" data-toggle="tab"]
+                  | 最終ランキング
+            li
+              a[href="#2" data-toggle="tab"]
+                | 最近の
+                = t("event_type.#{@event.event_type.sub('_event', '')}")
+                | イベント
+          .tab-content
+            #1.tab-pane.active
+              - if @event.has_border?
+                - if @event.hhp_event?
+                  .row
+                    .col-md-9
+                      #chartdiv.chart-area
+                    .col-md-3
+                      .row[style="margin-top: 1.5em;"]
+                        .col-md-12
+                          #legenddiv
+                  = am_charts_hhp @dataset
+                - else
+                  - if @event.ula_final?
+                    h3
+                      | チームランキング
+                    = react_component('MlborderEventBorderBox', url: event_borders_path(@event, team_rank: true), border_summary: @latest_data_team, chart_div_id: 'teamchart', legend_div_id: 'teamlegend', display_until: 0, title_map: ula_final_titles)
+                    hr
+                    h3
+                      | 通常ランキング
+                  = react_component('MlborderEventBorderBox', url: event_borders_path(@event), border_summary: @latest_data, chart_div_id: 'chartdiv', legend_div_id: 'legenddiv', display_until: (@event.imc_event? ? 1200 : 100))
+                  = render partial: 'am_charts'
+              - else
+                p
+                  | ボーダー情報がありません。
+            #2.tab-pane
+              - if @recent_events.any?
+                = render partial: 'list', locals: { events: @recent_events, current_event: @event, excludes: :event_type }
+              - else
+                p
+                  | 同一形式のイベントが見つかりません。
+                div[style="overflow: hidden; text-align: center; margin-top: 3em;"]
+                  iframe[src="https://rcm-fe.amazon-adsystem.com/e/cm?t=treby-22&o=9&p=15&l=st1&mode=music-jp&search=THE IDOL M@STER&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="468" height="240" border="0" frameborder="0" style="border:none;" scrolling="no"]
+            - if @event.records_available?
+              #3.tab-pane
+                - if @event.hhp_event?
+                  p[style="margin-top: 1em;"]
+                    | 『
+                    = @event.name
+                    | 』の最終ランキング情報を確認できます。
+                  = link_to '確認する', event_records_path(@event), class: 'btn btn-primary btn-block'
+                  div[style="overflow: hidden; text-align: center; margin-top: 3em;"]
+                    iframe[src="https://rcm-fe.amazon-adsystem.com/e/cm?t=treby-22&o=9&p=15&l=st1&mode=music-jp&search=THE IDOL M@STER&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="468" height="240" border="0" frameborder="0" style="border:none;" scrolling="no"]
+                - else
+                  = react_component('MlborderEventRecordBox', url: event_records_path(@event), recordsUrl: records_path)
+.well.well-sm
+  = render partial: 'layouts/shared/twitter_button'
+div[style="overflow: hidden; text-align: center; margin: 2em auto;"]
+  iframe[src="https://rcm-fe.amazon-adsystem.com/e/cm?t=treby-22&o=9&p=48&l=st1&mode=videogames-jp&search=THE IDOL M@STER&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="728" height="90" border="0" frameborder="0" style="border:none;" scrolling="no"]

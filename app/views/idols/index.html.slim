@@ -1,0 +1,9 @@
+- provide(:title, "アイドル一覧")
+ol.breadcrumb
+  li
+    = link_to 'Home', root_path
+  li.active
+    | Idols
+= render partial: 'list', locals: { idols: @idols }
+.well.well-sm
+  = render partial: 'layouts/shared/twitter_button'

@@ -1,11 +1,6 @@
 ja:
-  views:
-    pagination:
-      first: "&laquo;"
-      last: "&raquo;"
-      previous: "&lsaquo;"
-      next: "&rsaquo;"
-      truncate: "&hellip;"
+  idol: アイドル
+  event: イベント
   event_type:
     unknown: 不明
     raid:    合同フェス
@@ -23,3 +18,12 @@ ja:
     preparing: 準備中
     ongoing:   開催中
     finished:  終了
+  controllers:
+    root: ホーム
+    events: イベント
+    idols: アイドル
+  actions:
+    new: 新規作成
+    edit: 編集
+  glossary:
+    cast_vote_campaign: キャスト投票キャンペーン

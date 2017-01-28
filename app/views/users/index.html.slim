@@ -1,8 +1,6 @@
 ol.breadcrumb
-  li
-    = link_to 'Home', root_path
-  li.active
-    | Users
+  li = link_to t('controllers.root'), root_path
+  li.active Users
 table.table.table-striped.table-bordered
   thead
     tr

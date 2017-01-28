@@ -5,10 +5,8 @@
 - else
   - provide(:title, "イベント最終ランキング検索")
   ol.breadcrumb
-    li
-      = link_to 'Home', root_path
-    li.active
-      | Records
+    li = link_to t('controllers.root'), root_path
+    li.active Records
   .page-header
     h1
       | イベント最終ランキング検索

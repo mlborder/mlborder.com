@@ -1,22 +1,14 @@
 .jumbotron
   h1
-    | Welcome
+    = t('.welcome')
+  p
+    - if @latest_event && @latest_event.in_session?
+      = t('.on_going_now_html', name: @latest_event.name, url: event_path(@latest_event), end_at: @latest_event.ended_at.strf_mlevent)
+    - elsif @latest_event.preparing?
+      = t('.preparing_html', name: @latest_event.name, url: event_path(@latest_event), start_at: @latest_event.started_at.strf_mlevent)
+    - else
+      = t('.welcome_lead')
     = render partial: 'layouts/shared/twitter_button'
-  - if @latest_event && @latest_event.in_session?
-    p
-      | 現在『
-      = link_to @latest_event.name, event_path(@latest_event)
-      | 』が開催中です(
-      = @latest_event.ended_at.strf_mlevent
-      | まで)。
-  - elsif @latest_event.preparing?
-    p
-      = @latest_event.started_at.strf_mlevent
-      | より『
-      = link_to @latest_event.name, event_path(@latest_event)
-      | 』が開催予定です。
-  - else
-    p mlborder.comへようこそ
 .row
   .col-md-6
     .panel.panel-default

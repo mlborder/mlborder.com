@@ -1,13 +1,9 @@
 - provide(:title, "『#{@event.name}』の編集")
 ol.breadcrumb
-  li
-    = link_to 'Home', root_path
-  li
-    = link_to 'Events', events_path
-  li
-    = link_to @event.name, event_path(@event)
-  li.active
-    | Edit
+  li = link_to t('controllers.root'), root_path
+  li = link_to t('controllers.events'), events_path
+  li = link_to @event.name, event_path(@event)
+  li.active = t('actions.edit')
 .panel.panel-default
   .panel-body
     = render partial: 'form', locals: { event: @event }

@@ -1,9 +1,7 @@
 - provide(:title, "Alarm")
 ol.breadcrumb
-  li
-    = link_to 'Home', root_path
-  li.active
-    | Alarm
+  li = link_to t('controllers.root'), root_path
+  li.active Alarm
 .page-header
   h1
     | ボーダーアラーム機能β

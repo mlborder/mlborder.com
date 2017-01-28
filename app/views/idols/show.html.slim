@@ -1,21 +1,11 @@
-- provide(:title, "#{@idol.name}の詳細情報")
+- provide(:title, t('views.show.title_x', x: @idol.name))
 ol.breadcrumb
-  li
-    = link_to 'Home', root_path
-  li
-    = link_to 'Idols', idols_path
-  li
-    = @idol.name
+  li = link_to t('controllers.root'), root_path
+  li = link_to t('controllers.idols'), idols_path
+  li.active = @idol.name
 .page-header
-  |  <h1 style="color: 
-  = @idol.color
-  | "> 
-  = @idol.id
-  | . 
-  = @idol.name
-  | (
-  = @idol.idol_type
-  | )
+  h1 style="color: #{@idol.color}"
+    = "#{@idol.id}. #{@idol.name}(#{@idol.idol_type})"
 table.table.table-bordered
   tbody
     tr

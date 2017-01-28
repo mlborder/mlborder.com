@@ -1,0 +1,8 @@
+en:
+  events:
+    index:
+      title: Event Archives
+    records:
+      index:
+        ranking: Final Ranking
+        ranking_of_event: 'Final Ranking of %{event}'

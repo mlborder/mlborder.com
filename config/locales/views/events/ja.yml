@@ -1,0 +1,8 @@
+ja:
+  events:
+    index:
+      title: イベントアーカイブ
+    records:
+      index:
+        ranking: 最終ランキング
+        ranking_of_event: '%{event}の最終ランキング'

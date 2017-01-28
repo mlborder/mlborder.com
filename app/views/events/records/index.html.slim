@@ -1,21 +1,16 @@
 - event_title = @idol ? "#{@event.name}(#{@idol.name})" : @event.name
-- provide(:title, "『#{event_title}』の最終ランキング")
+- provide(:title, t('.ranking_of_event', event: event_title))
 ol.breadcrumb
-  li
-    = link_to 'Home', root_path
-  li
-    = link_to 'Events', events_path
-  li
-    = link_to event_title, event_path(@event)
-  li.active
-    | 最終ランキング
+  li = link_to t('controllers.root'), root_path
+  li = link_to t('controllers.events'), events_path
+  li = link_to @event.name, event_path(@event)
+  li.active = t('.ranking')
 .panel.panel-default
   .panel-heading
     h3.panel-title
-      = event_type_badge @event
-      |  
-      = @event.name
-      | の最終ランキング
+      = event_type_badge(@event)
+      | &nbsp;
+      = t('.ranking_of_event', event: @event.name)
   ul.list-group
     li.list-group-item
       span.glyphicon.glyphicon-calendar[aria-hidden="true"]

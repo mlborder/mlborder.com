@@ -1,0 +1,8 @@
+ja:
+  views:
+    index:
+      title_x: '%{x}一覧'
+    show:
+      title_x: '%{x}の詳細'
+    new:
+      title_x: '%{x}の新規作成'

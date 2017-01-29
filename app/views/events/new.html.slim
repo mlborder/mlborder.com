@@ -1,11 +1,8 @@
-- provide(:title, 'イベントの新規作成')
+- provide(:title, t('views.new.title_x', x: t('event')))
 ol.breadcrumb
-  li
-    = link_to 'Home', root_path
-  li
-    = link_to 'Events', events_path
-  li.active
-    | New
+  li = link_to t('controllers.root'), root_path
+  li = link_to t('controllers.events'), events_path
+  li.active = t('actions.new')
 .panel.panel-default
   .panel-body
     = render partial: 'form', locals: { event: @event }

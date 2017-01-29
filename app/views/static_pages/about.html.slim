@@ -1,9 +1,7 @@
 - provide(:title, "About")
 ol.breadcrumb
-  li
-    = link_to 'Home', root_path
-  li.active
-    | About
+  li = link_to t('controllers.root'), root_path
+  li.active About
 .page-header
   h1
     | About mlborder.com

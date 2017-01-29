@@ -1,0 +1,7 @@
+ja:
+  dramacd_themes:
+    index:
+      vote_status_on: '%{time}時点の得票状況'
+      vote_status_notice: ※()内は1時間前との比較
+      vote_for_idol_line: '%{idol} : %{count}票'
+      vote_diff: '(+%{diff}票)'

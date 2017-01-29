@@ -1,0 +1,8 @@
+en:
+  views:
+    index:
+      title_x: '%{x} Index'
+    show:
+      title_x: '%{x} Detail'
+    new:
+      title_x: 'New %{x}'

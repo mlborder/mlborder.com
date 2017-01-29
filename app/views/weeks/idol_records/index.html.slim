@@ -1,13 +1,9 @@
 - provide(:title, "週間アイドルランキング(#{@week.format_term})")
 ol.breadcrumb
-  li
-    = link_to 'Home', root_path
-  li
-    | Weeks
-  li
-    = @week.to_ymd
-  li
-    | Idol rankings
+  li = link_to t('controllers.root'), root_path
+  li Weeks
+  li = @week.to_ymd
+  li.active Idol rankings
 .well.well-sm
   .row
     .col-lg-12.col-md-12.col-sm-12

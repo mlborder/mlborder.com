@@ -1,15 +1,13 @@
-- provide(:title, "キャスト投票キャンペーン")
+- provide(:title, t('glossary.cast_vote_campaign'))
 ol.breadcrumb
-  li = link_to 'Home', root_path
-  li.active
-    | キャスト投票キャンペーン
+  li = link_to t('controllers.root'), root_path
+  li.active = t('glossary.cast_vote_campaign')
 .panel.panel-default
   .panel-heading
     h3.panel-title
-      = @latest_updated.strf_mlevent
-      | 時点の得票状況  
-      small
-        | ※()内は1時間前との比較
+      = t('.vote_status_on', time: @latest_updated.strf_mlevent)
+      | &nbsp;
+      small = t('.vote_status_notice')
   .panel-body
     .tabbable
       .tab-content
@@ -40,9 +38,6 @@ ol.breadcrumb
                                 span.fa.fa-star aria-hidden="true"
                             - previous_vote_count = previous_vote_hash[val.first.to_i]
                             - latest_vote_count = val.last
-                            = idol.name
-                            | :
-                            = number_with_delimiter val.last
-                            | 票
+                            = t('.vote_for_idol_line', idol: idol.name, count: number_with_delimiter(val.last))
                             - if previous_vote_count.try(:<, latest_vote_count)
-                              |  (+#{val.last - previous_vote_hash[val.first.to_i]}票)
+                              = t('.vote_diff', diff: val.last - previous_vote_hash[val.first.to_i])

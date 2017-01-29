@@ -1,9 +1,7 @@
-- provide(:title, "アイドル一覧")
+- provide(:title, t('views.index.title_x', x: t('idol')))
 ol.breadcrumb
-  li
-    = link_to 'Home', root_path
-  li.active
-    | Idols
+  li = link_to t('controllers.root'), root_path
+  li.active = t('controllers.idols')
 = render partial: 'list', locals: { idols: @idols }
 .well.well-sm
   = render partial: 'layouts/shared/twitter_button'

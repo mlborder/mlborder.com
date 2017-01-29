@@ -1,0 +1,7 @@
+ja:
+  static_pages:
+    home:
+      welcome: ようこそ
+      welcome_lead: mlborder.comへようこそ
+      on_going_now_html: '現在『<a href="%{url}">%{name}</a>』が開催中です(%{end_at}まで)。'
+      preparing_html: '%{start_at}より『<a href="%{url}">%{name}</a>』が開催予定です。'

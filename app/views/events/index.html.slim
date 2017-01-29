@@ -1,9 +1,7 @@
-- provide(:title, "イベントアーカイブ")
+- provide(:title, t('.title'))
 ol.breadcrumb
-  li
-    = link_to 'Home', root_path
-  li.active
-    | Events
+  li = link_to t('controllers.root'), root_path
+  li = t('controllers.events')
 div style="overflow: auto"
   = render partial: 'list', locals: { events: @events }
 .well.well-sm

@@ -4,7 +4,8 @@ class Users::AlarmsController < ApplicationController
     (redirect_to alarm_path and return) unless current_user
     (redirect_to user_alarms_path(@user) and return) if @user.id != current_user.id
 
-    @alarms = @user.alarms
+    @alarms_by_events = @user.event_grouped_alarms
+
     @alarm = Alarm.new
     @event = Event.border_available.last
     if @event.in_session?

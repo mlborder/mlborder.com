@@ -27,3 +27,6 @@ ja:
     edit: 編集
   glossary:
     cast_vote_campaign: キャスト投票キャンペーン
+  status:
+    valid: 有効
+    invalid: 無効

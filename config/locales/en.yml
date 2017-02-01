@@ -27,3 +27,6 @@ en:
     edit: Edit
   glossary:
     cast_vote_campaign: Cast Vote Campaign
+  status:
+    valid: Valid
+    invalid: Invalid

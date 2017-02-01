@@ -17,6 +17,10 @@ class User < ApplicationRecord
 
   enum role: %i(role_none role_admin)
 
+  def event_grouped_alarms
+    alarms.order(id: :desc).includes(:event).group_by(&:event)
+  end
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]

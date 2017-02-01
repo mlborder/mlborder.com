@@ -11,6 +11,8 @@ table.table.table-striped.table-bordered
       th
         | Name
       th
+        | Alarms
+      th
         | Role
       th
         | Created at
@@ -26,6 +28,8 @@ table.table.table-striped.table-bordered
           | (
           = link_to "@#{user.screen_name}", "https://twitter.com/#{user.screen_name}", target: '_blank'
           | )
+        td
+          = link_to user.alarms.count, user_alarms_path(user)
         td
           = user.role
         td

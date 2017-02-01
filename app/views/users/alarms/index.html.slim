@@ -64,34 +64,28 @@ ol.breadcrumb
   .col-md-8
     .panel.panel-default
       .panel-heading
-        h3.panel-title
-          |  アラーム一覧
+        h3.panel-title = t('.alarm_list')
       .panel-body
-        table.table
-          thead
-            tr
-              th
-                | #
-              th
-                | content
-              th
-                | status
-          tbody
-            - if @alarms.any?
-              - @alarms.each do |alarm|
+        table.table.table-bordered.table-striped
+          - if @alarms_by_events.any?
+            - @alarms_by_events.each do |event, alarms|
+              thead
                 tr
-                  td
-                    = alarm.id
-                  td
-                    b
-                      = alarm.rank
-                    | 位のボーダーが
-                    b
-                      = number_with_delimiter alarm.value.floor
-                    | ptを超えたらお知らせ
-                  td
-                    = alarm.status_valid? ? '有効' : '無効'
-            - else
+                  td colspan=3
+                    = event_type_badge event
+                    | &nbsp;
+                    = link_to event.name, event_path(event)
+                    | &nbsp;(
+                    = prizes_text_for(@event.prizes.to_a)
+                    | )
+              tbody
+                - alarms.each do |alarm|
+                  tr
+                    td = alarm.id
+                    td = t('.setting_description_html', rank: alarm.rank, point: number_with_delimiter(alarm.value.floor))
+                    td = alarm.status_valid? ? t('status.valid') : t('status.invalid')
+          - else
+            thead
               tr
-                td.text-center[colspan="3"]
+                td.text-center colspan=3
                   | 設定がありません

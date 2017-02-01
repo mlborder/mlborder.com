@@ -14,7 +14,7 @@ ol.breadcrumb
   ul.list-group
     li.list-group-item
       span.glyphicon.glyphicon-calendar[aria-hidden="true"]
-      |  
+      | &nbsp;
       = @event.format_period
   .panel-body
     - unless @event.hhp_event?
@@ -23,6 +23,6 @@ ol.breadcrumb
         = link_to "301位〜", event_records_path(@event, page: 7), class: 'btn btn-default'
         = link_to "501位〜", event_records_path(@event, page: 11), class: 'btn btn-default'
         = link_to "1201位〜", event_records_path(@event, page: 25), class: 'btn btn-default'
-      = render partial: 'pager', locals: { event: @event, idol: @idol, page: @page_num, has_next: @records.any? }
-      = render partial: 'users', locals: { records: @records }
-      = render partial: 'pager', locals: { event: @event, idol: @idol, page: @page_num, has_next: @records.any? }
+    = render partial: 'pager', locals: { event: @event, idol: @idol, page: @page_num, has_next: @records.any? }
+    = render partial: 'users', locals: { records: @records }
+    = render partial: 'pager', locals: { event: @event, idol: @idol, page: @page_num, has_next: @records.any? }

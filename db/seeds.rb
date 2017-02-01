@@ -1256,5 +1256,13 @@ Event.create([
     prizes_attributes: [
       { idol_id: 37 }, # 横山奈緒
     ]
+  },
+  { name: '奮闘！はじめてのアルバイト',
+    event_type: 'lesson_event',
+    started_at: '2017-01-25 12:00:00 +0900',
+    ended_at: '2017-02-01 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 7 }, # 水瀬伊織
+    ]
   }
 ])

@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  include AuthActions
   before_action :authenticate_admin!, only: %i(new create edit update)
   before_action :set_event, only: %i(edit update default_series_name)
 

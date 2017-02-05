@@ -1,0 +1,9 @@
+- provide(:title, t('views.edit.title_x', x: t('controllers.users')))
+ol.breadcrumb
+  li = link_to t('controllers.root'), root_path
+  li = link_to t('controllers.users'), users_path
+  li = link_to @user.screen_name, user_path(@user)
+  li.active = t('actions.edit')
+.panel.panel-default
+  .panel-body
+    = render partial: 'form', locals: { user: @user }

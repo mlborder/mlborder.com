@@ -2,5 +2,6 @@ ja:
   users:
     alarms:
       index:
+        alarms: アラーム
         alarm_list: アラーム一覧
         setting_description_html: '<b>%{rank}</b>位のボーダーが<b>%{point}</b>ptを超えたらお知らせ'

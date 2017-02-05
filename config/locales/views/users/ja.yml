@@ -1,0 +1,11 @@
+ja:
+  users:
+    show:
+      profile: プロフィール
+      screen_name: Twitterのユーザー名
+      name: プロデューサー名
+      alarm_count: アラームの数
+      check_and_edit_alarms: アラームの確認と編集
+      edit_profile: プロフィールの編集
+    update:
+      success: プロフィールの更新に成功しました

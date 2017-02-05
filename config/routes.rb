@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :idol_records, module: :weeks, only: :index
   end
 
-  resources :users, only: [:index] do
+  resources :users, expect: %i(new create destroy) do
     resources :alarms, module: :users, except: [:new, :edit]
   end
 

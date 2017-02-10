@@ -1264,5 +1264,13 @@ Event.create([
     prizes_attributes: [
       { idol_id: 7 }, # 水瀬伊織
     ]
+  },
+  { name: '夢の国！？ショコラティエの大冒険',
+    event_type: 'battle_event',
+    started_at: '2017-02-03 12:00:00 +0900',
+    ended_at: '2017-02-12 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 24 }, # 望月杏奈
+    ]
   }
 ])

@@ -111,7 +111,7 @@ GEM
       sass (>= 3.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    hashie (3.5.1)
+    hashie (3.4.6)
     her (0.8.4)
       activemodel (>= 3.0.0, <= 6.0.0)
       activesupport (>= 3.0.0, <= 6.0.0)
@@ -319,6 +319,7 @@ DEPENDENCIES
   database_rewinder
   factory_girl_rails
   font-awesome-sass
+  hashie (~> 3.4.6)
   her
   i18n-tasks
   influxdb

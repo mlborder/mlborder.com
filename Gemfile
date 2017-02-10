@@ -32,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'hashie', '~> 3.4.6'
 
 gem 'react-rails'
 gem 'bootstrap-sass'

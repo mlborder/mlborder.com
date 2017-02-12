@@ -14,6 +14,7 @@
 
 class User < ApplicationRecord
   has_many :alarms
+  has_one :profile, class_name: 'User::Profile'
 
   enum role: %i(role_none role_admin)
 

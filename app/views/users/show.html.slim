@@ -2,7 +2,7 @@
 ol.breadcrumb
   li = link_to t('controllers.root'), root_path
   li = link_to t('controllers.users'), users_path
-  li.active = "@#{@user.screen_name}"
+  li.active = @user.screen_name
 = render partial: 'layouts/shared/alert_box', locals: { alert: flash[:alert] } if flash[:alert]
 .panel.panel-default
   .panel-heading

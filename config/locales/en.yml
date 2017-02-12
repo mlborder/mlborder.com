@@ -31,4 +31,6 @@ en:
   status:
     valid: Valid
     invalid: Invalid
+  login: Login
+  logout: Logout
   login_succeeded: Login Succeeded

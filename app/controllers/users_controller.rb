@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @users = User.includes(:alarms).all
   end
 
+  def edit
+    @user.build_profile unless @user.profile
+  end
+
   def update
     if @user.update(user_params)
       redirect_to user_path(@user), flash: { alert: { type: 'success', message: t('.success') } }
@@ -17,7 +21,15 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.fetch(:user).permit(:name)
+    params.fetch(:user).permit(
+      :name,
+      profile_attributes: [
+        :id,
+        :player_id,
+        :produce_idol_id,
+        :description
+      ]
+    )
   end
 
   def set_user

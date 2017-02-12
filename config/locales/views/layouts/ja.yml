@@ -1,0 +1,10 @@
+ja:
+  layouts:
+    application:
+      events: イベントボーダー
+      weekly_records: 週間ランキング
+      event_records: イベントランキング
+
+      profile: プロフィール
+      alarms: アラーム一覧
+      new_event: 新規イベント

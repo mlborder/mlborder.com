@@ -1,0 +1,10 @@
+en:
+  layouts:
+    application:
+      events: Events
+      weekly_records: Weekly Ranking
+      event_records: Event Ranking
+
+      profile: Profile
+      alarms: Alarms
+      new_event: New Event

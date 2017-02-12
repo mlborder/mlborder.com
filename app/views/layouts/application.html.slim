@@ -30,37 +30,45 @@ html
             li
               = link_to events_path do
                 i.fa.fa-line-chart
-                |  Events 
+                = t('.events')
             li
               = link_to week_idol_records_path(week_id: 'latest') do
                 i.fa.fa-star
-                |  Ranking 
+                = t('.weekly_records')
             li
               = link_to records_path do
-                span.glyphicon.glyphicon-search
-                |  Records 
+                i.fa.fa-search
+                = t('.event_records')
             - if current_user
               li
                 = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button', aria: { haspopup: true, expanded: false } do
-                  span.glyphicon.glyphicon-user
-                  |  @
+                  i.fa.fa-user-circle-o
                   = current_user.screen_name
-                  |  
                   span.caret
-                  ul.dropdown-menu
+                ul.dropdown-menu
+                  li
+                    = link_to user_path(current_user) do
+                      i.fa.fa-address-card-o
+                      = t('.profile')
+                  li
+                    = link_to user_alarms_path(current_user) do
+                      i.fa.fa-bell
+                      = t('.alarms')
+                  - if current_user.role_admin?
                     li
-                      = link_to 'Alarms', user_alarms_path(current_user)
-                    - if current_user.role_admin?
-                      li
-                        = link_to 'New Event', new_event_path
-                      li.divider[role="separator"]
-                      li
-                        = link_to 'Logout', logout_path
+                      = link_to new_event_path do
+                        i.fa.fa-plus
+                        = t('.new_event')
+                  li.divider[role="separator"]
+                  li
+                    = link_to logout_path do
+                      i.fa.fa-sign-out
+                      = t('logout')
             - else
               li
                 = link_to '/auth/twitter' do
-                  span.glyphicon.glyphicon-log-in
-                  |  Login
+                  i.fa.fa-sign-in
+                  = t('login')
     .container-fluid
       = yield
     footer.footer.text-center

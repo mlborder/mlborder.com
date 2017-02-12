@@ -31,4 +31,6 @@ ja:
   status:
     valid: 有効
     invalid: 無効
+  login: ログイン
+  logout: ログアウト
   login_succeeded: ログインに成功しました

@@ -14,6 +14,9 @@
 
 class User < ApplicationRecord
   has_many :alarms
+  has_one :profile, class_name: 'User::Profile'
+  accepts_nested_attributes_for :profile
+  delegate :player_id, :produce_idol, :description, to: :profile, allow_nil: true
 
   enum role: %i(role_none role_admin)
 

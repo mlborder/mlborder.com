@@ -5,6 +5,9 @@ en:
       screen_name: Twitter screen name
       name: Producer name
       alarm_count: Alarm count
+      player_id: MillionLive!! ID
+      produce_idol: Produce Idol
+      description: Comment
       check_and_edit_alarms: Check alarms and edit.
       edit_profile: Edit profile
     update:

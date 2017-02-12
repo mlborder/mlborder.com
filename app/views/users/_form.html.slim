@@ -3,6 +3,19 @@
     = f.label :name, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_field :name, class: 'form-control'
+  = f.fields_for :profile do |pf|
+    .form-group
+      = pf.label :player_id, class: 'col-sm-2 control-label'
+      .col-sm-10
+        = pf.text_field :player_id, class: 'form-control'
+    .form-group
+      = pf.label :produce_idol, class: 'col-sm-2 control-label'
+      .col-sm-10
+        = pf.select :produce_idol_id, options_from_collection_for_select(Idol.all, :id, :name, pf.object.produce_idol_id), { include_blank: true }, class: 'form-control'
+    .form-group
+      = pf.label :description, class: 'col-sm-2 control-label'
+      .col-sm-10
+        = pf.text_area :description, class: 'form-control'
   .row
     .col-sm-2
     .col-sm-10

@@ -5,6 +5,9 @@ ja:
       screen_name: Twitterのユーザー名
       name: プロデューサー名
       alarm_count: アラームの数
+      player_id: ミリオンライブのID
+      produce_idol: 担当アイドル
+      description: コメント
       check_and_edit_alarms: アラームの確認と編集
       edit_profile: プロフィールの編集
     update:

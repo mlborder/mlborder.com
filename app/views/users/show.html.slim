@@ -18,6 +18,19 @@ ol.breadcrumb
       tr
         th = t('.alarm_count')
         td = link_to @user.alarms.count, user_alarms_path(@user)
+      tr
+        th = t('.player_id')
+        td
+          - if @user.player_id
+            = link_to @user.player_id, records_path(player_id: @user.player_id)
+      tr
+        th = t('.produce_idol')
+        td
+          - if @user.produce_idol
+            = link_to @user.produce_idol.name, idol_path(@user.produce_idol)
+      tr
+        th = t('.description')
+        td = @user.description
 
 = link_to t('.check_and_edit_alarms'), user_alarms_path(@user), class: 'btn btn-block btn-primary'
 = link_to t('.edit_profile'), edit_user_path(@user), class: 'btn btn-block btn-default'

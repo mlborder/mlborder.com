@@ -17,4 +17,7 @@
 #
 
 class User::Profile < ApplicationRecord
+  def produce_idol
+    Idol.find(self.produce_idol_id)
+  end
 end

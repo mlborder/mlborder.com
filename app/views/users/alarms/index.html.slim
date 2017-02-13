@@ -2,7 +2,7 @@
 ol.breadcrumb
   li = link_to t('controllers.root'), root_path
   li = link_to t('controllers.users'), users_path
-  li = link_to "@#{@user.screen_name}", user_path(@user)
+  li = link_to @user.screen_name, user_path(@user)
   li.active = t('.alarms')
 .alert.alert-warning[role="alert"]
   span.glyphicon.glyphicon-exclamation-sign[aria-hidden="true"]

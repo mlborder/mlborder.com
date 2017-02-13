@@ -1,0 +1,14 @@
+div
+  ul.pager
+    - if page > 1
+      li.previous
+        = link_to week_player_records_path(week.to_ymd, idol_id: idol&.id, page: page - 1) do
+          span[aria-hidden="true"]
+            | ←
+          |  前へ
+    - if has_next
+      li.next
+        = link_to week_player_records_path(week.to_ymd, idol_id: idol&.id, page: page + 1) do
+          |  次へ
+          span[aria-hidden="true"]
+            | →

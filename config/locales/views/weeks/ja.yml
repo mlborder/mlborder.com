@@ -1,0 +1,16 @@
+ja:
+  weeks:
+    idol_records:
+      index:
+        title_x: "週間アイドルランキング(%{x})"
+    player_records:
+      index:
+        title: 週間プロデューサーランキング
+        title_x_y: "週間プロデューサーランキング(%{x} - %{y})"
+        rank: 順位
+        player_name: プロデューサー名
+        fan_count: ファン人数
+        all: 全体
+        target_week: 対象の週
+        idol: アイドル
+        submit: 確認する

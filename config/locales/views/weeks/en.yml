@@ -1,0 +1,16 @@
+en:
+  weeks:
+    idol_records:
+      index:
+        title_x: "Weekly Idol Ranking (%{x})"
+    player_records:
+      index:
+        title: Weekly Player Ranking
+        title_x_y: "Weekly Player Ranking(%{x} - %{y})"
+        rank: Rank
+        player_name: Producer Name
+        fan_count: Fan Count
+        all: All
+        target_week: Target Week
+        idol: Idol
+        submit: Submit

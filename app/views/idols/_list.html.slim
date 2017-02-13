@@ -21,9 +21,9 @@ table.table.table-striped.table-bordered
         td
           = idol.idol_type
         td
-          | <span style="color: 
-          = idol.color
-          | ">■
+          span style="color: #{idol.color}"
+            i.fa.fa-square
+            | &nbsp;
           = link_to idol.name, idol_path(idol)
         td
           = idol.birthday

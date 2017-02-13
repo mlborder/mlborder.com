@@ -21,6 +21,8 @@ en:
   controllers:
     root: Home
     events: Events
+    weeks: Weeks
+    idol_records: Idol Ranking
     idols: Idols
     users: Users
   actions:

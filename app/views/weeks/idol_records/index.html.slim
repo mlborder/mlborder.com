@@ -1,9 +1,9 @@
 - provide(:title, "週間アイドルランキング(#{@week.format_term})")
 ol.breadcrumb
   li = link_to t('controllers.root'), root_path
-  li Weeks
+  li = t('controllers.weeks')
   li = @week.to_ymd
-  li.active Idol rankings
+  li.active = t('controllers.idol_records')
 .well.well-sm
   .row
     .col-lg-12.col-md-12.col-sm-12
@@ -18,7 +18,7 @@ ol.breadcrumb
     = @week.format_term
     | )
     = render partial: 'layouts/shared/twitter_button'
-table.table.table-bordered
+table.table.table-bordered.table-striped
   thead
     tr
       th

@@ -1,4 +1,4 @@
-- provide(:title, "週間アイドルランキング(#{@week.format_term})")
+- provide(:title, t('.title_x', x: @week.format_term))
 ol.breadcrumb
   li = link_to t('controllers.root'), root_path
   li = t('controllers.weeks')
@@ -14,9 +14,7 @@ ol.breadcrumb
             = submit_tag '確認する', class: 'btn btn-primary', name: nil
 .page-header
   h1
-    |  週間アイドルランキング(
-    = @week.format_term
-    | )
+    = t('.title_x', x: @week.format_term)
     = render partial: 'layouts/shared/twitter_button'
 table.table.table-bordered.table-striped
   thead
@@ -38,8 +36,12 @@ table.table.table-bordered.table-striped
           = record.rank
         td
           span style="color: #{record.idol.color}"
-            |&nbsp;■
-          = link_to record.idol.name, idol_path(record.idol)
+            i.fa.fa-square
+            | &nbsp;
+          = link_to record.idol.name, week_player_records_path(idol_id: record.idol.id)
+          | &nbsp;
+          = link_to idol_path(record.idol) do
+            i.fa.fa-question-circle
         td
           = number_with_delimiter record.fan_count
         td

@@ -1,0 +1,42 @@
+- provide(:title, t('.title_x_y', x: @week.format_term, y: @idol ? @idol.name : t('.all')))
+ol.breadcrumb
+  li = link_to t('controllers.root'), root_path
+  li = t('controllers.weeks')
+  li = @week.to_ymd
+  li.active
+    = t('controllers.player_records')
+    - if @idol
+      = "(#{@idol.name})"
+.well.well-sm
+  = form_tag search_week_player_records_path, method: 'GET', class: 'form-inline', enforce_utf8: false do
+    .form-group
+      = label_tag :next_week_id, t('.target_week'), class: 'sr-only'
+      = select_tag :next_week_id, options_from_collection_for_select(@weeks, :to_ymd, :format_term, selected: @week.to_ymd), include_blank: true, class: 'text-right form-control'
+    .form-group
+      = label_tag :idol_id, t('.idol'), class: 'sr-only'
+      = select_tag :idol_id, options_from_collection_for_select(Idol.all, :id, :name, selected: @idol&.id), include_blank: t('.all'), class: 'text-right form-control'
+    = submit_tag t('.submit'), class: 'btn btn-primary', name: nil
+.page-header
+  h1
+    = t('.title')
+    small
+      = @week.format_term
+      | &nbsp;-&nbsp;
+      = @idol ? @idol.name : t('.all')
+
+    = render partial: 'layouts/shared/twitter_button'
+
+= render partial: 'pager', locals: { week: @week, idol: @idol, page: @page_num, has_next: @player_records.any? }
+table.table.table-bordered.table-striped
+  thead
+    tr
+      th = t('.rank')
+      th = t('.player_name')
+      th = t('.fan_count')
+  tbody
+    - @player_records.each do |record|
+      tr
+        td = record.rank
+        td = link_to record.name, records_path(player_id: record.player_id)
+        td = number_with_delimiter record.fan_count
+= render partial: 'pager', locals: { week: @week, idol: @idol, page: @page_num, has_next: @player_records.any? }

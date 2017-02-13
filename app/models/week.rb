@@ -25,6 +25,11 @@ class Week < ActiveHash::Base
     IdolRecord.get("weeks/#{self.id}/idol_records?#{URI.encode_www_form(par)}")
   end
 
+  def player_records(page_num = 0, idol_id: nil)
+    par = PlayerRecord.page2offlim(page_num).merge({idol_id: idol_id}).compact
+    PlayerRecord.get("weeks/#{self.id}/player_records?#{URI.encode_www_form(par)}")
+  end
+
   def to_ymd
     self.start_date.strftime('%Y%m%d')
   end

@@ -15,8 +15,11 @@ Rails.application.routes.draw do
   end
   resources :dramacd_themes, only: [:index]
   resources :idols, only: [:index, :show]
-  resources :weeks, only: [] do
-    resources :idol_records, module: :weeks, only: :index
+  resources :weeks, module: :weeks, only: [] do
+    resources :idol_records, only: :index
+    resources :player_records, only: :index do
+      get 'search', on: :collection
+    end
   end
 
   resources :users, expect: %i(new create destroy) do

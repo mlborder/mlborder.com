@@ -1,0 +1,6 @@
+en:
+  records:
+    index:
+      title: Producer Search
+      description_html: "Check <a href='http://imas.gree-apps.net/app/index.php/friend/id_search' target='_blank'>your MillionLive!! ID</a>"
+      player_title: "Event Ranking History - %{player}"

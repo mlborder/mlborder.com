@@ -21,6 +21,7 @@ ja:
   controllers:
     root: ホーム
     events: イベント
+    records: プロデューサー検索
     weeks: 週間
     idol_records: アイドルランキング
     player_records: プロデューサーランキング

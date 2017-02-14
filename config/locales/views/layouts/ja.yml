@@ -3,7 +3,7 @@ ja:
     application:
       events: イベントボーダー
       weekly_records: 週間ランキング
-      event_records: イベントランキング
+      event_records: プロデューサー検索
 
       profile: プロフィール
       alarms: アラーム一覧

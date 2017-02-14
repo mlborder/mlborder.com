@@ -3,7 +3,7 @@ en:
     application:
       events: Events
       weekly_records: Weekly Ranking
-      event_records: Event Ranking
+      event_records: Producer Search
 
       profile: Profile
       alarms: Alarms

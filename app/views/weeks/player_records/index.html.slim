@@ -6,25 +6,29 @@ ol.breadcrumb
   li.active
     = t('controllers.player_records')
     - if @idol
-      = "(#{@idol.name})"
-.well.well-sm
-  = form_tag search_week_player_records_path, method: 'GET', class: 'form-inline', enforce_utf8: false do
-    .form-group
-      = label_tag :next_week_id, t('.target_week'), class: 'sr-only'
-      = select_tag :next_week_id, options_from_collection_for_select(@weeks, :to_ymd, :format_term, selected: @week.to_ymd), include_blank: true, class: 'text-right form-control'
-    .form-group
-      = label_tag :idol_id, t('.idol'), class: 'sr-only'
-      = select_tag :idol_id, options_from_collection_for_select(Idol.all, :id, :name, selected: @idol&.id), include_blank: t('.all'), class: 'text-right form-control'
-    = submit_tag t('.submit'), class: 'btn btn-primary', name: nil
+      = " - #{@idol.name}"
 .page-header
-  h1
-    = t('.title')
-    small
-      = @week.format_term
-      | &nbsp;-&nbsp;
-      = @idol ? @idol.name : t('.all')
+  .row
+    .col-md-8
+      h2
+        = t('.title')
+        small
+          = @week.format_term
+          | &nbsp;-&nbsp;
+          = @idol ? @idol.name : t('.all')
+    .col-md-4.header-select
+      = form_tag search_week_player_records_path, method: 'GET', class: 'form-inline', enforce_utf8: false do
+        .input-group
+          = label_tag :next_week_id, t('.target_week'), class: 'sr-only'
+          = select_tag :next_week_id, options_from_collection_for_select(@weeks, :to_ymd, :format_term, selected: @week.to_ymd), include_blank: true, class: 'text-right form-control'
+        .input-group
+          = label_tag :idol_id, t('.idol'), class: 'sr-only'
+          = select_tag :idol_id, options_from_collection_for_select(Idol.all, :id, :name, selected: @idol&.id), include_blank: t('.all'), class: 'text-right form-control'
+          span.input-group-btn
+            = submit_tag t('.submit'), class: 'btn btn-primary', name: nil
 
-    = render partial: 'layouts/shared/twitter_button'
+p
+  = render partial: 'layouts/shared/twitter_button'
 
 = render partial: 'pager', locals: { week: @week, idol: @idol, page: @page_num, has_next: @player_records.any? }
 table.table.table-bordered.table-striped

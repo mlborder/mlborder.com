@@ -1,16 +1,22 @@
 en:
   weeks:
+    common: &common
+      target_week: Target Week
+      rank: Rank
+      player_name: Producer Name
+      fan_count: Fan Count
+      all: All
+      idol: Idol
+      submit: Submit
     idol_records:
       index:
-        title_x: "Weekly Idol Ranking (%{x})"
+        <<: *common
+        title: Weekly Idol Ranking
+        title_x: "Weekly Idol Ranking - %{x}"
+        player_count: Producer count
+        fan_count_per_player: Fan count / Producer count
     player_records:
       index:
+        <<: *common
         title: Weekly Player Ranking
-        title_x_y: "Weekly Player Ranking(%{x} - %{y})"
-        rank: Rank
-        player_name: Producer Name
-        fan_count: Fan Count
-        all: All
-        target_week: Target Week
-        idol: Idol
-        submit: Submit
+        title_x_y: "Weekly Player Ranking - %{x} - %{y}"

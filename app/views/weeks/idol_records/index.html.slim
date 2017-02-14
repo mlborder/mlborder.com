@@ -4,31 +4,30 @@ ol.breadcrumb
   li = t('controllers.weeks')
   li = @week.to_ymd
   li.active = t('controllers.idol_records')
-.well.well-sm
+
+.page-header
   .row
-    .col-lg-12.col-md-12.col-sm-12
+    .col-md-8
+      h2
+        = t('.title')
+        small
+          = @week.format_term
+    .col-md-4.header-select
       = form_tag week_idol_records_path(week_id: 'search'), method: 'GET', enforce_utf8: false do
         .input-group
           = select_tag :search_week_id, options_from_collection_for_select(@weeks, :id, :format_term, selected: @week.id), include_blank: true, class: 'text-right form-control'
           span.input-group-btn
-            = submit_tag '確認する', class: 'btn btn-primary', name: nil
-.page-header
-  h1
-    = t('.title_x', x: @week.format_term)
-    = render partial: 'layouts/shared/twitter_button'
+            = submit_tag t('.submit'), class: 'btn btn-primary', name: nil
+p
+  = render partial: 'layouts/shared/twitter_button'
 table.table.table-bordered.table-striped
   thead
     tr
-      th
-        | 順位
-      th
-        | アイドル名
-      th
-        | ファン人数/週
-      th
-        | プロデューサー数
-      th
-        | P一人あたりの平均獲得ファン人数/週
+      th = t('.rank')
+      th = t('.idol')
+      th = t('.fan_count')
+      th = t('.player_count')
+      th = t('.fan_count_per_player')
   tbody
     - @idol_records.each do |record|
       tr

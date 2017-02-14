@@ -37,6 +37,8 @@ class UsersController < ApplicationController
   end
 
   def authenticate_user!
+    return if current_user.role_admin?
+
     if current_user.nil? || !is_current_user?(@user)
       redirect_to root_path
     end

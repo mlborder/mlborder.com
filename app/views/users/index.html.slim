@@ -7,19 +7,26 @@ table.table.table-striped.table-bordered
     tr
       th #
       th UID
+      th Screen name
+      th Million
       th Name
+      th Produce
       th Alarms
       th Role
       th Created at
+      th Updated at
   tbody
     - @users.each do |user|
       tr
         td = user.id
         td = user.uid
+        td = link_to user.screen_name, "https://twitter.com/#{user.screen_name}", target: '_blank'
+        td = user.player_id
+        td = link_to user.name, user_path(user)
         td
-          = "#{user.name}("
-          = link_to "@#{user.screen_name}", "https://twitter.com/#{user.screen_name}", target: '_blank'
-          | )
+          - if user.produce_idol
+            = link_to user.produce_idol&.name, idol_path(user.produce_idol)
         td = link_to user.alarms.length, user_alarms_path(user)
         td = user.role
         td = user.created_at
+        td = user.updated_at

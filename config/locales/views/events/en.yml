@@ -4,5 +4,13 @@ en:
       title: Event Archives
     records:
       index:
+        title: Event Final Ranking
         ranking: Final Ranking
         ranking_of_event: 'Final Ranking of %{event}'
+        submit: Submit
+      users:
+        rank: Rank
+        idol: Idol
+        player: Producer
+        point: Point
+        rank_x: "Rank %{x}"

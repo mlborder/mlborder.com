@@ -5,24 +5,29 @@ ol.breadcrumb
   li = link_to t('controllers.events'), events_path
   li = link_to @event.name, event_path(@event)
   li.active = t('.ranking')
-.panel.panel-default
-  .panel-heading
-    h3.panel-title
-      = event_type_badge(@event)
-      | &nbsp;
-      = t('.ranking_of_event', event: @event.name)
-  ul.list-group
-    li.list-group-item
-      span.glyphicon.glyphicon-calendar[aria-hidden="true"]
-      | &nbsp;
-      = @event.format_period
-  .panel-body
-    - unless @event.hhp_event?
-      .btn-group.btn-group-justified[role="group"]
-        = link_to "トップ", event_records_path(@event), class: 'btn btn-default'
-        = link_to "301位〜", event_records_path(@event, page: 7), class: 'btn btn-default'
-        = link_to "501位〜", event_records_path(@event, page: 11), class: 'btn btn-default'
-        = link_to "1201位〜", event_records_path(@event, page: 25), class: 'btn btn-default'
-    = render partial: 'pager', locals: { event: @event, idol: @idol, page: @page_num, has_next: @records.any? }
-    = render partial: 'users', locals: { records: @records }
-    = render partial: 'pager', locals: { event: @event, idol: @idol, page: @page_num, has_next: @records.any? }
+.page-header
+  .row
+    .col-md-8
+      h2
+        = t('.title')
+        small
+          = @event.name
+          - if @idol
+            | &nbsp;-&nbsp;
+            = @idol.name
+    .col-md-4.header-select
+      = form_tag event_records_path(@event), method: 'GET', enforce_utf8: false do
+        .input-group
+          = select_tag :search_event_id, options_from_collection_for_select(@events, :id, :name, selected: @event.id), class: 'text-right form-control'
+          span.input-group-btn
+            = submit_tag t('.submit'), class: 'btn btn-primary', name: nil
+
+- unless @event.hhp_event?
+  .btn-group.btn-group-justified[role="group"]
+    = link_to "トップ", event_records_path(@event), class: 'btn btn-default'
+    = link_to "301位〜", event_records_path(@event, page: 7), class: 'btn btn-default'
+    = link_to "501位〜", event_records_path(@event, page: 11), class: 'btn btn-default'
+    = link_to "1201位〜", event_records_path(@event, page: 25), class: 'btn btn-default'
+= render partial: 'pager', locals: { event: @event, idol: @idol, page: @page_num, has_next: @records.any? }
+= render partial: 'users', locals: { records: @records, rank_offset: (@page_num - 1) * 50, show_idol: @event.hhp_event? && @idol.nil? }
+= render partial: 'pager', locals: { event: @event, idol: @idol, page: @page_num, has_next: @records.any? }

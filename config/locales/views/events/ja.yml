@@ -4,5 +4,13 @@ ja:
       title: イベントアーカイブ
     records:
       index:
+        title: イベント最終ランキング
         ranking: 最終ランキング
         ranking_of_event: '%{event}の最終ランキング'
+        submit: 確認する
+      users:
+        rank: 順位
+        idol: アイドル
+        player: プロデューサー
+        point: ポイント
+        rank_x: "%{x} 位"

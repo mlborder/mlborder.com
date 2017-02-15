@@ -40,6 +40,6 @@ table.table.table-bordered.table-striped
           = link_to record.idol.name, idol_path(record.idol)
         td = number_with_delimiter record.fan_count
         td
-          = link_to week_player_records_path(@week, idol_id: record.idol), title: t('.goto_player_records') do
+          = link_to week_player_records_path(@week.to_ymd, idol_id: record.idol), title: t('.goto_player_records') do
             = number_with_delimiter record.player_count
         td = number_with_delimiter (record.fan_count.to_f / record.player_count.to_f).round

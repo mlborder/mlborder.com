@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   resources :users, expect: %i(new create destroy) do
     resources :alarms, module: :users, except: [:new, :edit]
   end
+  resources :players, module: :players, only: [] do
+    resources :records, only: :index
+  end
 
   get 'alarm', to: 'static_pages#alarm'
 

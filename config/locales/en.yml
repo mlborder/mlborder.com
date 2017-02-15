@@ -28,6 +28,7 @@ en:
     player_records: Producer Ranking
     idols: Idols
     users: Users
+    players: Producer
   actions:
     new: New
     edit: Edit

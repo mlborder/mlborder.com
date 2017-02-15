@@ -135,7 +135,7 @@ module EventsHelper
   end
 
   def prizes_text_for(prizes)
-    idol_text_list = prizes.map { |pz| "<span style='color: #{pz.idol.color}'><i class='fa fa-square'></i></span> #{pz.idol.name.shorten}" }
+    idol_text_list = prizes.map { |pz| "<span style='color: #{pz.idol.color}'><i class='fa fa-fw fa-square'></i></span>#{pz.idol.name.shorten}" }
 
     if prizes.count > 2
       "#{idol_text_list.first(2).join('／')}、他#{prizes.count - 2}名".html_safe
@@ -143,7 +143,7 @@ module EventsHelper
       if prizes.count > 1
         idol_text_list.join('／').html_safe
       else
-        "<span style='color: #{prizes.first.idol.color}'><i class='fa fa-square'></i></span> #{prizes.first.idol.name}".html_safe
+        "<span style='color: #{prizes.first.idol.color}'><i class='fa fa-fw fa-square'></i></span>#{prizes.first.idol.name}".html_safe
       end
     else
       '-'

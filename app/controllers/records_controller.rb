@@ -3,10 +3,7 @@ class RecordsController < ApplicationController
     @events = Event.where(records_available: true).includes(:prizes).order(id: :desc)
 
     if params[:player_id].present?
-      @player = Player.find(params[:player_id])
-      @records = @player.records
-    elsif params[:event_id].present?
-      redirect_to event_records_path(params[:event_id], idol_id: params[:idol_id], page: params[:page]), status: :moved_permanently
+      redirect_to player_records_path(params[:player_id])
     end
   end
 
@@ -27,7 +24,7 @@ class RecordsController < ApplicationController
     when 'event'
       event_records_path(params[:target_id], idol_id: idol_params)
     when 'player'
-      records_path( { player_id: params[:target_id].presence }.compact )
+      player_records_path(params[:target_id])
     else
       records_path
     end

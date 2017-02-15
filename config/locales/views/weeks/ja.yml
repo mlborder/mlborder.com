@@ -15,6 +15,7 @@ ja:
         title_x: "週間アイドルランキング - %{x}"
         player_count: プロデューサー数
         fan_count_per_player: ファン人数/プロデューサー数
+        goto_player_records: プロデューサーランキングへ
     player_records:
       index:
         <<: *common

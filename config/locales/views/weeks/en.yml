@@ -15,6 +15,7 @@ en:
         title_x: "Weekly Idol Ranking - %{x}"
         player_count: Producer count
         fan_count_per_player: Fan count / Producer count
+        goto_player_records: Go to weekly producer ranking
     player_records:
       index:
         <<: *common

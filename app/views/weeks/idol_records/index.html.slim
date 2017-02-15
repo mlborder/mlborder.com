@@ -32,19 +32,14 @@ table.table.table-bordered.table-striped
   tbody
     - @idol_records.each do |record|
       tr
-        td
-          = record.rank
+        td = record.rank
         td
           span style="color: #{record.idol.color}"
             i.fa.fa-square
             | &nbsp;
-          = link_to record.idol.name, week_player_records_path(idol_id: record.idol.id)
-          | &nbsp;
-          = link_to idol_path(record.idol) do
-            i.fa.fa-question-circle
+          = link_to record.idol.name, idol_path(record.idol)
+        td = number_with_delimiter record.fan_count
         td
-          = number_with_delimiter record.fan_count
-        td
-          = number_with_delimiter record.player_count
-        td
-          = number_with_delimiter (record.fan_count.to_f / record.player_count.to_f).round
+          = link_to week_player_records_path(@week, idol_id: record.idol), title: t('.goto_player_records') do
+            = number_with_delimiter record.player_count
+        td = number_with_delimiter (record.fan_count.to_f / record.player_count.to_f).round

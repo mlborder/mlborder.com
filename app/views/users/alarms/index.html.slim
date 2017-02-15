@@ -77,9 +77,8 @@ ol.breadcrumb
                     = event_type_badge event
                     | &nbsp;
                     = link_to event.name, event_path(event)
-                    | &nbsp;(
+                    | &nbsp;
                     = prizes_text_for(event.prizes.to_a)
-                    | )
               tbody
                 - alarms.each do |alarm|
                   tr

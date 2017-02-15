@@ -31,11 +31,12 @@
               |  
               = event&.format_period
             .list-group-item
-              span.fa.fa-star[aria-hidden="true"]
               - if record.idol_id
                 - idol = Idol.find(record.idol_id)
-                span style="border-bottom: 1px ridge #{idol.color}"
-                  = idol.name
+                span style="color: #{idol.color}"
+                  i.fa.fa-square
+                  | &nbsp;
+                = idol.name
               - else
                 = prizes_text_for(event&.prizes&.to_a || [])
             .list-group-item

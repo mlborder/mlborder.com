@@ -1,6 +1,7 @@
 en:
   idol: Idol
   event: Event
+  player: Producer
   event_type:
     unknown: Unknown
     raid:    Fes

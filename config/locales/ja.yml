@@ -1,6 +1,7 @@
 ja:
   idol: アイドル
   event: イベント
+  player: プロデューサー
   event_type:
     unknown: 不明
     raid:    合同フェス

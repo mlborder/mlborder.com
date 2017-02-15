@@ -1,4 +1,4 @@
-- provide(:title, "@#{@user.screen_name}さんのアラーム")
+- provide(:title, "#{@user.screen_name}さんのアラーム")
 ol.breadcrumb
   li = link_to t('controllers.root'), root_path
   li = link_to t('controllers.users'), users_path
@@ -77,9 +77,8 @@ ol.breadcrumb
                     = event_type_badge event
                     | &nbsp;
                     = link_to event.name, event_path(event)
-                    | &nbsp;(
+                    | &nbsp;
                     = prizes_text_for(event.prizes.to_a)
-                    | )
               tbody
                 - alarms.each do |alarm|
                   tr

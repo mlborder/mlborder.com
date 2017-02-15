@@ -2,8 +2,11 @@ en:
   layouts:
     application:
       events: Events
-      weekly_records: Weekly Ranking
-      event_records: Event Ranking
+      records: Ranking
+      weekly_idol_records: Weekly Idol Ranking
+      weekly_player_records: Weekly Producer Ranking
+      event_records: Event Records
+      player_search: Producer Search
 
       profile: Profile
       alarms: Alarms

@@ -4,8 +4,11 @@ ol.breadcrumb
   li = link_to t('controllers.idols'), idols_path
   li.active = @idol.name
 .page-header
-  h1 style="color: #{@idol.color}"
-    = "#{@idol.id}. #{@idol.name}(#{@idol.idol_type})"
+  h2
+    span style="color: #{@idol.color}"
+      i.fa.fa-square
+      | &nbsp;
+    = @idol.name
 table.table.table-bordered
   tbody
     tr

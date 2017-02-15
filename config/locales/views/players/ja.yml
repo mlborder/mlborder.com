@@ -1,0 +1,13 @@
+ja:
+  players:
+    records:
+      index:
+        title_x: "%{x}のプロデューサー記録"
+        title: プロデューサーの記録
+        records: 記録
+        game_profile: ゲーム内のページへ
+        hamaco_profile: mlのページへ
+        millionlive_id: "ミリオンのID(例: 1200000000000024530)"
+        submit: 確認する
+        personal_rank_x: "個人 %{x} 位"
+        point_x: "%{x} pt"

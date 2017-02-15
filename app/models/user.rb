@@ -18,6 +18,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :profile
   delegate :player_id, :produce_idol, :description, to: :profile, allow_nil: true
 
+  scope :with_profile, -> { includes(:profile) }
+
   enum role: %i(role_none role_admin)
 
   def event_grouped_alarms

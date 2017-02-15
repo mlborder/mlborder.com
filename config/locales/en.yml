@@ -1,6 +1,7 @@
 en:
   idol: Idol
   event: Event
+  player: Producer
   event_type:
     unknown: Unknown
     raid:    Fes
@@ -21,11 +22,13 @@ en:
   controllers:
     root: Home
     events: Events
+    records: Producer search
     weeks: Weeks
     idol_records: Idol Ranking
     player_records: Producer Ranking
     idols: Idols
     users: Users
+    players: Producer
   actions:
     new: New
     edit: Edit

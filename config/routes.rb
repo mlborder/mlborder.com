@@ -17,17 +17,21 @@ Rails.application.routes.draw do
   resources :idols, only: [:index, :show]
   resources :weeks, module: :weeks, only: [] do
     resources :idol_records, only: :index
-    resources :player_records, only: :index do
-      get 'search', on: :collection
-    end
+    resources :player_records, only: :index
   end
 
   resources :users, expect: %i(new create destroy) do
     resources :alarms, module: :users, except: [:new, :edit]
   end
+  resources :players, module: :players, only: [] do
+    resources :records, only: :index
+  end
 
   get 'alarm', to: 'static_pages#alarm'
-  get 'records', to: 'records#index'
+
+  resources :records, only: :index do
+    get 'search', on: :collection
+  end
 
   scope '/misc' do
     get 'bmd_runner', to: 'misc#bmd_runner'

@@ -1,0 +1,63 @@
+- provide(:title, t('.title_x', x: @player.name))
+ol.breadcrumb
+  li = link_to t('controllers.root'), root_path
+  li = t('controllers.players')
+  li = @player.name
+  li.active = t('.records')
+.page-header
+  .row
+    .col-md-8
+      h2
+        = t('.title')
+        small
+          = @player.name
+    .col-md-4.header-select
+      = form_tag search_records_path, method: 'GET', enforce_utf8: false do
+        = hidden_field_tag :target_type, 'player'
+        .input-group
+          = text_field_tag :target_id, @player.id, placeholder: t('.millionlive_id'), class: 'form-control'
+          span.input-group-btn
+            = submit_tag t('.submit'), class: 'btn btn-primary', name: nil
+p
+  = link_to "http://imas.gree-apps.net/app/index.php/mypage/user_profile/id/#{@player.id}", target: '_blank', class: 'btn btn-default' do
+    = t('.game_profile')
+    i.fa.fa-fw.fa-external-link
+  = link_to "http://imas-ml.hamaco.org/producer/#{@player.id}", target: '_blank', class: 'btn btn-default' do
+    = t('.hamaco_profile')
+    i.fa.fa-fw.fa-external-link
+  = render partial: 'layouts/shared/twitter_button'
+.row
+  - @records.each do |record|
+    - event = @events.select { |ev| ev.id == record.event_id.to_i }.first
+    - if event
+      .col-lg-4.col-md-4.col-sm-6
+        .panel.panel-default
+          .panel-heading
+            h3.panel-title[style="font-size: .9em;"]
+              = event_type_badge(event)
+              | &nbsp;
+              = link_to event_path(event) do
+                = event.try(:name)
+                - if event.hhp_event?
+                  | &nbsp;/&nbsp;
+                  = record.idol.name
+          .list-group
+            .list-group-item
+              i.fa.fa-fw.fa-calendar
+              = event&.format_period
+            .list-group-item
+              - if record.idol
+                span style="color: #{record.idol.color}"
+                  i.fa.fa-fw.fa-square
+                = record.idol.name
+              - else
+                = prizes_text_for(event&.prizes&.to_a || [])
+            .list-group-item
+              i.fa.fa-fw.fa-trophy
+              = t('.personal_rank_x', x: record.rank)
+              = link_to event_records_path(event, idol_id: record.idol_id) do
+                small
+                  i.fa.fa-fw.fa-link
+            .list-group-item
+              span.fa.fa-diamond
+              = t('.point_x', x: number_with_delimiter(record.point))

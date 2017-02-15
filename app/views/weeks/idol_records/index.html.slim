@@ -4,47 +4,42 @@ ol.breadcrumb
   li = t('controllers.weeks')
   li = @week.to_ymd
   li.active = t('controllers.idol_records')
-.well.well-sm
-  .row
-    .col-lg-12.col-md-12.col-sm-12
-      = form_tag week_idol_records_path(week_id: 'search'), method: 'GET', enforce_utf8: false do
-        .input-group
-          = select_tag :search_week_id, options_from_collection_for_select(@weeks, :id, :format_term, selected: @week.id), include_blank: true, class: 'text-right form-control'
-          span.input-group-btn
-            = submit_tag '確認する', class: 'btn btn-primary', name: nil
+
 .page-header
-  h1
-    = t('.title_x', x: @week.format_term)
-    = render partial: 'layouts/shared/twitter_button'
+  .row
+    .col-md-8
+      h2
+        = t('.title')
+        small
+          = @week.format_term
+    .col-md-4.header-select
+      = form_tag search_records_path, method: 'GET', enforce_utf8: false do
+        .input-group
+          = hidden_field_tag :target_type, 'weekly_idol'
+          = select_tag :target_id, options_from_collection_for_select(@weeks, :to_ymd, :format_term, selected: @week.to_ymd), include_blank: true, class: 'text-right form-control'
+          span.input-group-btn
+            = submit_tag t('.submit'), class: 'btn btn-primary', name: nil
+p
+  = render partial: 'layouts/shared/twitter_button'
 table.table.table-bordered.table-striped
   thead
     tr
-      th
-        | 順位
-      th
-        | アイドル名
-      th
-        | ファン人数/週
-      th
-        | プロデューサー数
-      th
-        | P一人あたりの平均獲得ファン人数/週
+      th = t('.rank')
+      th = t('.idol')
+      th = t('.fan_count')
+      th = t('.player_count')
+      th = t('.fan_count_per_player')
   tbody
     - @idol_records.each do |record|
       tr
-        td
-          = record.rank
+        td = record.rank
         td
           span style="color: #{record.idol.color}"
             i.fa.fa-square
             | &nbsp;
-          = link_to record.idol.name, week_player_records_path(idol_id: record.idol.id)
-          | &nbsp;
-          = link_to idol_path(record.idol) do
-            i.fa.fa-question-circle
+          = link_to record.idol.name, idol_path(record.idol)
+        td = number_with_delimiter record.fan_count
         td
-          = number_with_delimiter record.fan_count
-        td
-          = number_with_delimiter record.player_count
-        td
-          = number_with_delimiter (record.fan_count.to_f / record.player_count.to_f).round
+          = link_to week_player_records_path(@week, idol_id: record.idol), title: t('.goto_player_records') do
+            = number_with_delimiter record.player_count
+        td = number_with_delimiter (record.fan_count.to_f / record.player_count.to_f).round

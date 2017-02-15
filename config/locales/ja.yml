@@ -1,6 +1,7 @@
 ja:
   idol: アイドル
   event: イベント
+  player: プロデューサー
   event_type:
     unknown: 不明
     raid:    合同フェス
@@ -21,11 +22,13 @@ ja:
   controllers:
     root: ホーム
     events: イベント
+    records: プロデューサー検索
     weeks: 週間
     idol_records: アイドルランキング
     player_records: プロデューサーランキング
     idols: アイドル
     users: プロデューサー
+    players: プロデューサー
   actions:
     new: 新規作成
     edit: 編集

@@ -1,0 +1,13 @@
+en:
+  players:
+    records:
+      index:
+        title_x: "%{x}'s Record"
+        title: Player Records
+        records: Records
+        game_profile: Game Profile
+        hamaco_profile: ml profile
+        millionlive_id: "MillionLive!! ID(ex. 1200000000000024530)"
+        submit: Submit
+        personal_rank_x: "Rank %{x}"
+        point_x: "%{x} pt"

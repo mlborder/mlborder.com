@@ -1,16 +1,23 @@
 ja:
   weeks:
+    common: &common
+      target_week: 対象の週
+      rank: 順位
+      player_name: プロデューサー名
+      fan_count: ファン人数
+      all: 全体
+      idol: アイドル
+      submit: 確認する
     idol_records:
       index:
-        title_x: "週間アイドルランキング(%{x})"
+        <<: *common
+        title: 週間アイドルランキング
+        title_x: "週間アイドルランキング - %{x}"
+        player_count: プロデューサー数
+        fan_count_per_player: ファン人数/プロデューサー数
+        goto_player_records: プロデューサーランキングへ
     player_records:
       index:
+        <<: *common
         title: 週間プロデューサーランキング
-        title_x_y: "週間プロデューサーランキング(%{x} - %{y})"
-        rank: 順位
-        player_name: プロデューサー名
-        fan_count: ファン人数
-        all: 全体
-        target_week: 対象の週
-        idol: アイドル
-        submit: 確認する
+        title_x_y: "週間プロデューサーランキング - %{x} - %{y}"

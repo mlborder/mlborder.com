@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i(show edit update)
 
   def index
-    @users = User.includes(:alarms).all
+    @users = User.with_profile.includes(:alarms).all
   end
 
   def edit

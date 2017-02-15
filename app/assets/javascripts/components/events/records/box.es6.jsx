@@ -130,9 +130,6 @@ class MlborderEventRecordBoxTableRow extends React.Component {
           <a href={this.props.recordsUrl + '?player_id=' + this.props.playerId}>
             {this.props.playerName || '【不明】id:' + this.props.playerId }
           </a>
-          <a href={'http://imas.gree-apps.net/app/index.php/mypage/user_profile/id/' + this.props.playerId} target='_blank'>
-            <span className='glyphicon glyphicon-new-window'></span>
-          </a>
         </td>
         <td className='text-right'>{pointWithDelimiter}</td>
       </tr>

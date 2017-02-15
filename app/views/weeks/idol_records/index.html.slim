@@ -13,9 +13,10 @@ ol.breadcrumb
         small
           = @week.format_term
     .col-md-4.header-select
-      = form_tag week_idol_records_path(week_id: 'search'), method: 'GET', enforce_utf8: false do
+      = form_tag search_records_path, method: 'GET', enforce_utf8: false do
         .input-group
-          = select_tag :search_week_id, options_from_collection_for_select(@weeks, :id, :format_term, selected: @week.id), include_blank: true, class: 'text-right form-control'
+          = hidden_field_tag :target_type, 'weekly_idol'
+          = select_tag :target_id, options_from_collection_for_select(@weeks, :to_ymd, :format_term, selected: @week.to_ymd), include_blank: true, class: 'text-right form-control'
           span.input-group-btn
             = submit_tag t('.submit'), class: 'btn btn-primary', name: nil
 p

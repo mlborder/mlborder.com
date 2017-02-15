@@ -17,10 +17,11 @@ ol.breadcrumb
           | &nbsp;-&nbsp;
           = @idol ? @idol.name : t('.all')
     .col-md-4.header-select
-      = form_tag search_week_player_records_path, method: 'GET', class: 'form-inline', enforce_utf8: false do
+      = form_tag search_records_path, method: 'GET', class: 'form-inline', enforce_utf8: false do
+        = hidden_field_tag :target_type, 'weekly_player'
         .input-group
-          = label_tag :next_week_id, t('.target_week'), class: 'sr-only'
-          = select_tag :next_week_id, options_from_collection_for_select(@weeks, :to_ymd, :format_term, selected: @week.to_ymd), include_blank: true, class: 'text-right form-control'
+          = label_tag :target_id, t('.target_week'), class: 'sr-only'
+          = select_tag :target_id, options_from_collection_for_select(@weeks, :to_ymd, :format_term, selected: @week.to_ymd), include_blank: true, class: 'text-right form-control'
         .input-group
           = label_tag :idol_id, t('.idol'), class: 'sr-only'
           = select_tag :idol_id, options_from_collection_for_select(Idol.all, :id, :name, selected: @idol&.id), include_blank: t('.all'), class: 'text-right form-control'

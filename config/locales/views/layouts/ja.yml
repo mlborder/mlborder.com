@@ -2,8 +2,11 @@ ja:
   layouts:
     application:
       events: イベントボーダー
-      weekly_records: 週間ランキング
-      event_records: プロデューサー検索
+      records: ランキング
+      weekly_idol_records: 週間アイドルランキング
+      weekly_player_records: 週間プロデューサーランキング
+      event_records: イベント最終ランキング
+      player_search: プロデューサー検索
 
       profile: プロフィール
       alarms: アラーム一覧

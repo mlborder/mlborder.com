@@ -32,13 +32,24 @@ html
                 i.fa.fa-line-chart
                 = t('.events')
             li
-              = link_to week_idol_records_path(week_id: 'latest') do
-                i.fa.fa-star
-                = t('.weekly_records')
-            li
               = link_to records_path do
                 i.fa.fa-search
-                = t('.event_records')
+                = t('.player_search')
+            li
+              = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button', aria: { haspopup: true, expanded: false } do
+                i.fa.fa-star
+                = t('.records')
+                span.caret
+              ul.dropdown-menu
+                li = link_to event_records_path(event_id: 'latest') do
+                  i.fa.fa-fw.fa-road
+                  = t('.event_records')
+                li = link_to week_idol_records_path(week_id: 'latest') do
+                  i.fa.fa-fw.fa-heart
+                  = t('.weekly_idol_records')
+                li = link_to week_player_records_path(week_id: 'latest') do
+                  i.fa.fa-fw.fa-male
+                  = t('.weekly_player_records')
             - if current_user
               li
                 = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button', aria: { haspopup: true, expanded: false } do

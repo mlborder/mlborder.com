@@ -13,8 +13,8 @@ class Events::RecordsController < ApplicationController
         render json: nil, status: :not_found
       end
     else
+      return redirect_to event_records_path(@event) if @event.id != params[:event_id].to_i
       @events = Event.records_available.order(id: :desc).select(:id, :name)
-      return redirect_to event_records_path(params[:search_event_id]) if params[:search_event_id]
       if @event.records_available?
         @idol = Idol.find_by(id: params[:idol_id].to_i)
         @page_num = [1, params[:page].to_i].max
@@ -32,6 +32,6 @@ class Events::RecordsController < ApplicationController
 
   private
   def set_event
-    @event = Event.find(params[:event_id])
+    @event = Event.find_by(id: params[:event_id]) || Event.records_available.last
   end
 end

@@ -22,7 +22,7 @@ ol.breadcrumb
         th = t('.player_id')
         td
           - if @user.player_id
-            = link_to @user.player_id, records_path(player_id: @user.player_id)
+            = link_to @user.player_id, player_records_path(@user.player_id)
       tr
         th = t('.produce_idol')
         td

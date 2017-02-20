@@ -1272,5 +1272,14 @@ Event.create([
     prizes_attributes: [
       { idol_id: 24 }, # 望月杏奈
     ]
+  },
+  { name: '星の煌めき☆Starlight Melody!!',
+    event_type: 'nplive_event',
+    started_at: '2017-02-14 12:00:00 +0900',
+    ended_at: '2017-02-26 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 14 }, # 春日未来
+      { idol_id: 41 }, # 豊川風花
+    ]
   }
 ])

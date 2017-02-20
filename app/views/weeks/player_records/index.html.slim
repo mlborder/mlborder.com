@@ -42,6 +42,6 @@ table.table.table-bordered.table-striped
     - @player_records.each do |record|
       tr
         td = record.rank
-        td = link_to record.name, records_path(player_id: record.player_id)
+        td = link_to record.name, player_records_path(record.player)
         td = number_with_delimiter record.fan_count
 = render partial: 'pager', locals: { week: @week, idol: @idol, page: @page_num, has_next: @player_records.any? }

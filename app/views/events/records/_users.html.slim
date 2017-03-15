@@ -20,6 +20,9 @@ table.table.table-striped.table-bordered
             | の&nbsp;
             = t('.rank_x', x: number_with_delimiter(record.rank))
         td
-          = link_to record.display_name, player_records_path(record.player)
+          - if record.player.id
+            = link_to record.display_name, player_records_path(record.player)
+          - else
+            = record.display_name
         td.text-right
           = number_with_delimiter record.point

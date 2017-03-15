@@ -1281,5 +1281,23 @@ Event.create([
       { idol_id: 14 }, # 春日未来
       { idol_id: 41 }, # 豊川風花
     ]
+  },
+  { name: '4周年!!ミリオンメモリアルミュージカル',
+    event_type: 'battle_event',
+    started_at: '2017-02-28 12:00:00 +0900',
+    ended_at: '2017-03-07 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 45 }, # 篠宮可憐
+    ]
+  },
+  { name: 'みんなに届け！765PRO ALLSTARSライブ',
+    event_type: 'choco_event',
+    started_at: '2017-03-09 12:00:00 +0900',
+    ended_at: '2017-03-15 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 1 }, # 天海春香
+      { idol_id: 13 }, # 我那覇響
+      { idol_id: 11 }, # 双海亜美
+    ]
   }
 ])

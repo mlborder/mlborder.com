@@ -34,7 +34,8 @@ Rails.application.routes.draw do
   end
 
   scope '/misc' do
-    get 'bmd_runner', to: 'misc#bmd_runner'
+    get 'runners', to: 'misc#runners'
+    get 'bmd_runner', to: redirect('/misc/runners?event=bmd')
   end
 
   get '/auth/:provider/callback', to: 'sessions#callback'

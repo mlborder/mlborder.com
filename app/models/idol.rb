@@ -4,7 +4,7 @@ class Idol < ActiveHash::Base
 
   fields :id, :key
 
-  Rubimas.all.map do |idol|
+  Rubimas::Idol.all.map do |idol|
     create id: idol.id, key: idol.key
   end
 

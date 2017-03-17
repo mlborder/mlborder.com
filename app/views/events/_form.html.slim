@@ -17,7 +17,7 @@
     .col-sm-10
       = f.fields_for :prizes do |prizes_form|
         = render partial: 'prize_fields', locals: { f: prizes_form }
-        = link_to_add_fields "追加", f, :prizes, class: 'add_fields btn btn-info btn-block'
+      = link_to_add_fields "追加", f, :prizes, class: 'add_fields btn btn-info btn-block'
   .form-group
     = f.label :started_at, class: 'col-sm-2 control-label'
     .col-sm-10

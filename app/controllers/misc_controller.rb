@@ -60,7 +60,7 @@ class MiscController < ApplicationController
           CSV.foreach(csv_filepath, encoding: 'UTF-8:Shift_JIS') { |row| csv << row }
         end
       else
-        csv_filepath
+        open(csv_filepath).read
       end
     end
 

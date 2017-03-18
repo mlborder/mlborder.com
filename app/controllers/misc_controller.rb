@@ -65,7 +65,7 @@ class MiscController < ApplicationController
     end
 
     def filename
-      "#{@event}-#{updated_at.strftime('%Y-%m-%d-%H-%M')}.csv"
+      "#{@event}-#{updated_at.strftime('%Y%m%d-%H%M')}.csv"
     end
 
     def encoding
@@ -73,7 +73,7 @@ class MiscController < ApplicationController
     end
 
     def updated_at
-      Time.strptime("2016-#{csv_filepath.split('/').last.split('_').second} +0900", '%Y-%m-%d-%H-%M-%S')
+      Time.strptime("#{csv_filepath.split('/').last.sub('.csv', '')} +0900", '%Y%m%d-%H%M')
     end
 
     def csv_filepath

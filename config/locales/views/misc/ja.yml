@@ -1,6 +1,6 @@
 ja:
   misc:
-    bmd_runner:
-      bmd_runners: 『BELIEVE MY DRE@M!!』のプレイヤー分布
+    runners:
+      runners_x: '%{x}のランナー分布'
       status_on: '%{time}頃時点'
       download_link_html: '<a href="%{csv_url}"><span class="fa fa-download"></span> CSVをダウンロード</a> (<a href="%{sjis_url}">Shift-JIS版</a>)'

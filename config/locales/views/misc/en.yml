@@ -1,6 +1,6 @@
 en:
   misc:
-    bmd_runner:
-      bmd_runners: BMD runners
-      status_on: '%{time}頃時点'
+    runners:
+      runners_x: '%{x} runners'
+      status_on: 'on %{time}'
       download_link_html: '<a href="%{csv_url}"><span class="fa fa-download"></span> Get CSV</a> (<a href="%{sjis_url}">SJIS version</a>)'

@@ -44,6 +44,8 @@ gem 'active_hash'
 
 gem 'browserify-rails'
 
+gem 'aws-sdk'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

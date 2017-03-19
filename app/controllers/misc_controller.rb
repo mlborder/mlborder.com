@@ -60,7 +60,7 @@ class MiscController < ApplicationController
           CSV.new(s3_object.body, encoding: 'UTF-8').each { |row| csv << row }
         end
       else
-        s3_object.read
+        s3_object.body.read
       end
     end
 

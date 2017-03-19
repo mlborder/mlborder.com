@@ -40,7 +40,7 @@ class MiscController < ApplicationController
       if @summarized
         if @detail
           CSV.generate(write_headers: true, force_quotes: true) do |csv|
-            CSV.foreach(csv_filepath).with_index do |row, index|
+            CSV.new(s3_object.body).each.with_index do |row, index|
               csv << row if index.zero?
               next if index < 200
               next if index > 320
@@ -49,18 +49,18 @@ class MiscController < ApplicationController
           end
         else
           CSV.generate(write_headers: true, force_quotes: true) do |csv|
-            CSV.foreach(csv_filepath).with_index do |row, index|
+            CSV.new(s3_object.body).each.with_index do |row, index|
               csv << row if index.zero?
               csv << row if index % 10 == 1
             end
           end
         end
       elsif @sjis
-        CSV.generate(write_headers: true, force_quotes: true) do |csv|
-          CSV.foreach(csv_filepath, encoding: 'UTF-8:Shift_JIS') { |row| csv << row }
+        CSV.generate(write_headers: true, force_quotes: true, encoding: 'Shift_JIS') do |csv|
+          CSV.new(s3_object.body, encoding: 'UTF-8').each { |row| csv << row }
         end
       else
-        open(csv_filepath).read
+        s3_object.read
       end
     end
 
@@ -73,11 +73,33 @@ class MiscController < ApplicationController
     end
 
     def updated_at
-      Time.strptime("#{csv_filepath.split('/').last.sub('.csv', '')} +0900", '%Y%m%d-%H%M')
+      Time.strptime("#{s3_key.split('/').last.sub('.csv', '')} +0900", '%Y%m%d-%H%M')
     end
 
-    def csv_filepath
-      @path ||= Dir.glob(Rails.root.join('public', 'runners', @event, '*').to_s).sort.last
+    private
+    def s3_object
+      s3_client.get_object(bucket: 'mlborder', key: s3_key)
+    end
+
+    def s3_key
+      @s3_key ||= s3_keys.last
+    end
+
+    def s3_keys
+      continuation_token = nil
+      s3_keys = []
+      begin
+        params = { bucket: 'mlborder', prefix: "runners/#{@event}/", continuation_token: continuation_token }.compact
+        s3_client.list_objects_v2(**params).tap do |response|
+          s3_keys += response.contents.map(&:key)
+          continuation_token = response.is_truncated ? nil : response.continuation_token
+        end
+      end while continuation_token.present?
+      s3_keys
+    end
+
+    def s3_client
+      @s3 ||= Aws::S3::Client.new
     end
   end
 end

@@ -20,3 +20,4 @@
 //= require_tree ./components
 
 require('./events.es6')
+require('./misc_runners.es6')

@@ -11,7 +11,12 @@ ol.breadcrumb
       | &nbsp;
       = t('.download_link_html', csv_url: runners_path(event: @event, format: :csv), sjis_url: runners_path({format: :csv, encoding: 'sjis'}))
   .panel-body
-    = select_tag 'target-time', options_for_select(@dropdown_options, @selected_option), class: 'text-right form-control'
+    .container
+      .row
+        .col-md-6
+          = select_tag 'target-time', options_for_select(@dropdown_options, @selected_option), class: 'text-right form-control'
+        .col-md-6
+          = select_tag 'specify-idol', options_for_select(@idol_options), class: 'text-right form-control', prompt: 'アイドルを選択'
     .chart
       #runners-chart
 script[type="text/javascript"]

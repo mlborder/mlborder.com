@@ -88,11 +88,27 @@ $(document).on('turbolinks:load', () => {
       }
     });
 
+    const idolNameDict = Object.keys(window.chartConfig.idolColors);
+    const getIdolName = function (id) {
+      return idolNameDict[id - 14];
+    };
+
     document.getElementById('target-time').addEventListener('change', function(e) {
       chartConfig.target = e.target.selectedOptions[0].value;
       chart.load({
         url: urlFor(chartConfig)
       });
+    });
+    document.getElementById('specify-idol').addEventListener('change', function(e) {
+      const idolId = e.target.selectedOptions[0].value;
+      const idsForHide = [];
+      for (let i = 0; i < e.target.options.length; i++) {
+        const value = e.target.options.item(i).value;
+        if (!value) continue;
+        idsForHide.push(getIdolName(value));
+      }
+      chart.hide(idsForHide);
+      chart.show([getIdolName(idolId)]);
     });
   });
 });

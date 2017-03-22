@@ -24,6 +24,7 @@ class MiscController < ApplicationController
       format.html do
         @dropdown_options = event_csv.options
         @selected_option = event_csv.selected_option
+        @idol_options = Rubimas.all.select { |i| i.id > 13 }.map { |idol| [idol.name.to_s, idol.id] }
       end
       format.csv do
         send_data event_csv.build, filename: event_csv.filename, type: "text/csv; charset=#{event_csv.encoding}"

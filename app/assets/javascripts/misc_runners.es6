@@ -101,14 +101,19 @@ $(document).on('turbolinks:load', () => {
     });
     document.getElementById('specify-idol').addEventListener('change', function(e) {
       const idolId = e.target.selectedOptions[0].value;
-      const idsForHide = [];
+      const idolNames = [];
       for (let i = 0; i < e.target.options.length; i++) {
         const value = e.target.options.item(i).value;
         if (!value) continue;
-        idsForHide.push(getIdolName(value));
+        idolNames.push(getIdolName(value));
       }
-      chart.hide(idsForHide);
-      chart.show([getIdolName(idolId)]);
+      const idolName = getIdolName(idolId);
+      if (idolName) {
+        chart.hide(idolNames);
+        chart.show([idolName]);
+      } else {
+        chart.show(idolNames);
+      }
     });
   });
 });

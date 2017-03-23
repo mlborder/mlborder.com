@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/imas/rubimas.git
-  revision: 147e16c8f257f4f6b8d01fb38e430f45754daf05
+  revision: 6980845fb4769a2fa77e48d56a80a40ab8b33797
   specs:
     rubimas (0.4.0)
       activesupport (>= 4.0)

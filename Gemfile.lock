@@ -175,7 +175,7 @@ GEM
     multi_json (1.12.1)
     multipart-post (2.0.0)
     nio4r (2.0.0)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     oauth (0.5.1)
     omniauth (1.6.1)
@@ -337,7 +337,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
-  nokogiri (>= 1.6.8)
+  nokogiri (>= 1.7.1)
   omniauth
   omniauth-twitter
   pg
@@ -363,6 +363,5 @@ DEPENDENCIES
 
 RUBY VERSION
    ruby 2.3.3p222
-
 BUNDLED WITH
    1.14.1

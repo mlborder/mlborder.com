@@ -29,7 +29,8 @@ $(document).on('turbolinks:load', () => {
               return rank + '位';
             }
           },
-          min: (chartConfig.isDetail ? 200 : 1)
+          min: chartConfig.minRank,
+          max: chartConfig.maxRank
         },
         y: {
           label: 'point',
@@ -54,7 +55,6 @@ $(document).on('turbolinks:load', () => {
       },
       tooltip: {
         contents: function (dd, defaultTitleFormat, defaultValueFormat, color) {
-          console.log(dd);
           const $$ = this;
           const config = $$.config;
           const titleFormat = config.tooltip_format_title || defaultTitleFormat;
@@ -99,6 +99,7 @@ $(document).on('turbolinks:load', () => {
         url: urlFor(chartConfig)
       });
     });
+
     document.getElementById('specify-idol').addEventListener('change', function(e) {
       const idolId = e.target.selectedOptions[0].value;
       const idolNames = [];
@@ -114,6 +115,18 @@ $(document).on('turbolinks:load', () => {
       } else {
         chart.show(idolNames);
       }
+    });
+
+    document.getElementById('min-rank').addEventListener('change', function(e) {
+      chartConfig.minRank = parseInt(e.target.value);
+      document.getElementById('max-rank').min = e.target.value + 10;
+
+      chart.axis.min({ x: chartConfig.minRank });
+    });
+    document.getElementById('max-rank').addEventListener('change', function(e) {
+      chartConfig.maxRank = parseInt(e.target.value);
+
+      chart.axis.max({ x: chartConfig.maxRank });
     });
   });
 });

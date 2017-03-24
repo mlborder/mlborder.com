@@ -88,7 +88,7 @@ $(document).on('turbolinks:load', () => {
       }
     });
 
-    const idolNameDict = Object.keys(window.chartConfig.idolColors);
+    const idolNameDict = Object.keys(chartConfig.idolColors);
     const getIdolName = function (id) {
       return idolNameDict[id - 14];
     };
@@ -117,14 +117,27 @@ $(document).on('turbolinks:load', () => {
       }
     });
 
-    document.getElementById('min-rank').addEventListener('change', function(e) {
-      chartConfig.minRank = parseInt(e.target.value);
-      document.getElementById('max-rank').min = e.target.value + 10;
+    const minRankBox = document.getElementById('min-rank');
+    const maxRankBox = document.getElementById('max-rank');
+
+    minRankBox.min = chartConfig.minRank;
+    maxRankBox.min = chartConfig.minRank + 10;
+    minRankBox.max = chartConfig.maxRank - 10;
+    maxRankBox.max = chartConfig.maxRank;
+    minRankBox.value = chartConfig.minRank;
+    maxRankBox.value = chartConfig.maxRank;
+
+    minRankBox.addEventListener('input', function(e) {
+      const min = parseInt(e.target.value);
+      chartConfig.minRank = min;
+      maxRankBox.min = min + 10;
 
       chart.axis.min({ x: chartConfig.minRank });
     });
-    document.getElementById('max-rank').addEventListener('change', function(e) {
-      chartConfig.maxRank = parseInt(e.target.value);
+    maxRankBox.addEventListener('input', function(e) {
+      const max = parseInt(e.target.value);
+      chartConfig.maxRank = max;
+      minRankBox.max = max - 10;
 
       chart.axis.max({ x: chartConfig.maxRank });
     });

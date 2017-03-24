@@ -19,12 +19,12 @@ ol.breadcrumb
       .col-md-3
         .form-group
           .input-group
-            = number_field_tag 'min-rank', 1, class: 'text-right form-control', min: 1, max: 500, step: 10
+            = number_field_tag 'min-rank', 1, class: 'text-right form-control', step: 10
             span.input-group-addon 位から
       .col-md-3
         .form-group
           .input-group
-            = number_field_tag 'max-rank', 500, class: 'text-right form-control', min: 1, max: 500, step: 10
+            = number_field_tag 'max-rank', 500, class: 'text-right form-control', step: 10
             span.input-group-addon 位まで
     .row
       .col-md-12

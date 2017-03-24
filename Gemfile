@@ -90,6 +90,6 @@ gem 'influxdb-rails', github: 'influxdata/influxdb-rails'
 gem 'influxdb'
 gem 'her'
 
-gem 'nokogiri', '>= 1.6.8'
+gem 'nokogiri', '>= 1.7.1'
 
 gem 'rails-html-sanitizer', '~> 1.0.3'

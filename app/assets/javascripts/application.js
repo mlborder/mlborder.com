@@ -21,3 +21,4 @@
 
 require('./events.es6')
 require('./misc_runners.es6')
+require('./am_chart.es6')

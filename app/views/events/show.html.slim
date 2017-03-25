@@ -45,14 +45,7 @@ ol.breadcrumb
             #1.tab-pane.active
               - if @event.has_border?
                 - if @event.hhp_event?
-                  .row
-                    .col-md-9
-                      #chartdiv.chart-area
-                    .col-md-3
-                      .row[style="margin-top: 1.5em;"]
-                        .col-md-12
-                          #legenddiv
-                  = am_charts_hhp @dataset
+                  = react_component('MlborderEventBorderBox', url: event_borders_path(@event), border_summary: @latest_data, chart_div_id: 'teamchart', legend_div_id: 'teamlegend', display_until: 0, title_map: @idol_map, color_map: @color_map)
                 - else
                   - if @event.ula_final?
                     h3
@@ -62,7 +55,6 @@ ol.breadcrumb
                     h3
                       | 通常ランキング
                   = react_component('MlborderEventBorderBox', url: event_borders_path(@event), border_summary: @latest_data, chart_div_id: 'chartdiv', legend_div_id: 'legenddiv', display_until: (@event.imc_event? ? 1200 : 100))
-                  = render partial: 'am_charts'
               - else
                 p
                   | ボーダー情報がありません。

@@ -14,6 +14,8 @@ class EventsController < ApplicationController
       @latest_data = @event.border.latest
       @latest_data_team = @event.border(Event::ULA_FINAL_TEAM_SERIES_NAME).latest if @event.ula_final?
       if @event.hhp_event?
+        @idol_map = Idol.all.each_with_object({}) { |idol, hash| hash[idol.id] = idol.name.shorten }
+        @color_map = Idol.all.each_with_object({}) { |idol, hash| hash[idol.id] = idol.color }
         @dataset = @event.border.dataset
       end
     end

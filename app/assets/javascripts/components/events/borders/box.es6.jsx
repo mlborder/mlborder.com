@@ -43,7 +43,7 @@ class MlborderEventBorderBox extends React.Component {
 
   componentDidUpdate() {
     if(this.isBorderLoaded()) {
-      window.createAmCharts(this.props.chart_div_id, this.props.legend_div_id, this.props.display_until, this.props.title_map, this.state.data);
+      window.createAmCharts(this.props.chart_div_id, this.props.legend_div_id, this.props.display_until, this.props.title_map, this.props.color_map, this.state.data);
     } else {
       this.loadBorder();
     }

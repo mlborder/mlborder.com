@@ -1299,5 +1299,49 @@ Event.create([
       { idol_id: 13 }, # 我那覇響
       { idol_id: 11 }, # 双海亜美
     ]
+  },
+  { name: 'TH@NK YOU for SMILE!!',
+    event_type: 'hhp_event',
+    started_at: '2017-03-17 12:00:00 +0900',
+    ended_at: '2017-03-26 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 14 }, # 春日未来
+      { idol_id: 15 }, # 最上静香
+      { idol_id: 16 }, # 伊吹翼
+      { idol_id: 17 }, # 田中琴葉
+      { idol_id: 18 }, # 島原エレナ
+      { idol_id: 19 }, # 佐竹美奈子
+      { idol_id: 20 }, # 所恵美
+      { idol_id: 21 }, # 徳川まつり
+      { idol_id: 22 }, # 箱崎星梨花
+      { idol_id: 23 }, # 野々原茜
+      { idol_id: 24 }, # 望月杏奈
+      { idol_id: 25 }, # ロコ
+      { idol_id: 26 }, # 七尾百合子
+      { idol_id: 27 }, # 高山紗代子
+      { idol_id: 28 }, # 松田亜利沙
+      { idol_id: 29 }, # 高坂海美
+      { idol_id: 30 }, # 中谷育
+      { idol_id: 31 }, # 天空橋朋花
+      { idol_id: 32 }, # エミリー
+      { idol_id: 33 }, # 北沢志保
+      { idol_id: 34 }, # 舞浜歩
+      { idol_id: 35 }, # 木下ひなた
+      { idol_id: 36 }, # 矢吹可奈
+      { idol_id: 37 }, # 横山奈緒
+      { idol_id: 38 }, # 二階堂千鶴
+      { idol_id: 39 }, # 馬場このみ
+      { idol_id: 40 }, # 大神環
+      { idol_id: 41 }, # 豊川風花
+      { idol_id: 42 }, # 宮尾美也
+      { idol_id: 43 }, # 福田のり子
+      { idol_id: 44 }, # 真壁瑞希
+      { idol_id: 45 }, # 篠宮可憐
+      { idol_id: 46 }, # 百瀬莉緒
+      { idol_id: 47 }, # 永吉昴
+      { idol_id: 48 }, # 北上麗花
+      { idol_id: 49 }, # 周防桃子
+      { idol_id: 50 }, # ジュリア
+    ]
   }
 ])

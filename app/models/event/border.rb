@@ -7,10 +7,9 @@ class Event::Border
     @series_name = series_name || event.series_name
   end
 
-  def recent_series_data
-    return @recent_series_data if @recent_series_data
-    res = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" ORDER BY time DESC LIMIT 1;"
-    @recent_series_data = res.first['values'].first
+  def dataset
+    dataset = progress['values']
+    dataset.map { |data| data['time'] = Time.parse(data['time']).to_i; data }
   end
 
   def latest
@@ -19,6 +18,24 @@ class Event::Border
     end
 
     { time: Time.parse(recent_series_data['time']), borders: borders }
+  end
+
+  private
+  def progress
+    return @progress if @progress.present?
+
+    select_target = columns.map { |column| "MIN(#{column}) AS #{column}" }
+    span = (@event.imc_event? || @event.imce_event?) ? '5m' : '30m'
+
+    query = "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" WHERE time >= #{@event.started_at.to_i}s AND time <= #{@event.ended_at.to_i + 1}s GROUP BY time(#{span}) fill(previous);"
+    @progress = InfluxDB::Rails.client.query(query).first
+    @progress
+  end
+
+  def recent_series_data
+    return @recent_series_data if @recent_series_data
+    res = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" ORDER BY time DESC LIMIT 1;"
+    @recent_series_data = res.first['values'].first
   end
 
   def columns
@@ -33,20 +50,5 @@ class Event::Border
     end
 
     @columns = border_columns.concat other_columns
-  end
-
-  def progress
-    return @progress if @progress.present?
-
-    select_target = columns.map { |column| "MIN(#{column}) AS #{column}" }
-    span = (@event.imc_event? || @event.imce_event?) ? '5m' : '30m'
-
-    query = "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" WHERE time >= #{@event.started_at.to_i}s AND time <= #{@event.ended_at.to_i + 1}s GROUP BY time(#{span}) fill(previous);"
-    @progress = InfluxDB::Rails.client.query(query).first
-  end
-
-  def dataset
-    dataset = progress['values']
-    dataset.map { |data| data['time'] = Time.parse(data['time']).to_i; data }
   end
 end

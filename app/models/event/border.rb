@@ -24,12 +24,27 @@ class Event::Border
   def progress
     return @progress if @progress.present?
 
+    @progress = query_with_cache
+    @progress
+  end
+
+  def query_with_cache
+    return cached_dataset if cached_dataset
+
     select_target = columns.map { |column| "MIN(#{column}) AS #{column}" }
     span = (@event.imc_event? || @event.imce_event?) ? '5m' : '30m'
 
     query = "SELECT #{select_target.join(',')} FROM \"#{@series_name}\" WHERE time >= #{@event.started_at.to_i}s AND time <= #{@event.ended_at.to_i + 1}s GROUP BY time(#{span}) fill(previous);"
-    @progress = InfluxDB::Rails.client.query(query).first
-    @progress
+    InfluxDB::Rails.client.query(query).first
+  end
+
+  def cached_dataset
+    unless @cached_dataset
+      s3_object = s3_client.get_object(bucket: 'mlborder', key: "events/#{@series_name}.json")
+      @cached_dataset = JSON.load(s3_object.body.read)
+    end
+    @cached_dataset
+  rescue Aws::S3::Errors::NoSuchKey
   end
 
   def recent_series_data
@@ -50,5 +65,9 @@ class Event::Border
     end
 
     @columns = border_columns.concat other_columns
+  end
+
+  def s3_client
+    @s3 ||= Aws::S3::Client.new
   end
 end

@@ -16,7 +16,6 @@ class EventsController < ApplicationController
       if @event.hhp_event?
         @idol_map = Idol.all.each_with_object({}) { |idol, hash| hash[idol.id] = idol.name.shorten }
         @color_map = Idol.all.each_with_object({}) { |idol, hash| hash[idol.id] = idol.color }
-        @dataset = @event.border.dataset
       end
     end
     @recent_events = Event.includes(:prizes).includes(:final_borders).send(@event.event_type.to_sym).border_available.order(started_at: :desc).limit(10)

@@ -14,19 +14,7 @@ class EventsController < ApplicationController
       @latest_data = @event.border.latest
       @latest_data_team = @event.border(Event::ULA_FINAL_TEAM_SERIES_NAME).latest if @event.ula_final?
       if @event.hhp_event?
-        if @event.ended?
-          @@cached_dataset ||= {}
-          @@cached_dataset[@event.id] ||= @event.border.dataset
-          @dataset = @@cached_dataset[@event.id]
-        else
-          @@cached_bmd_dataset ||= nil
-          @@cached_bmd_time ||= nil
-          if @@cached_bmd_dataset.nil? || @@cached_bmd_time.nil? || @@cached_bmd_time < Time.now - 30.minutes
-            @@cached_bmd_time = Time.now
-            @@cached_bmd_dataset = @event.border.dataset
-          end
-          @dataset = @@cached_bmd_dataset
-        end
+        @dataset = @event.border.dataset
       end
     end
     @recent_events = Event.includes(:prizes).includes(:final_borders).send(@event.event_type.to_sym).border_available.order(started_at: :desc).limit(10)

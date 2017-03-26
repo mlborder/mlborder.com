@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if @user.save(user_params)
       redirect_to user_path(@user), flash: { alert: { type: 'success', message: t('.success') } }
     else
       render :edit

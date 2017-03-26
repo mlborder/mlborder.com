@@ -21,16 +21,20 @@ class MlborderEventBorderBox extends React.Component {
     return (
       <div className='row'>
         <div className='col-md-9'>
-          {chartBox}
+          <div className='row'>
+            <div className='col-md-12'>
+              {chartBox}
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-md-12'>
+              <div id={this.props.legend_div_id}></div>
+            </div>
+          </div>
         </div>
         <div className='col-md-3'>
           <div className='row' style={this.style().borderSummary}>
             <MlborderEventBorderBoxSummary time={this.props.border_summary.time} title_map={this.props.title_map} data={this.props.border_summary.borders} />
-          </div>
-          <div className='row'>
-            <div className='col-md-12'>
-              <div id={this.props.legend_div_id} style={this.style().legendDiv}></div>
-            </div>
           </div>
         </div>
       </div>
@@ -53,9 +57,6 @@ class MlborderEventBorderBox extends React.Component {
     return {
       borderSummary: {
         marginTop: "1.5em"
-      },
-      legendDiv: {
-        maxWidth: "240px"
       }
     };
   }

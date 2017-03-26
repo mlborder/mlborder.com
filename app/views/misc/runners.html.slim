@@ -37,8 +37,8 @@ script[type="text/javascript"]
       event: '#{@event}',
       target: '#{@selected_option}',
       format: '.csv',
-      minRank: 1,
-      maxRank: 491
+      minRank: #{params[:min].presence || 1},
+      maxRank: #{params[:max].presence || 491}
     };
 script[src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js" charset="utf-8"]
 script[src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"]

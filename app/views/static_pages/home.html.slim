@@ -18,36 +18,36 @@
       .list-group
         = link_to 'https://twitter.com/mlborder', target: '_blank', class: 'list-group-item' do
           h4.list-group-item-heading
-            span.fa.fa-twitter
-            |  ミリオンボーダーbot
+            span.fa.fa-twitter.fa-fw
+            | ミリオンボーダーbot
             small
               span.glyphicon.glyphicon-new-window
           p.list-group-item-text
             | 元祖ミリオンボーダーbotちゃん。イベントお役立ち情報を発信してくれています。
-          = link_to events_path, class: 'list-group-item' do
-            h4.list-group-item-heading
-              span.fa.fa-line-chart
-              |  イベントアーカイブ
-            p.list-group-item-text
-              | ミリオンで行われたイベントをまとめています。ボーダーの変遷を過去分含めてグラフで確認することもできます。
-            = link_to week_idol_records_path(week_id: 'latest'), class: 'list-group-item' do
-              h4.list-group-item-heading
-                span.fa.fa-star
-                |  週間アイドルランキング 
-              p.list-group-item-text
-                | 2016年以降の週間アイドルランキングを確認できます。
-              = link_to alarm_path, class: 'list-group-item' do
-                h4.list-group-item-heading
-                  span.glyphicon.glyphicon-bell
-                  |  ボーダーお知らせ機能（β）
-                p.list-group-item-text
-                  | ボーダーが指定したポイントに達したら、ミリオンボーダーbotからメンションが飛んでくる機能です。現状、雑な作りなのであまり期待はしないでください。
-                = link_to records_path, class: 'list-group-item' do
-                  h4.list-group-item-heading
-                    span.glyphicon.glyphicon-search
-                    |  イベント最終ランキング検索
-                  p.list-group-item-text
-                    | 『特番！生っすか！？サンデー×50』(2015年5月)からのイベント最終ランキングについて、イベント・プロデューサーの双方から検索できる機能です。
+        = link_to events_path, class: 'list-group-item' do
+          h4.list-group-item-heading
+            span.fa.fa-line-chart.fa-fw
+            | イベントアーカイブ
+          p.list-group-item-text
+            | ミリオンで行われたイベントをまとめています。ボーダーの変遷を過去分含めてグラフで確認することもできます。
+        = link_to week_idol_records_path(week_id: 'latest'), class: 'list-group-item' do
+          h4.list-group-item-heading
+            span.fa.fa-star.fa-fw
+            | 週間アイドルランキング
+          p.list-group-item-text
+            | 2016年以降の週間アイドルランキングを確認できます。
+        = link_to alarm_path, class: 'list-group-item' do
+          h4.list-group-item-heading
+            span.fa.fa-bell.fa-fw
+            | ボーダーお知らせ機能（β）
+          p.list-group-item-text
+            | ボーダーが指定したポイントに達したら、ミリオンボーダーbotからメンションが飛んでくる機能です。現状、雑な作りなのであまり期待はしないでください。
+        = link_to records_path, class: 'list-group-item' do
+          h4.list-group-item-heading
+            span.fa.fa-search.fa-fw
+            | イベント最終ランキング検索
+          p.list-group-item-text
+            | 『特番！生っすか！？サンデー×50』(2015年5月)からのイベント最終ランキングについて、イベント・プロデューサーの双方から検索できる機能です。
     .panel.panel-default
       .panel-heading
         h3.panel-title
@@ -55,28 +55,34 @@
       .list-group
         = link_to dramacd_themes_path, class: 'list-group-item' do
           h4.list-group-item-heading
-            span.fa.fa-film
-            |  キャスト投票キャンペーン
+            span.fa.fa-film.fa-fw
+            | キャスト投票キャンペーン
           p.list-group-item-text
             | THE@TER ACTIVITIESシリーズのキャスト選挙の結果です(2016/04/18 00:00～2016/05/02 09:59)
-          = link_to event_path(75), class: 'list-group-item' do
-            h4.list-group-item-heading
-              span.fa.fa-music
-              |  ENJOY H@RMONY!!
-            p.list-group-item-text
-              | ENJOY H@RMONY!!のボーダーの変遷です(2015/05/29 17:00〜2015/06/07 23:59)
-            = link_to event_path(107), class: 'list-group-item' do
-              h4.list-group-item-heading
-                span.fa.fa-music
-                |  BELIEVE MY DRE@M!!
-              p.list-group-item-text
-                | BELIEVE MY DRE@M!!のボーダーの変遷です(2016/04/22 17:00〜2016/04/30 23:59)
-              = link_to event_path(136), class: 'list-group-item' do
-                h4.list-group-item-heading
-                  span.fa.fa-rocket
-                  |  アルティメットライブアリーナ ファイナルリーグ
-                p.list-group-item-text
-                  | ULAファイナルリーグのボーダーの変遷です(2016/10/21 17:00〜2016/10/30 23:59)
+        = link_to event_path(75), class: 'list-group-item' do
+          h4.list-group-item-heading
+            span.fa.fa-music.fa-fw
+            | ENJOY H@RMONY!!
+          p.list-group-item-text
+            | ENJOY H@RMONY!!のボーダーの変遷です(2015/05/29 17:00〜2015/06/07 23:59)
+        = link_to event_path(107), class: 'list-group-item' do
+          h4.list-group-item-heading
+            span.fa.fa-music.fa-fw
+            | BELIEVE MY DRE@M!!
+          p.list-group-item-text
+            | BELIEVE MY DRE@M!!のボーダーの変遷です(2016/04/22 17:00〜2016/04/30 23:59)
+        = link_to event_path(150), class: 'list-group-item' do
+          h4.list-group-item-heading
+            span.fa.fa-music.fa-fw
+            | TH@NK YOU for SMILE!!
+          p.list-group-item-text
+            | TH@NK YOU for SMILE!!のボーダーの変遷です(2017/03/22 12:00〜2017/03/26 23:59)
+        = link_to event_path(136), class: 'list-group-item' do
+          h4.list-group-item-heading
+            span.fa.fa-rocket.fa-fw
+            | アルティメットライブアリーナ ファイナルリーグ
+          p.list-group-item-text
+            | ULAファイナルリーグのボーダーの変遷です(2016/10/21 17:00〜2016/10/30 23:59)
   .col-md-6
     .row
       .col-md-12

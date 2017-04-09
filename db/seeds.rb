@@ -1343,5 +1343,13 @@ Event.create([
       { idol_id: 49 }, # 周防桃子
       { idol_id: 50 }, # ジュリア
     ]
+  },
+  { name: '【復刻】集まれ！アイドルモンスターズ',
+    event_type: 'battle_event',
+    started_at: '2017-04-04 12:00:00 +0900',
+    ended_at: '2017-04-09 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 27 }, # 高山紗代子
+    ]
   }
 ])

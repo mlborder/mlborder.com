@@ -13,7 +13,8 @@ en:
     lesson:  Lesson
     psl:     PSL
     caravan: Caravan
-    nplive:  Unreveal
+    nplive:  NP Live
+    budokan: Unreveal
     ula:     ULA
   event_status:
     preparing: Preparing

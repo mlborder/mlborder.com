@@ -1216,7 +1216,7 @@ Event.create([
     ]
   },
   { name: '陽だまり☆Sunshine Rhythm!!',
-    event_type: 'nplive_event',
+    event_type: 'budokan_event',
     started_at: '2016-12-02 12:00:00 +0900',
     ended_at: '2016-12-14 23:59:59 +0900',
     prizes_attributes: [
@@ -1241,7 +1241,7 @@ Event.create([
     ]
   },
   { name: '月明かり☆BlueMoon Harmony!!',
-    event_type: 'nplive_event',
+    event_type: 'budokan_event',
     started_at: '2017-01-06 12:00:00 +0900',
     ended_at: '2017-01-18 23:59:59 +0900',
     prizes_attributes: [
@@ -1274,7 +1274,7 @@ Event.create([
     ]
   },
   { name: '星の煌めき☆Starlight Melody!!',
-    event_type: 'nplive_event',
+    event_type: 'budokan_event',
     started_at: '2017-02-14 12:00:00 +0900',
     ended_at: '2017-02-26 23:59:59 +0900',
     prizes_attributes: [

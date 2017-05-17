@@ -48,7 +48,8 @@ class Event < ApplicationRecord
     :battle_event,
     :ula_event,
     :nplive_event,
-    :imce_event
+    :imce_event,
+    :budokan_event,
   ]
 
   def has_border?

@@ -31,6 +31,9 @@ caravan_event:
 nplive_event:
   name: nplive
   label_class: 'label-event-nplive'
+budokan_event:
+  name: budokan
+  label_class: 'label-event-budokan'
 ula_event:
   name: ula
   label_class: 'label-event-ula'

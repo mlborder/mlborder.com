@@ -1351,5 +1351,29 @@ Event.create([
     prizes_attributes: [
       { idol_id: 27 }, # 高山紗代子
     ]
+  },
+  { name: 'アイドルヒーローズ　サイドストーリー',
+    event_type: 'lesson_event',
+    started_at: '2017-04-11 12:00:00 +0900',
+    ended_at: '2017-04-18 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 16 }, # 伊吹翼
+    ]
+  },
+  { name: 'アイドルマスターズカップ エボリューション5',
+    event_type: 'imce_event',
+    started_at: '2017-04-20 12:00:00 +0900',
+    ended_at: '2017-04-23 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 38 }, # 二階堂千鶴
+    ]
+  },
+  { name: 'ごきげんよう♪聖ミリオン女学園',
+    event_type: 'choco_event',
+    started_at: '2017-04-26 12:00:00 +0900',
+    ended_at: '2017-05-07 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 2 }, # 如月千早
+    ]
   }
 ])

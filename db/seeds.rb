@@ -1375,5 +1375,13 @@ Event.create([
     prizes_attributes: [
       { idol_id: 2 }, # 如月千早
     ]
+  },
+  { name: '見つけ出せ！トレジャーハンターと伝説の財宝',
+    event_type: 'battle_event',
+    started_at: '2017-05-09 12:00:00 +0900',
+    ended_at: '2017-05-16 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 39 }, # 馬場このみ
+    ]
   }
 ])

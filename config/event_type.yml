@@ -34,6 +34,9 @@ nplive_event:
 budokan_event:
   name: budokan
   label_class: 'label-event-budokan'
+theater_event:
+  name: theater
+  label_class: 'label-event-theater'
 ula_event:
   name: ula
   label_class: 'label-event-ula'

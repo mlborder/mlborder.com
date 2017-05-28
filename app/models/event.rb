@@ -50,6 +50,7 @@ class Event < ApplicationRecord
     :nplive_event,
     :imce_event,
     :budokan_event,
+    :theater_event,
   ]
 
   def has_border?

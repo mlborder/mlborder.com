@@ -1383,5 +1383,21 @@ Event.create([
     prizes_attributes: [
       { idol_id: 39 }, # 馬場このみ
     ]
+  },
+  { name: 'Precious Days!ミリオンシアターライブ Day1',
+    event_type: 'theater_event',
+    started_at: '2017-05-18 12:00:00 +0900',
+    ended_at: '2017-05-28 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 15 }, # 最上静香
+    ]
+  },
+  { name: '【復刻】逆襲！グレートアイドルキャッスル',
+    event_type: 'battle_event',
+    started_at: '2017-05-30 12:00:00 +0900',
+    ended_at: '2017-06-06 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 3 }, # 星井美希
+    ]
   }
 ])

@@ -1407,5 +1407,37 @@ Event.create([
     prizes_attributes: [
       { idol_id: 1 }, # 天海春香
     ]
+  },
+  { name: '【復刻】祝祭！クリスマスフェスタ',
+    event_type: 'choco_event',
+    started_at: '2017-06-13 12:00:00 +0900',
+    ended_at: '2017-06-21 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 47 }, # 永吉昴
+    ]
+  },
+  { name: 'いざ勝負！真剣すごろくゲーム',
+    event_type: 'battle_event',
+    started_at: '2017-06-23 12:00:00 +0900',
+    ended_at: '2017-07-02 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 12 }, # 双海真美
+    ]
+  },
+  { name: '女子力UP！エンジョイホリデー♪',
+    event_type: 'lesson_event',
+    started_at: '2017-07-04 12:00:00 +0900',
+    ended_at: '2017-07-12 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 46 }, # 百瀬莉緒
+    ]
+  },
+  { name: 'Precious Days!ミリオンシアターライブ Day2',
+    event_type: 'theater_event',
+    started_at: '2017-07-14 12:00:00 +0900',
+    ended_at: '2017-07-25 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 49 }, # 周防桃子
+    ]
   }
 ])

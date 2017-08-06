@@ -1,4 +1,13 @@
+import MlborderEventBorderBox from 'components/events/borders/box.js.jsx';
+import MlborderEventRecordBox from 'components/events/records/box.js.jsx';
+import { mountComponents } from 'react-rails-ujs';
+
 $(document).on('turbolinks:load', () => {
+  mountComponents({
+    MlborderEventBorderBox,
+    MlborderEventRecordBox
+  });
+
   $('button#default_series_button').on('click', (e) => {
     const event_id = $('#event_id').text();
     $.get(`/events/${event_id}/default_series_name`, (data) => {

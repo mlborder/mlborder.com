@@ -1,3 +1,5 @@
+import React from 'react';
+
 class MlborderEventBorderBox extends React.Component {
   constructor(props) {
     super(props);
@@ -126,3 +128,5 @@ class MlborderEventBorderBoxSummaryData extends React.Component {
     );
   }
 };
+
+export default MlborderEventBorderBox;

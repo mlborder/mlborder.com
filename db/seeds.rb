@@ -1439,5 +1439,13 @@ Event.create([
     prizes_attributes: [
       { idol_id: 49 }, # 周防桃子
     ]
+  },
+  { name: '【復刻】激動！アイドル警察24時',
+    event_type: 'battle_event',
+    started_at: '2017-07-28 12:00:00 +0900',
+    ended_at: '2017-08-07 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 17 }, # 田中琴葉
+    ]
   }
 ])

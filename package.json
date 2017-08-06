@@ -6,6 +6,9 @@
     "babel-preset-react": "^6.24.1",
     "babelify": "^7.3.0",
     "browserify": "^14.4.0",
-    "browserify-incremental": "^3.1.1"
+    "browserify-incremental": "^3.1.1",
+    "jquery-ujs": "^1.2.2",
+    "react": "^15.6.1",
+    "react-rails-ujs": "^1.1.0"
   }
 }

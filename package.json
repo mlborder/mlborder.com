@@ -6,7 +6,6 @@
     "babel-preset-react": "^6.16.0",
     "babelify": "^7.3.0",
     "browserify": "^13.1.1",
-    "browserify-incremental": "^3.1.1",
-    "coffeeify": "^2.1.0"
+    "browserify-incremental": "^3.1.1"
   }
 }

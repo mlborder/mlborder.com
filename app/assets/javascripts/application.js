@@ -19,6 +19,6 @@
 //= require_tree .
 //= require_tree ./components
 
-require('./events.es6')
-require('./misc_runners.es6')
-require('./am_chart.es6')
+require('./events')
+require('./misc_runners')
+require('./am_chart')

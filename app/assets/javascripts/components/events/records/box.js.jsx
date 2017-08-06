@@ -29,12 +29,12 @@ class MlborderEventRecordBox extends React.Component {
       url: this.props.url + '?' + $.param(get_params),
       dataType: 'json',
       cache: false,
-      success: function(data) {
+      success: data => {
         this.setState({data: data, isLoading: false});
-      }.bind(this),
-      error: function(xhr, status, err) {
+      },
+      error: (xhr, status, err) => {
         console.error(status, err.toString());
-      }.bind(this)
+      }
     });
   }
 };

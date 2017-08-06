@@ -3,4 +3,3 @@ ja:
     index:
       title: プロデューサー検索
       description_html: "<a href='http://imas.gree-apps.net/app/index.php/friend/id_search' target='_blank'>ミリオンのID</a>を指定して、イベント最終ランキング状況を確認できます。"
-      player_title: "%{player}さんのイベントランキング履歴"

@@ -136,3 +136,5 @@ class MlborderEventRecordBoxTableRow extends React.Component {
     );
   }
 }
+
+export default MlborderEventRecordBox;

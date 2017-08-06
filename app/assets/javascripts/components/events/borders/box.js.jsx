@@ -126,3 +126,5 @@ class MlborderEventBorderBoxSummaryData extends React.Component {
     );
   }
 };
+
+export default MlborderEventBorderBox;

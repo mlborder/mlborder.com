@@ -16,9 +16,11 @@
 //= require turbolinks
 //= require react
 //= require react_ujs
-//= require_tree .
-//= require_tree ./components
+import MlborderEventBorderBox from 'components/events/borders/box.js.jsx';
+import MlborderEventRecordBox from 'components/events/records/box.js.jsx';
 
-require('./events')
-require('./misc_runners')
-require('./am_chart')
+require('events');
+require('misc_runners');
+require('am_chart');
+window.MlborderEventBorderBox = MlborderEventBorderBox;
+window.MlborderEventRecordBox = MlborderEventRecordBox;

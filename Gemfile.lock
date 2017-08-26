@@ -8,11 +8,11 @@ GIT
 
 GIT
   remote: https://github.com/influxdata/influxdb-rails.git
-  revision: 5f5717de9e2afe33a20df25ba5bd9392d0700304
+  revision: 9dee4ef4281df11a0e7f62ffc450f5006a32b0cc
   specs:
-    influxdb-rails (0.1.12)
-      influxdb (~> 0.3.0)
-      railties
+    influxdb-rails (0.4.0)
+      influxdb (~> 0.4.0)
+      railties (> 3)
 
 GEM
   remote: https://rubygems.org/
@@ -56,22 +56,22 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.5.1)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     annotate (2.7.2)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
     arel (8.0.0)
     ast (2.3.0)
-    autoprefixer-rails (7.1.2.4)
+    autoprefixer-rails (7.1.2.6)
       execjs
-    aws-sdk (2.10.22)
-      aws-sdk-resources (= 2.10.22)
-    aws-sdk-core (2.10.22)
+    aws-sdk (2.10.34)
+      aws-sdk-resources (= 2.10.34)
+    aws-sdk-core (2.10.34)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.22)
-      aws-sdk-core (= 2.10.22)
+    aws-sdk-resources (2.10.34)
+      aws-sdk-core (= 2.10.34)
     aws-sigv4 (1.0.1)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -87,7 +87,7 @@ GEM
       railties (>= 4.0.0, < 5.2)
       sprockets (>= 3.6.0)
     builder (3.2.3)
-    byebug (9.0.6)
+    byebug (9.1.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
@@ -99,14 +99,13 @@ GEM
       thread
       thread_safe
     erubi (1.6.1)
-    erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
-    faraday (0.12.2)
+    faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     font-awesome-sass (4.7.0)
@@ -121,18 +120,17 @@ GEM
       multi_json (~> 1.7)
     highline (1.7.8)
     i18n (0.8.6)
-    i18n-tasks (0.9.16)
+    i18n-tasks (0.9.18)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       easy_translate (>= 0.5.0)
-      erubis
+      erubi
       highline (>= 1.7.3)
       i18n
       parser (>= 2.2.3.0)
       rainbow (~> 2.2)
       terminal-table (>= 1.5.1)
-    influxdb (0.3.15)
-      json
+    influxdb (0.4.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -187,8 +185,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    public_suffix (2.0.5)
-    puma (3.9.1)
+    public_suffix (3.0.0)
+    puma (3.10.0)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -244,7 +242,7 @@ GEM
     rspec-mocks (3.6.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.6.0)
-    rspec-rails (3.6.0)
+    rspec-rails (3.6.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -291,7 +289,7 @@ GEM
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
-    thor (0.19.4)
+    thor (0.20.0)
     thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.0.8)

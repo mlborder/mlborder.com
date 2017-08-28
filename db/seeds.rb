@@ -1447,5 +1447,21 @@ Event.create([
     prizes_attributes: [
       { idol_id: 17 }, # 田中琴葉
     ]
+  },
+  { name: '【復刻】甘ふわ♪ショコラハウス',
+    event_type: 'choco_event',
+    started_at: '2017-08-10 12:00:00 +0900',
+    ended_at: '2017-08-21 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 21 }, # 徳川まつり
+    ]
+  },
+  { name: '悪夢…呪われた人形の館',
+    event_type: 'battle_event',
+    started_at: '2017-08-24 12:00:00 +0900',
+    ended_at: '2017-09-04 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 28 }, # 松田亜利沙
+    ]
   }
 ])

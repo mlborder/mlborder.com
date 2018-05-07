@@ -48,9 +48,13 @@ class Event::Border
   end
 
   def recent_series_data
-    return @recent_series_data if @recent_series_data
-    res = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" ORDER BY time DESC LIMIT 1;"
-    @recent_series_data = res.first['values'].first
+    if cached_dataset
+      cached_dataset['values'].last
+    else
+      return @recent_series_data if @recent_series_data
+      res = InfluxDB::Rails.client.query "SELECT * FROM \"#{@series_name}\" ORDER BY time DESC LIMIT 1;"
+      @recent_series_data = res.first['values'].first
+    end
   end
 
   def columns

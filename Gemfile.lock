@@ -8,11 +8,11 @@ GIT
 
 GIT
   remote: https://github.com/influxdata/influxdb-rails.git
-  revision: 5f5717de9e2afe33a20df25ba5bd9392d0700304
+  revision: 946f054361ab340993604630adfae1cfe41e3fdb
   specs:
-    influxdb-rails (0.1.12)
-      influxdb (~> 0.3.0)
-      railties
+    influxdb-rails (0.4.3)
+      influxdb (~> 0.5.0)
+      railties (> 3)
 
 GEM
   remote: https://rubygems.org/
@@ -131,8 +131,7 @@ GEM
       parser (>= 2.2.3.0)
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
-    influxdb (0.3.15)
-      json
+    influxdb (0.5.3)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)

@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/imas/rubimas.git
-  revision: 6980845fb4769a2fa77e48d56a80a40ab8b33797
-  specs:
-    rubimas (0.4.0)
-      activesupport (>= 4.0)
-      hashie (>= 3.0)
-
-GIT
   remote: https://github.com/influxdata/influxdb-rails.git
   revision: 946f054361ab340993604630adfae1cfe41e3fdb
   specs:
@@ -250,6 +242,9 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
+    rubimas (1.0.0)
+      activesupport (>= 4.0)
+      hashie (>= 3.0)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -343,7 +338,7 @@ DEPENDENCIES
   react-rails
   rspec-collection_matchers
   rspec-rails
-  rubimas!
+  rubimas
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   slim-rails

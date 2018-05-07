@@ -4,7 +4,7 @@ class Events::RecordsController < ApplicationController
   def index
     if request.xhr?
       if @event.records_available?
-        @idol = Idol.find_by(id: params[:idol_id].to_i)
+        @idol = Rubimas.find(params[:idol_id].to_i)
         @page_num = [1, params[:page].to_i].max
         @records = @event.records(@page_num, @idol.try(:id))
 
@@ -16,7 +16,7 @@ class Events::RecordsController < ApplicationController
       return redirect_to event_records_path(@event) if @event.id != params[:event_id].to_i
       @events = Event.records_available.order(id: :desc).select(:id, :name)
       if @event.records_available?
-        @idol = Idol.find_by(id: params[:idol_id].to_i)
+        @idol = Rubimas.find(params[:idol_id].to_i)
         @page_num = [1, params[:page].to_i].max
         @records = @event.records(@page_num, @idol.try(:id))
 

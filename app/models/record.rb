@@ -4,7 +4,7 @@ class Record
   belongs_to :player
 
   def idol
-    Idol.find(idol_id) if idol_id
+    Rubimas.find(idol_id.to_i) if idol_id
   end
 
   def display_name

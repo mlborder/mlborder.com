@@ -32,7 +32,7 @@ ol.breadcrumb
                       .list-group
                         - sorted_array[0..4].each_with_index do |val, j|
                           .list-group-item
-                            - idol = Idol.find(val.first.to_i)
+                            - idol = Rubimas.find(val.first.to_i)
                             - if j.zero?
                               span style="color: #{idol.color}"
                                 span.fa.fa-star aria-hidden="true"

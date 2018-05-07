@@ -11,7 +11,7 @@
     .form-group
       = pf.label :produce_idol, class: 'col-sm-2 control-label'
       .col-sm-10
-        = pf.select :produce_idol_id, options_from_collection_for_select(Idol.all, :id, :name, pf.object.produce_idol_id), { include_blank: true }, class: 'form-control'
+        = pf.select :produce_idol_id, options_from_collection_for_select(Rubimas.all, :id, :name, pf.object.produce_idol_id), { include_blank: true }, class: 'form-control'
     .form-group
       = pf.label :description, class: 'col-sm-2 control-label'
       .col-sm-10

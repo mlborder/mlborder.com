@@ -1,11 +1,11 @@
 class IdolsController < ApplicationController
   def index
-    @idols = Idol.all
+    @idols = Rubimas.all
   end
 
   def show
-    @idol = Idol.find(idol_params[:id])
-    @events = Event.includes(:final_borders).order(id: :desc).where(id: @idol.event_prizes.pluck(:event_id))
+    @idol = Rubimas.find_by_id(idol_params[:id].to_i)
+    @events = Event::Prize.includes(:event).where(idol_id: @idol.id).map(&:event)
   end
 
   private

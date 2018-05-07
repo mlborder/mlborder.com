@@ -24,7 +24,7 @@ ol.breadcrumb
           = select_tag :target_id, options_from_collection_for_select(@weeks, :to_ymd, :format_term, selected: @week.to_ymd), include_blank: true, class: 'text-right form-control'
         .input-group
           = label_tag :idol_id, t('.idol'), class: 'sr-only'
-          = select_tag :idol_id, options_from_collection_for_select(Idol.all, :id, :name, selected: @idol&.id), include_blank: t('.all'), class: 'text-right form-control'
+          = select_tag :idol_id, options_from_collection_for_select(Rubimas.all, :id, :name, selected: @idol&.id), include_blank: t('.all'), class: 'text-right form-control'
           span.input-group-btn
             = submit_tag t('.submit'), class: 'btn btn-primary', name: nil
 

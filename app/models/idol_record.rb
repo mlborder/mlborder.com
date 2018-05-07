@@ -6,6 +6,6 @@ class IdolRecord
   end
 
   def idol
-    Idol.find(self.idol_id)
+    Rubimas.find(self.idol_id)
   end
 end

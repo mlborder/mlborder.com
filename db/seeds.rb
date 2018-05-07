@@ -1463,5 +1463,71 @@ Event.create([
     prizes_attributes: [
       { idol_id: 28 }, # 松田亜利沙
     ]
+  },
+  { name: '第7回アイドルマスターズカップ エボリューション',
+    event_type: 'imce_event',
+    started_at: '2017-09-07 12:00:00 +0900',
+    ended_at: '2017-09-10 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 43 }, # 福田のり子
+    ]
+  },
+  { name: '【復刻】アイドル水上運動会2015',
+    event_type: 'choco_event',
+    started_at: '2017-09-13 12:00:00 +0900',
+    ended_at: '2017-09-20 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 22 }, # 箱崎星梨花
+    ]
+  },
+  { name: 'Precious Days!ミリオンシアターライブ Day3',
+    event_type: 'theater_event',
+    started_at: '2017-09-22 12:00:00 +0900',
+    ended_at: '2017-10-03 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 29 }, # 高坂海美
+      { idol_id: 25 }, # ロコ
+    ]
+  },
+  { name: '【復刻】芸術！？バレンタインミュージアム',
+    event_type: 'choco_event',
+    started_at: '2017-10-06 12:00:00 +0900',
+    ended_at: '2017-10-16 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 48 }, # 北上麗花
+    ]
+  },
+  { name: '第8回アイドルマスターズカップ エボリューション',
+    event_type: 'imce_event',
+    started_at: '2017-10-19 12:00:00 +0900',
+    ended_at: '2017-10-22 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 45 }, # 篠宮可憐
+    ]
+  },
+  { name: '【復刻】トリート♪トワイライトパレス',
+    event_type: 'battle_event',
+    started_at: '2017-10-25 12:00:00 +0900',
+    ended_at: '2017-10-29 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 14 }, # 春日未来
+    ]
+  },
+  { name: '【復刻】囚われ！アイドルプリズン',
+    event_type: 'choco_event',
+    started_at: '2017-11-07 12:00:00 +0900',
+    ended_at: '2017-11-15 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 41 }, # 豊川風花
+    ]
+  },
+  { name: 'Thank You!ミリオンシアターライブFinal Party!',
+    event_type: 'theater_event',
+    started_at: '2017-11-17 12:00:00 +0900',
+    ended_at: '2017-11-30 23:59:59 +0900',
+    prizes_attributes: [
+      { idol_id: 1 }, # 天海春香
+      { idol_id: 32 }, # エミリー
+    ]
   }
 ])

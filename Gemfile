@@ -8,7 +8,7 @@ end
 ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0'
+gem 'rails', '~> 5.1.6.1'
 # Use SCSS for stylesheets
 gem 'slim-rails'
 gem 'sass-rails', '~> 5.0'
@@ -88,6 +88,8 @@ gem 'influxdb-rails', github: 'influxdata/influxdb-rails'
 gem 'influxdb'
 gem 'her'
 
-gem 'nokogiri', '>= 1.7.1'
+gem 'nokogiri', '>= 1.8.5'
 
 gem 'rails-html-sanitizer', '~> 1.0.3'
+gem 'ffi', '>= 1.9.24'
+gem 'loofah', '>= 2.2.3'

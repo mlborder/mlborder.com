@@ -90,6 +90,6 @@ gem 'her'
 
 gem 'nokogiri', '>= 1.8.5'
 
-gem 'rails-html-sanitizer', '~> 1.0.3'
+gem 'rails-html-sanitizer', '~> 1.4.3'
 gem 'ffi', '>= 1.9.24'
 gem 'loofah', '>= 2.2.3'
